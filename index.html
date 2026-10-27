@@ -24,6 +24,10 @@
     @media(max-width:760px){.wrap{width:min(100% - 36px,560px)}.header-inner{min-height:76px}.brand-icon{width:44px;border-radius:10px}.brand-kicker{font-size:9px}.brand-name{font-size:22px}.nav{display:none}.mobile-toggle{display:inline-grid;place-items:center}.hero{min-height:590px;background-position:58% center}.hero-copy{padding-block:72px}.hero h1{max-width:520px;font-size:clamp(56px,12vw,78px)}.offerings{padding-block:70px 76px}.section-title{margin-bottom:40px}.card-grid{grid-template-columns:1fr;gap:18px}.offering-card{display:grid;grid-template-columns:minmax(120px,.8fr) 1.2fr;min-height:205px}.card-image{height:100%;min-height:205px;aspect-ratio:auto}.card-body{align-items:flex-start;justify-content:center;padding:20px;text-align:left}.card-body h4{font-size:25px}.card-body p{margin-bottom:12px}.text-action{align-self:flex-start}.offering-group+.offering-group{margin-top:58px}.testimonial,.contact{padding-block:72px}.footer-inner{grid-template-columns:1fr;gap:17px}.copyright{text-align:left}}
     @media(max-width:440px){.wrap{width:calc(100% - 28px)}.hero{min-height:540px;background-position:61% center}.hero h1{font-size:55px}.offering-card{grid-template-columns:1fr}.card-image{height:auto;min-height:0;aspect-ratio:1.55}.card-body{align-items:center;text-align:center}.text-action{align-self:center}.field-row{grid-template-columns:1fr}.booking-dialog{padding:26px 20px 20px}}
       .view-hidden { display: none !important; }
+      .form-status { min-height: 0; margin: 0; color: var(--plum); font-size: 11px; line-height: 1.6; }
+      .form-status:empty { display: none; }
+      .calendar-fallback { color: var(--plum); font-size: 12px; font-weight: 600; }
+      .booking-form button:disabled { cursor: wait; opacity: .7; }
       .course-grid { max-width: 860px; margin-inline: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .card-actions { display: grid; gap: 8px; margin-top: 16px; }
       .detail-view { width: min(900px, calc(100% - 48px)); min-height: 65vh; margin-inline: auto; padding: 48px 0 80px; }
@@ -148,7 +152,9 @@
       <div class="field"><label for="reserva-telefono">Teléfono / WhatsApp</label><input id="reserva-telefono" name="telefono" type="tel" autocomplete="tel" placeholder="+56 9 1234 5678" required></div>
       <div class="field"><label for="reserva-fecha">Fecha de atención</label><input id="reserva-fecha" name="fecha" type="date" required></div>
       <div class="field"><label for="reserva-hora">Bloque horario (1 hora)</label><select id="reserva-hora" name="hora" required><option value="">Selecciona una hora</option><option>08:00 - 09:00 hrs</option><option>09:00 - 10:00 hrs</option><option>10:00 - 11:00 hrs</option><option>11:00 - 12:00 hrs</option><option>12:00 - 13:00 hrs</option><option>13:00 - 14:00 hrs</option><option>14:00 - 15:00 hrs</option><option>15:00 - 16:00 hrs</option><option>16:00 - 17:00 hrs</option><option>17:00 - 18:00 hrs</option><option>18:00 - 19:00 hrs</option><option>19:00 - 20:00 hrs</option></select></div>
-      <button class="button submit-button" type="submit"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Confirmar cita por WhatsApp</button>
+      <p class="form-status" id="booking-status" role="status" aria-live="polite"></p>
+      <a class="calendar-fallback" id="calendar-fallback" target="_blank" rel="noopener noreferrer" hidden>Abrir Google Calendar</a>
+      <button class="button submit-button" type="submit"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud y abrir Calendar</button>
     </form>
   </dialog>
 
@@ -160,7 +166,8 @@
       <div class="field"><label for="curso-persona">Nombre completo</label><input id="curso-persona" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required></div>
       <div class="field"><label for="curso-contacto">Correo electrónico o WhatsApp</label><input id="curso-contacto" name="contacto" type="text" placeholder="correo@ejemplo.com o +56 9..." required></div>
       <div class="field"><label for="curso-mensaje">Mensaje o consulta (opcional)</label><textarea id="curso-mensaje" name="mensaje" rows="3" placeholder="Quiero recibir información de la próxima fecha..."></textarea></div>
-      <button class="button submit-button" type="submit">Enviar interés por WhatsApp</button>
+      <p class="form-status" id="course-status" role="status" aria-live="polite"></p>
+      <button class="button submit-button" type="submit"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud</button>
     </form>
   </dialog>
 
@@ -173,6 +180,10 @@
     const courseForm = document.getElementById("form-curso");
     const serviceInput = document.getElementById("reserva-servicio");
     const dateInput = document.getElementById("reserva-fecha");
+    const ownerEmail = "integralamarte@gmail.com";
+    const bookingStatus = document.getElementById("booking-status");
+    const courseStatus = document.getElementById("course-status");
+    const calendarFallback = document.getElementById("calendar-fallback");
     const detailsData = {
       facelift: `
         <span class="course-status">Sesión individual · 1 hora</span>
@@ -250,6 +261,11 @@
       serviceInput.value = servicioNombre;
       dateInput.min = fechaLocalISO();
       dateInput.value = dateInput.min;
+      bookingStatus.textContent = "";
+      calendarFallback.hidden = true;
+      const botonEnviar = bookingForm.querySelector("[type=submit]");
+      botonEnviar.disabled = false;
+      botonEnviar.innerHTML = '<i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud y abrir Calendar';
       if (!bookingDialog.open) bookingDialog.showModal();
     }
 
@@ -264,7 +280,12 @@
     });
     document.querySelectorAll("[data-curso]").forEach((boton) => {
       boton.addEventListener("click", () => {
+        courseForm.reset();
         document.getElementById("curso-nombre").value = boton.dataset.curso;
+        courseStatus.textContent = "";
+        const botonEnviar = courseForm.querySelector("[type=submit]");
+        botonEnviar.disabled = false;
+        botonEnviar.innerHTML = '<i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud';
         courseDialog.showModal();
       });
     });
@@ -309,34 +330,90 @@
       });
     });
 
-    bookingForm.addEventListener("submit", (evento) => {
+    async function enviarFormularioEmail(formData, asunto) {
+      formData.append("_subject", asunto);
+      const respuesta = await fetch(`https://formsubmit.co/ajax/${ownerEmail}`, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData
+      });
+      const resultado = await respuesta.json();
+      if (!respuesta.ok || (resultado.success !== true && resultado.success !== "true")) {
+        throw new Error(resultado.message || "No se pudo enviar el formulario.");
+      }
+      return resultado;
+    }
+
+    bookingForm.addEventListener("submit", async (evento) => {
       evento.preventDefault();
       if (!bookingForm.reportValidity()) return;
       const datos = new FormData(bookingForm);
-      const fecha = datos.get("fecha").split("-").reverse().join("/");
-      const texto = [
-        `Hola, quiero agendar una reserva para *${datos.get("servicio")}* (duración: 1 hora).`,
-        `📅 *Fecha:* ${fecha}`,
-        `⏰ *Horario:* ${datos.get("hora")}`,
-        `👤 *Nombre:* ${datos.get("nombre")}`,
-        `📱 *Teléfono:* ${datos.get("telefono")}`
-      ].join("\n");
-      window.open(`https://wa.me/56956139321?${new URLSearchParams({ text: texto })}`, "_blank", "noopener,noreferrer");
-      bookingDialog.close();
+      const ventanaCalendar = window.open("about:blank", "_blank");
+      const botonEnviar = bookingForm.querySelector("[type=submit]");
+      const formularioEmail = new FormData();
+      formularioEmail.append("Servicio", datos.get("servicio"));
+      formularioEmail.append("Nombre_Cliente", datos.get("nombre"));
+      formularioEmail.append("Telefono", datos.get("telefono"));
+      formularioEmail.append("Fecha", datos.get("fecha"));
+      formularioEmail.append("Horario", datos.get("hora"));
+      bookingStatus.textContent = "Enviando la solicitud...";
+      botonEnviar.disabled = true;
+
+      try {
+        await enviarFormularioEmail(formularioEmail, `Nueva solicitud: ${datos.get("servicio")} (${datos.get("fecha")})`);
+        const fechaCalendar = datos.get("fecha").replace(/-/g, "");
+        const [horaInicio, horaFin] = datos.get("hora").split(" - ");
+        const horaCalendar = (hora) => `${hora.replace(" hrs", "").replace(":", "")}00`;
+        const detalles = `Solicitud de reserva en Centro Holístico Integral Amarte.\nNombre: ${datos.get("nombre")}\nTeléfono: ${datos.get("telefono")}\nServicio: ${datos.get("servicio")}`;
+        const parametros = new URLSearchParams({
+          action: "TEMPLATE",
+          text: `${datos.get("servicio")} - ${datos.get("nombre")}`,
+          dates: `${fechaCalendar}T${horaCalendar(horaInicio)}/${fechaCalendar}T${horaCalendar(horaFin)}`,
+          details: detalles,
+          ctz: "America/Santiago"
+        });
+        const calendarUrl = `https://calendar.google.com/calendar/render?${parametros}`;
+
+        if (ventanaCalendar) {
+          ventanaCalendar.opener = null;
+          ventanaCalendar.location.href = calendarUrl;
+          bookingStatus.textContent = "Solicitud enviada por correo. Revisa Google Calendar y guarda el evento para confirmar la hora.";
+        } else {
+          calendarFallback.href = calendarUrl;
+          calendarFallback.hidden = false;
+          bookingStatus.textContent = "Solicitud enviada por correo. El navegador bloqueó la ventana; usa el enlace para abrir Calendar.";
+        }
+        botonEnviar.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Solicitud enviada';
+      } catch (error) {
+        ventanaCalendar?.close();
+        bookingStatus.textContent = "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
+        botonEnviar.disabled = false;
+        console.error(error);
+      }
     });
 
-    courseForm.addEventListener("submit", (evento) => {
+    courseForm.addEventListener("submit", async (evento) => {
       evento.preventDefault();
       if (!courseForm.reportValidity()) return;
       const datos = new FormData(courseForm);
-      const texto = [
-        `Hola, me interesa inscribirme o estar en lista de espera para el curso *${datos.get("curso")}*.`,
-        `👤 *Nombre:* ${datos.get("nombre")}`,
-        `📩 *Contacto:* ${datos.get("contacto")}`,
-        datos.get("mensaje") ? `💬 *Mensaje:* ${datos.get("mensaje")}` : ""
-      ].filter(Boolean).join("\n");
-      window.open(`https://wa.me/56956139321?${new URLSearchParams({ text: texto })}`, "_blank", "noopener,noreferrer");
-      courseDialog.close();
+      const botonEnviar = courseForm.querySelector("[type=submit]");
+      const formularioEmail = new FormData();
+      formularioEmail.append("Curso_Interes", datos.get("curso"));
+      formularioEmail.append("Nombre", datos.get("nombre"));
+      formularioEmail.append("Contacto", datos.get("contacto"));
+      formularioEmail.append("Mensaje", datos.get("mensaje"));
+      courseStatus.textContent = "Enviando la solicitud...";
+      botonEnviar.disabled = true;
+
+      try {
+        await enviarFormularioEmail(formularioEmail, `Interés en curso: ${datos.get("curso")} - ${datos.get("nombre")}`);
+        courseStatus.textContent = "Solicitud enviada por correo. Te contactaremos con más información.";
+        botonEnviar.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Solicitud enviada';
+      } catch (error) {
+        courseStatus.textContent = "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
+        botonEnviar.disabled = false;
+        console.error(error);
+      }
     });
   </script>
 </body>
