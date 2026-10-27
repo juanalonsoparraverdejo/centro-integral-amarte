@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ed">
+  <meta name="description" content="Terapias holísticas, sesiones y cursos en el Centro Holístico Integral Amarte.">
+  <title>Centro Holístico Integral Amarte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{color-scheme:light;--paper:#f7f3ed;--card:#fcfaf6;--footer:#ece7df;--ink:#33332f;--muted:#6f6b65;--line:#ded8ce;--plum:#806174;--plum-dark:#654b5c;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Montserrat",sans-serif}
+    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}:focus-visible{outline:3px solid #a87d9a;outline-offset:3px}.wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+    .site-header{position:sticky;top:0;z-index:10;background:rgba(247,243,237,.97);border-bottom:1px solid rgba(75,65,57,.12);backdrop-filter:blur(12px)}.header-inner{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none}.brand-icon{display:grid;width:52px;aspect-ratio:1;place-items:center;padding:6px;border:1px solid #d5cabc;border-radius:12px;background:#eae2d5}.brand-icon svg{width:100%;height:100%;fill:var(--plum)}.brand-copy{display:flex;flex-direction:column}.brand-kicker{color:#71665e;font-family:var(--serif);font-size:11px;font-weight:600;letter-spacing:.14em}.brand-name{margin-top:-3px;font-family:var(--serif);font-size:26px;letter-spacing:.14em}.nav{display:flex;align-items:center;gap:34px}.nav a{color:#514e49;font-size:12px;font-weight:500;text-decoration:none;transition:color .2s}.nav a:hover{color:var(--plum)}.nav-active{border-bottom:1px solid currentColor;padding-bottom:5px}.nav .nav-cta{padding:12px 17px;border:1px solid var(--plum);color:var(--plum)}.nav .nav-cta:hover{background:var(--plum);color:white}.mobile-toggle{display:none;width:42px;height:42px;border:0;background:transparent;color:var(--ink);font-size:20px}.mobile-menu{display:none;padding:4px 24px 18px;border-top:1px solid var(--line)}.mobile-menu[aria-hidden="false"]{display:grid;gap:4px}.mobile-menu a,.mobile-menu button{padding:10px 0;border:0;background:transparent;color:var(--ink);text-align:left;text-decoration:none;font-size:13px}.mobile-menu button{color:var(--plum);font-weight:600}
+    .hero{min-height:min(680px,82vh);display:flex;align-items:center;background:linear-gradient(90deg,rgba(247,243,237,.94),rgba(247,243,237,.83) 43%,rgba(247,243,237,.12)),url("https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1920&q=85") center/cover no-repeat}.hero-copy{width:min(680px,100%);padding-block:90px;animation:arrive .7s both}.eyebrow{margin:0 0 20px;color:var(--plum);font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}.hero h1{max-width:660px;margin:0 0 28px;color:#393631;font-family:var(--serif);font-size:clamp(52px,7vw,88px);font-weight:400;line-height:.96}.hero h1 span{display:block}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 24px;border:1px solid var(--plum);border-radius:999px;background:var(--plum);color:white;font-size:11px;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:background .2s,transform .2s}.button:hover{transform:translateY(-2px);background:var(--plum-dark)}
+    .offerings{padding-block:90px 100px}.section-title{margin:0 0 52px;text-align:center;font-family:var(--serif);font-size:clamp(43px,5vw,58px);font-weight:400;line-height:1}.offering-group+.offering-group{margin-top:76px}.group-title{margin:0 0 28px;text-align:center;color:#625e58;font-family:var(--serif);font-size:36px;font-weight:400}.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.offering-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid rgba(126,111,96,.18);border-radius:7px;background:var(--card);box-shadow:0 5px 20px rgba(48,39,31,.035);transition:box-shadow .25s,transform .25s}.offering-card:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(48,39,31,.09)}.card-image{display:block;width:100%;aspect-ratio:1.35;object-fit:cover;background:#e5ded2}.card-body{display:flex;flex:1;flex-direction:column;align-items:center;padding:24px 22px 26px;text-align:center}.card-body h4{margin:0 0 10px;color:#393631;font-family:var(--serif);font-size:28px;font-weight:500;line-height:1.05}.card-body p{margin:0 0 20px;color:var(--muted);font-size:11px;font-weight:300;line-height:1.8}.text-action{margin-top:auto;padding:8px 0 3px;border:0;border-bottom:1px solid #aaa096;background:transparent;color:#514c46;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}.text-action:hover{border-color:var(--plum);color:var(--plum)}
+    .testimonial{padding:92px 24px;border-block:1px solid rgba(126,111,96,.2);background:linear-gradient(rgba(247,243,237,.87),rgba(247,243,237,.91)),url("https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80") center/cover no-repeat;text-align:center}.testimonial-inner{width:min(820px,100%);margin:auto}.testimonial h2,.contact h2{margin:0;font-family:var(--serif);font-size:clamp(40px,5vw,56px);font-weight:400;line-height:1}.quote-mark{height:54px;margin-top:20px;color:#aa9b8a;font-family:var(--serif);font-size:72px;font-weight:600;line-height:1}.quote{margin:0 auto 24px;color:#5d5851;font-family:var(--serif);font-size:clamp(22px,3vw,29px);font-style:italic;line-height:1.45}.quote-rule{width:40px;height:1px;margin:0 auto 15px;background:#a89d90}.quote-author{margin:0;color:#716b63;font-size:10px;font-weight:600;letter-spacing:.2em}
+    .contact{padding:88px 24px;background:linear-gradient(rgba(247,243,237,.89),rgba(247,243,237,.94)),url("https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=1920&q=85") center/cover no-repeat;text-align:center}.contact-inner{width:min(660px,100%);margin:auto}.contact h2{margin-bottom:36px}.contact-label{margin:0 0 8px;color:var(--muted);font-size:10px;font-weight:500;letter-spacing:.18em}.phone-link{display:inline-block;color:#393631;font-family:var(--serif);font-size:clamp(32px,5vw,44px);text-decoration:none}.phone-link:hover{color:var(--plum)}.contact-button{margin-top:24px}
+    .site-footer{padding:32px 0;border-top:1px solid rgba(126,111,96,.2);background:var(--footer)}.footer-inner{display:grid;grid-template-columns:1fr 1.4fr 1fr;align-items:center;gap:28px}.footer-brand{display:flex;align-items:center;gap:10px}.footer-brand .brand-icon{width:42px;border-radius:9px}.footer-brand .brand-kicker{font-size:8px}.footer-brand .brand-name{font-size:20px}.mission{margin:0;color:#66615b;font-size:11px;font-weight:300;line-height:1.8}.copyright{margin:0;color:#716b63;font-size:10px;line-height:1.7;text-align:right}
+    .booking-dialog{position:relative;width:min(500px,calc(100% - 28px));max-width:none;max-height:min(92vh,780px);padding:30px;overflow-y:auto;border:1px solid #d9d0c4;border-radius:12px;background:var(--card);color:var(--ink);box-shadow:0 24px 80px rgba(31,25,30,.24)}.booking-dialog::backdrop{background:rgba(25,22,24,.58);backdrop-filter:blur(3px)}.dialog-close{position:absolute;top:13px;right:15px;width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:#77716a;font-size:26px}.dialog-close:hover{background:#eee8df;color:var(--ink)}.dialog-heading{margin:0 30px 24px;text-align:center}.dialog-heading .eyebrow{margin-bottom:6px}.dialog-heading h2{margin:0;color:#393631;font-family:var(--serif);font-size:38px;font-weight:500;line-height:1}.booking-form{display:grid;gap:15px}.field{display:grid;min-width:0;gap:6px}.field label{color:#635e57;font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase}.field input,.field select,.field textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid #d9d3c9;border-radius:6px;background:white;color:#393631;font-size:12px}.field textarea{min-height:70px;resize:vertical}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.submit-button{width:100%;margin-top:3px}
+    @keyframes arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    @media(max-width:760px){.wrap{width:min(100% - 36px,560px)}.header-inner{min-height:76px}.brand-icon{width:44px;border-radius:10px}.brand-kicker{font-size:9px}.brand-name{font-size:22px}.nav{display:none}.mobile-toggle{display:inline-grid;place-items:center}.hero{min-height:590px;background-position:58% center}.hero-copy{padding-block:72px}.hero h1{max-width:520px;font-size:clamp(56px,12vw,78px)}.offerings{padding-block:70px 76px}.section-title{margin-bottom:40px}.card-grid{grid-template-columns:1fr;gap:18px}.offering-card{display:grid;grid-template-columns:minmax(120px,.8fr) 1.2fr;min-height:205px}.card-image{height:100%;min-height:205px;aspect-ratio:auto}.card-body{align-items:flex-start;justify-content:center;padding:20px;text-align:left}.card-body h4{font-size:25px}.card-body p{margin-bottom:12px}.text-action{align-self:flex-start}.offering-group+.offering-group{margin-top:58px}.testimonial,.contact{padding-block:72px}.footer-inner{grid-template-columns:1fr;gap:17px}.copyright{text-align:left}}
+    @media(max-width:440px){.wrap{width:calc(100% - 28px)}.hero{min-height:540px;background-position:61% center}.hero h1{font-size:55px}.offering-card{grid-template-columns:1fr}.card-image{height:auto;min-height:0;aspect-ratio:1.55}.card-body{align-items:center;text-align:center}.text-action{align-self:center}.field-row{grid-template-columns:1fr}.booking-dialog{padding:26px 20px 20px}}
+      .view-hidden { display: none !important; }
+      .reservation-view { width: min(1180px, calc(100% - 48px)); min-height: 70vh; margin-inline: auto; padding: 62px 0 90px; }
+      .reservation-heading { margin-bottom: 52px; text-align: center; }
+      .reservation-heading h1 { margin: 0 0 8px; color: #332e2b; font-family: var(--serif); font-size: clamp(42px, 5vw, 58px); font-weight: 400; }
+      .reservation-heading p { margin: 0; color: #7a716a; font-size: 12px; line-height: 1.7; }
+      .reservation-section + .reservation-section { margin-top: 64px; }
+      .reservation-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 26px; padding-bottom: 10px; border-bottom: 1px solid var(--plum); }
+      .reservation-section-heading h2 { margin: 0; color: #332e2b; font-family: var(--serif); font-size: 31px; font-weight: 400; }
+      .reservation-section-heading span { color: var(--plum); font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+      .reservation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+      .reservation-card { display: flex; min-width: 0; flex-direction: column; justify-content: space-between; padding: 18px; border: 1px solid #e6dfd5; border-radius: 9px; background: #faf7f2; }
+      .reservation-card img { width: 100%; height: 180px; margin-bottom: 17px; border-radius: 6px; object-fit: cover; }
+      .reservation-card h3 { margin: 0 0 6px; color: #332e2b; font-family: var(--serif); font-size: 27px; font-weight: 600; line-height: 1.05; }
+      .reservation-card p { margin: 0 0 14px; color: #625b54; font-size: 11px; line-height: 1.7; }
+      .reservation-card .card-meta { margin-bottom: 9px; color: #7a716a; font-size: 10px; }
+      .reservation-button { width: 100%; min-height: 42px; margin-top: 12px; border-radius: 5px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+      .course-status { display: inline-block; align-self: flex-start; margin: 0 0 10px; padding: 5px 9px; border-radius: 999px; background: #eee7df; color: #65584f; font-size: 9px; font-weight: 600; }
+      .course-button { background: transparent; color: var(--plum); }
+      .course-button:hover { background: var(--plum); color: white; }
+      .modal-form-note { margin: -16px 0 20px; color: var(--plum); font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+      @media (max-width: 760px) {
+        .reservation-view { width: min(100% - 36px, 560px); padding: 48px 0 68px; }
+        .reservation-section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+        .reservation-section-heading h2 { font-size: 27px; }
+        .reservation-grid { grid-template-columns: 1fr; gap: 16px; }
+        .reservation-card { display: grid; grid-template-columns: minmax(120px, .8fr) 1.2fr; align-items: center; gap: 0 16px; }
+        .reservation-card > div { grid-row: span 2; }
+        .reservation-card img { height: 100%; min-height: 150px; margin: 0; }
+        .reservation-button { grid-column: 2; }
+      }
+      @media (max-width: 440px) {
+        .reservation-view { width: calc(100% - 28px); }
+        .reservation-card { display: flex; align-items: stretch; }
+        .reservation-card img { height: 180px; margin-bottom: 15px; }
+      }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#inicio" onclick="showSection('home')" aria-label="Centro Holístico Integral Amarte, inicio">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 15C45 30 30 45 30 60c0 15 15 25 20 25s20-10 20-25c0-15-15-30-20-45Z" opacity=".6"/><path d="M50 25C40 38 20 50 20 65c0 13 18 20 30 20s30-7 30-20c0-15-20-27-30-40Z" opacity=".4"/><path d="M50 35C42 45 10 58 10 70c0 10 22 15 40 15s40-5 40-15c0-12-32-25-40-35Z" opacity=".25"/><circle cx="50" cy="50" r="4" fill="#c4a77e"/></svg></span>
+        <span class="brand-copy"><span class="brand-kicker">CENTRO HOLÍSTICO INTEGRAL</span><span class="brand-name">AMARTE</span></span>
+      </a>
+      <nav class="nav" aria-label="Navegación principal"><a class="nav-active" href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Reserva online</a><a href="#contacto" onclick="showSection('home')">Contacto</a><a class="nav-cta" href="#reservas" onclick="showSection('reservas')">Ver terapias</a></nav>
+      <button class="mobile-toggle" id="mobile-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true" hidden><a href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Reserva online</a><a href="#contacto" onclick="showSection('home')">Contacto / WhatsApp</a><button type="button" data-seccion="reservas">Reservar cita</button></nav>
+  </header>
+
+  <main id="section-home">
+    <section class="hero" id="inicio" aria-labelledby="hero-title"><div class="wrap"><div class="hero-copy"><p class="eyebrow">Un espacio para reconectar contigo</p><h1 id="hero-title"><span>Centro Holístico</span><span>Integral Amarte</span></h1><button class="button" type="button" onclick="showSection('reservas')">Reservar ahora <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div></div></section>
+
+    <section class="offerings wrap view-hidden" id="terapias" aria-labelledby="offerings-title">
+      <h2 class="section-title" id="offerings-title">Nuestras Terapias</h2>
+      <div class="offering-group"><h3 class="group-title">Sesiones</h3><div class="card-grid">
+        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=900&q=85" alt="Espacio preparado para una sesión de bienestar" loading="lazy"><div class="card-body"><h4>Alineación de Chakras &amp; Reiki</h4><p>Armonización profunda de tus centros de energía para liberar bloqueos y tensiones.</p><button class="text-action" type="button" data-reservar="Alineación de Chakras & Reiki">Reservar cita</button></div></article>
+        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=85" alt="Práctica de bienestar en un espacio tranquilo" loading="lazy"><div class="card-body"><h4>Sonidoterapia &amp; Cuencos</h4><p>Vibraciones de cuencos tibetanos y de cuarzo para calmar la mente y restaurar el sistema nervioso.</p><button class="text-action" type="button" data-reservar="Sonidoterapia & Cuencos">Reservar cita</button></div></article>
+        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=85" alt="Meditación y acompañamiento personal" loading="lazy"><div class="card-body"><h4>Acompañamiento Holístico</h4><p>Sesión individual personalizada para trabajar objetivos emocionales, espirituales y de vida.</p><button class="text-action" type="button" data-reservar="Acompañamiento Holístico">Reservar cita</button></div></article>
+      </div></div>
+      <div class="offering-group"><h3 class="group-title">Cursos</h3><div class="card-grid">
+        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=85" alt="Materiales para una actividad de formación" loading="lazy"><div class="card-body"><h4>Curso Oficial de Barras de Access</h4><button class="text-action" type="button" data-reservar="Curso Oficial de Barras de Access">Consultar / Inscribirme</button></div></article>
+        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85" alt="Formación y aprendizaje en un entorno natural" loading="lazy"><div class="card-body"><h4>Formación en Tarot</h4><button class="text-action" type="button" data-reservar="Formación en Tarot">Consultar / Inscribirme</button></div></article>
+        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=900&q=85" alt="Paisaje sereno para la reflexión personal" loading="lazy"><div class="card-body"><h4>Curso de Eliminación de Votos y Pactos</h4><button class="text-action" type="button" data-reservar="Curso de Eliminación de Votos">Consultar / Inscribirme</button></div></article>
+      </div></div>
+    </section>
+
+    <section class="testimonial" aria-labelledby="testimonial-title"><div class="testimonial-inner"><h2 id="testimonial-title">Experiencias de Clientes</h2><div class="quote-mark" aria-hidden="true">“</div><blockquote class="quote">El sonido de las barras es algo que hay que vivir para entender. Sentí que mi mente por fin se quedó en silencio. Además el trato es muy cálido, te explican todo con paciencia antes de partir.</blockquote><div class="quote-rule" aria-hidden="true"></div><p class="quote-author">A.T.</p></div></section>
+
+    <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="contact-inner"><h2 id="contact-title">Conecta con nosotros</h2><p class="contact-label">HÁBLANOS POR WHATSAPP</p><a class="phone-link" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20consultar%20por%20una%20reserva%20en%20el%20Centro%20Hol%C3%ADstico%20Amarte" target="_blank" rel="noopener noreferrer">+56 9 5613 9321</a><div><button class="button contact-button" type="button" data-reservar="Alineación de Chakras & Reiki"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar o reservar</button></div></div></section>
+  </main>
+
+  <section class="reservation-view view-hidden" id="section-reservas" aria-labelledby="reservation-title">
+    <header class="reservation-heading"><h1 id="reservation-title">Agenda tu Reserva</h1><p>Selecciona una sesión de una hora o consulta por las fechas de nuestros cursos.</p></header>
+    <section class="reservation-section" aria-labelledby="sessions-title">
+      <div class="reservation-section-heading"><h2 id="sessions-title">Sesiones Individuales (1 hora)</h2><span>Horarios de 08:00 a 20:00 hrs</span></div>
+      <div class="reservation-grid">
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=800&q=80" alt="Espacio preparado para terapia energética" loading="lazy"><h3>Terapia Energética</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Alineación y armonización de centros energéticos para restaurar el equilibrio interior.</p></div><button class="button reservation-button" type="button" data-sesion="Terapia Energética">Elegir horario</button></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Sesión de bienestar y sonidoterapia" loading="lazy"><h3>Sonidoterapia</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Inmersión vibracional con cuencos de cuarzo y sonido para soltar la tensión mental.</p></div><button class="button reservation-button" type="button" data-sesion="Sonidoterapia">Elegir horario</button></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Meditación para una lectura holística" loading="lazy"><h3>Lectura Holística</h3><p class="card-meta">Duración: 1 hora · Presencial / Online</p><p>Sesión de guía espiritual para encontrar claridad en tus momentos de decisión.</p></div><button class="button reservation-button" type="button" data-sesion="Lectura Holística">Elegir horario</button></article>
+      </div>
+    </section>
+    <section class="reservation-section" aria-labelledby="courses-title">
+      <div class="reservation-section-heading"><h2 id="courses-title">Cursos y Formaciones</h2><span>Fechas por anunciar</span></div>
+      <div class="reservation-grid">
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Materiales para el curso de Barras de Access" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Curso Oficial Barras de Access</h3><p>Conoce esta técnica y consulta por las próximas fechas y cupos disponibles.</p></div><button class="button reservation-button course-button" type="button" data-curso="Curso Oficial Barras de Access">Me interesa / Inscribirme</button></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Formación y aprendizaje de tarot" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Formación en Tarot Evolutivo</h3><p>Iniciación a la simbología de los arcanos como herramienta de autoconocimiento.</p></div><button class="button reservation-button course-button" type="button" data-curso="Formación en Tarot Evolutivo">Me interesa / Inscribirme</button></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=800&q=80" alt="Paisaje sereno para la reflexión personal" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Curso de Eliminación de Bloqueos</h3><p>Taller para explorar patrones repetitivos y votos energéticos inconscientes.</p></div><button class="button reservation-button course-button" type="button" data-curso="Curso de Eliminación de Bloqueos">Me interesa / Inscribirme</button></article>
+      </div>
+    </section>
+  </section>
+
+  <footer class="site-footer"><div class="wrap footer-inner">
+    <a class="brand footer-brand" href="#inicio" aria-label="Amarte, volver al inicio"><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 15C45 30 30 45 30 60c0 15 15 25 20 25s20-10 20-25c0-15-15-30-20-45Z" opacity=".6"/><path d="M50 25C40 38 20 50 20 65c0 13 18 20 30 20s30-7 30-20c0-15-20-27-30-40Z" opacity=".4"/><circle cx="50" cy="50" r="4" fill="#c4a77e"/></svg></span><span class="brand-copy"><span class="brand-kicker">CENTRO HOLÍSTICO INTEGRAL</span><span class="brand-name">AMARTE</span></span></a>
+    <p class="mission">Sanación energética y bienestar espiritual. Nuestra misión es guiar a través de la conexión profunda para restaurar el equilibrio y la serenidad en cada ser.</p><p class="copyright">© 2026 Centro Holístico Integral Amarte.<br>Todos los derechos reservados.</p>
+  </div></footer>
+
+  <dialog class="booking-dialog" id="modal-reserva" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" data-cerrar="modal-reserva" aria-label="Cerrar reserva">&times;</button>
+    <div class="dialog-heading"><h2 id="dialog-title">Reservar sesión</h2></div><p class="modal-form-note">Duración: 1 hora</p>
+    <form class="booking-form" id="form-reserva">
+      <div class="field"><label for="reserva-servicio">Sesión</label><input id="reserva-servicio" name="servicio" type="text" readonly required></div>
+      <div class="field"><label for="reserva-nombre">Nombre completo</label><input id="reserva-nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: María González" required></div>
+      <div class="field"><label for="reserva-telefono">Teléfono / WhatsApp</label><input id="reserva-telefono" name="telefono" type="tel" autocomplete="tel" placeholder="+56 9 1234 5678" required></div>
+      <div class="field"><label for="reserva-fecha">Fecha de atención</label><input id="reserva-fecha" name="fecha" type="date" required></div>
+      <div class="field"><label for="reserva-hora">Bloque horario (1 hora)</label><select id="reserva-hora" name="hora" required><option value="">Selecciona una hora</option><option>08:00 - 09:00 hrs</option><option>09:00 - 10:00 hrs</option><option>10:00 - 11:00 hrs</option><option>11:00 - 12:00 hrs</option><option>12:00 - 13:00 hrs</option><option>13:00 - 14:00 hrs</option><option>14:00 - 15:00 hrs</option><option>15:00 - 16:00 hrs</option><option>16:00 - 17:00 hrs</option><option>17:00 - 18:00 hrs</option><option>18:00 - 19:00 hrs</option><option>19:00 - 20:00 hrs</option></select></div>
+      <button class="button submit-button" type="submit"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Confirmar cita por WhatsApp</button>
+    </form>
+  </dialog>
+
+  <dialog class="booking-dialog" id="modal-curso" aria-labelledby="curso-titulo">
+    <button class="dialog-close" type="button" data-cerrar="modal-curso" aria-label="Cerrar consulta">&times;</button>
+    <div class="dialog-heading"><h2 id="curso-titulo">Lista de espera</h2></div><p class="modal-form-note">Fechas por anunciar · Te avisaremos cuando abramos cupos</p>
+    <form class="booking-form" id="form-curso">
+      <div class="field"><label for="curso-nombre">Curso</label><input id="curso-nombre" name="curso" type="text" readonly required></div>
+      <div class="field"><label for="curso-persona">Nombre completo</label><input id="curso-persona" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required></div>
+      <div class="field"><label for="curso-contacto">Correo electrónico o WhatsApp</label><input id="curso-contacto" name="contacto" type="text" placeholder="correo@ejemplo.com o +56 9..." required></div>
+      <div class="field"><label for="curso-mensaje">Mensaje o consulta (opcional)</label><textarea id="curso-mensaje" name="mensaje" rows="3" placeholder="Quiero recibir información de la próxima fecha..."></textarea></div>
+      <button class="button submit-button" type="submit">Enviar interés por WhatsApp</button>
+    </form>
+  </dialog>
+
+  <script>
+    const mobileButton = document.getElementById("mobile-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const bookingDialog = document.getElementById("modal-reserva");
+    const bookingForm = document.getElementById("form-reserva");
+    const courseDialog = document.getElementById("modal-curso");
+    const courseForm = document.getElementById("form-curso");
+    const serviceInput = document.getElementById("reserva-servicio");
+    const dateInput = document.getElementById("reserva-fecha");
+
+    function showSection(sectionName) {
+      const mostrarReservas = sectionName === "reservas";
+      document.getElementById("section-home").classList.toggle("view-hidden", mostrarReservas);
+      document.getElementById("section-reservas").classList.toggle("view-hidden", !mostrarReservas);
+      mobileMenu.hidden = true;
+      mobileMenu.setAttribute("aria-hidden", "true");
+      mobileButton.setAttribute("aria-expanded", "false");
+      mobileButton.setAttribute("aria-label", "Abrir menú");
+      mobileButton.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function fechaLocalISO() {
+      const hoy = new Date();
+      return new Date(hoy.getTime() - hoy.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    }
+
+    function abrirModalReserva(servicioNombre) {
+      serviceInput.value = servicioNombre;
+      dateInput.min = fechaLocalISO();
+      dateInput.value = dateInput.min;
+      if (!bookingDialog.open) bookingDialog.showModal();
+    }
+
+    document.querySelectorAll("[data-sesion]").forEach((boton) => {
+      boton.addEventListener("click", () => abrirModalReserva(boton.dataset.sesion));
+    });
+    document.querySelectorAll("[data-curso]").forEach((boton) => {
+      boton.addEventListener("click", () => {
+        document.getElementById("curso-nombre").value = boton.dataset.curso;
+        courseDialog.showModal();
+      });
+    });
+    document.querySelectorAll("[data-seccion]").forEach((boton) => {
+      boton.addEventListener("click", () => showSection(boton.dataset.seccion));
+    });
+
+    document.querySelectorAll("[data-reservar]").forEach((boton) => {
+      boton.addEventListener("click", () => {
+        mobileMenu.hidden = true;
+        mobileMenu.setAttribute("aria-hidden", "true");
+        mobileButton.setAttribute("aria-expanded", "false");
+        abrirModalReserva(boton.dataset.reservar);
+      });
+    });
+
+    mobileButton.addEventListener("click", () => {
+      const abrir = mobileMenu.hidden;
+      mobileMenu.hidden = !abrir;
+      mobileMenu.setAttribute("aria-hidden", String(!abrir));
+      mobileButton.setAttribute("aria-expanded", String(abrir));
+      mobileButton.setAttribute("aria-label", abrir ? "Cerrar menú" : "Abrir menú");
+      mobileButton.innerHTML = `<i class="fa-solid fa-${abrir ? "xmark" : "bars"}" aria-hidden="true"></i>`;
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((enlace) => {
+      enlace.addEventListener("click", () => {
+        mobileMenu.hidden = true;
+        mobileMenu.setAttribute("aria-hidden", "true");
+        mobileButton.setAttribute("aria-expanded", "false");
+        mobileButton.setAttribute("aria-label", "Abrir menú");
+        mobileButton.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+      });
+    });
+
+    document.querySelectorAll("[data-cerrar]").forEach((boton) => {
+      boton.addEventListener("click", () => document.getElementById(boton.dataset.cerrar).close());
+    });
+    [bookingDialog, courseDialog].forEach((dialogo) => {
+      dialogo.addEventListener("click", (evento) => {
+        if (evento.target === dialogo) dialogo.close();
+      });
+    });
+
+    bookingForm.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      if (!bookingForm.reportValidity()) return;
+      const datos = new FormData(bookingForm);
+      const fecha = datos.get("fecha").split("-").reverse().join("/");
+      const texto = [
+        `Hola, quiero agendar una reserva para *${datos.get("servicio")}* (duración: 1 hora).`,
+        `📅 *Fecha:* ${fecha}`,
+        `⏰ *Horario:* ${datos.get("hora")}`,
+        `👤 *Nombre:* ${datos.get("nombre")}`,
+        `📱 *Teléfono:* ${datos.get("telefono")}`
+      ].join("\n");
+      window.open(`https://wa.me/56956139321?${new URLSearchParams({ text: texto })}`, "_blank", "noopener,noreferrer");
+      bookingDialog.close();
+    });
+
+    courseForm.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      if (!courseForm.reportValidity()) return;
+      const datos = new FormData(courseForm);
+      const texto = [
+        `Hola, me interesa inscribirme o estar en lista de espera para el curso *${datos.get("curso")}*.`,
+        `👤 *Nombre:* ${datos.get("nombre")}`,
+        `📩 *Contacto:* ${datos.get("contacto")}`,
+        datos.get("mensaje") ? `💬 *Mensaje:* ${datos.get("mensaje")}` : ""
+      ].filter(Boolean).join("\n");
+      window.open(`https://wa.me/56956139321?${new URLSearchParams({ text: texto })}`, "_blank", "noopener,noreferrer");
+      courseDialog.close();
+    });
+  </script>
+</body>
+</html>
