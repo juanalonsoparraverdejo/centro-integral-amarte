@@ -24,6 +24,17 @@
     @media(max-width:760px){.wrap{width:min(100% - 36px,560px)}.header-inner{min-height:76px}.brand-icon{width:44px;border-radius:10px}.brand-kicker{font-size:9px}.brand-name{font-size:22px}.nav{display:none}.mobile-toggle{display:inline-grid;place-items:center}.hero{min-height:590px;background-position:58% center}.hero-copy{padding-block:72px}.hero h1{max-width:520px;font-size:clamp(56px,12vw,78px)}.offerings{padding-block:70px 76px}.section-title{margin-bottom:40px}.card-grid{grid-template-columns:1fr;gap:18px}.offering-card{display:grid;grid-template-columns:minmax(120px,.8fr) 1.2fr;min-height:205px}.card-image{height:100%;min-height:205px;aspect-ratio:auto}.card-body{align-items:flex-start;justify-content:center;padding:20px;text-align:left}.card-body h4{font-size:25px}.card-body p{margin-bottom:12px}.text-action{align-self:flex-start}.offering-group+.offering-group{margin-top:58px}.testimonial,.contact{padding-block:72px}.footer-inner{grid-template-columns:1fr;gap:17px}.copyright{text-align:left}}
     @media(max-width:440px){.wrap{width:calc(100% - 28px)}.hero{min-height:540px;background-position:61% center}.hero h1{font-size:55px}.offering-card{grid-template-columns:1fr}.card-image{height:auto;min-height:0;aspect-ratio:1.55}.card-body{align-items:center;text-align:center}.text-action{align-self:center}.field-row{grid-template-columns:1fr}.booking-dialog{padding:26px 20px 20px}}
       .view-hidden { display: none !important; }
+      .course-grid { max-width: 860px; margin-inline: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .card-actions { display: grid; gap: 8px; margin-top: 16px; }
+      .detail-view { width: min(900px, calc(100% - 48px)); min-height: 65vh; margin-inline: auto; padding: 48px 0 80px; }
+      .detail-back { margin-bottom: 20px; padding: 8px 0; border: 0; background: transparent; color: var(--plum); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+      .detail-panel { padding: clamp(24px, 5vw, 52px); border: 1px solid #e6dfd5; border-radius: 8px; background: #faf7f2; }
+      .detail-panel h1 { margin: 12px 0 20px; color: #332e2b; font-family: var(--serif); font-size: clamp(34px, 5vw, 48px); font-weight: 500; line-height: 1; }
+      .detail-panel h2 { margin: 0 0 12px; color: #332e2b; font-family: var(--serif); font-size: 28px; font-weight: 500; }
+      .detail-panel p, .detail-panel li { color: #5a524c; font-size: 13px; line-height: 1.8; }
+      .detail-panel ul { margin: 0; padding-left: 20px; }
+      .detail-group { margin-top: 25px; padding-top: 22px; border-top: 1px solid #e6dfd5; }
+      .detail-action { margin-top: 26px; }
       .reservation-view { width: min(1180px, calc(100% - 48px)); min-height: 70vh; margin-inline: auto; padding: 62px 0 90px; }
       .reservation-heading { margin-bottom: 52px; text-align: center; }
       .reservation-heading h1 { margin: 0 0 8px; color: #332e2b; font-family: var(--serif); font-size: clamp(42px, 5vw, 58px); font-weight: 400; }
@@ -58,19 +69,23 @@
         .reservation-card { display: flex; align-items: stretch; }
         .reservation-card img { height: 180px; margin-bottom: 15px; }
       }
+    .brand-logo { display: block; width: min(200px, 44vw); height: 68px; object-fit: contain; object-position: left center; }
+    .footer-brand .brand-logo { width: min(230px, 80vw); height: 78px; object-position: center; }
+    .brand-fallback { display: inline-flex; align-items: center; gap: 12px; }
+    @media (max-width: 760px) { .brand-logo { width: min(180px, 52vw); height: 58px; } }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#inicio" onclick="showSection('home')" aria-label="Centro Holístico Integral Amarte, inicio">
-        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 15C45 30 30 45 30 60c0 15 15 25 20 25s20-10 20-25c0-15-15-30-20-45Z" opacity=".6"/><path d="M50 25C40 38 20 50 20 65c0 13 18 20 30 20s30-7 30-20c0-15-20-27-30-40Z" opacity=".4"/><path d="M50 35C42 45 10 58 10 70c0 10 22 15 40 15s40-5 40-15c0-12-32-25-40-35Z" opacity=".25"/><circle cx="50" cy="50" r="4" fill="#c4a77e"/></svg></span>
-        <span class="brand-copy"><span class="brand-kicker">CENTRO HOLÍSTICO INTEGRAL</span><span class="brand-name">AMARTE</span></span>
+        <img class="brand-logo" src="logo.jpeg" alt="Centro Holístico Integral Amarte">
+        <span class="brand-fallback" hidden><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 15C45 30 30 45 30 60c0 15 15 25 20 25s20-10 20-25c0-15-15-30-20-45Z" opacity=".6"/><path d="M50 25C40 38 20 50 20 65c0 13 18 20 30 20s30-7 30-20c0-15-20-27-30-40Z" opacity=".4"/><path d="M50 35C42 45 10 58 10 70c0 10 22 15 40 15s40-5 40-15c0-12-32-25-40-35Z" opacity=".25"/><circle cx="50" cy="50" r="4" fill="#c4a77e"/></svg></span><span class="brand-copy"><span class="brand-kicker">CENTRO HOLÍSTICO INTEGRAL</span><span class="brand-name">AMARTE</span></span></span>
       </a>
-      <nav class="nav" aria-label="Navegación principal"><a class="nav-active" href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Reserva online</a><a href="#contacto" onclick="showSection('home')">Contacto</a><a class="nav-cta" href="#reservas" onclick="showSection('reservas')">Ver terapias</a></nav>
+      <nav class="nav" aria-label="Navegación principal"><a class="nav-active" href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Servicios y Cursos</a><a href="#contacto" onclick="showSection('home')">Contacto</a><a class="nav-cta" href="#reservas" onclick="showSection('reservas')">Reserva Online</a></nav>
       <button class="mobile-toggle" id="mobile-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
     </div>
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true" hidden><a href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Reserva online</a><a href="#contacto" onclick="showSection('home')">Contacto / WhatsApp</a><button type="button" data-seccion="reservas">Reservar cita</button></nav>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true" hidden><a href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Servicios y Cursos</a><a href="#contacto" onclick="showSection('home')">Contacto / WhatsApp</a><button type="button" data-seccion="reservas">Reservar cita</button></nav>
   </header>
 
   <main id="section-home">
@@ -96,27 +111,31 @@
   </main>
 
   <section class="reservation-view view-hidden" id="section-reservas" aria-labelledby="reservation-title">
-    <header class="reservation-heading"><h1 id="reservation-title">Agenda tu Reserva</h1><p>Selecciona una sesión de una hora o consulta por las fechas de nuestros cursos.</p></header>
+    <header class="reservation-heading"><h1 id="reservation-title">Nuestros Servicios y Cursos</h1><p>Explora las terapias individuales o consulta los detalles de nuestras formaciones.</p></header>
     <section class="reservation-section" aria-labelledby="sessions-title">
       <div class="reservation-section-heading"><h2 id="sessions-title">Sesiones Individuales (1 hora)</h2><span>Horarios de 08:00 a 20:00 hrs</span></div>
       <div class="reservation-grid">
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=800&q=80" alt="Espacio preparado para terapia energética" loading="lazy"><h3>Terapia Energética</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Alineación y armonización de centros energéticos para restaurar el equilibrio interior.</p></div><button class="button reservation-button" type="button" data-sesion="Terapia Energética">Elegir horario</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Sesión de bienestar y sonidoterapia" loading="lazy"><h3>Sonidoterapia</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Inmersión vibracional con cuencos de cuarzo y sonido para soltar la tensión mental.</p></div><button class="button reservation-button" type="button" data-sesion="Sonidoterapia">Elegir horario</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Meditación para una lectura holística" loading="lazy"><h3>Lectura Holística</h3><p class="card-meta">Duración: 1 hora · Presencial / Online</p><p>Sesión de guía espiritual para encontrar claridad en tus momentos de decisión.</p></div><button class="button reservation-button" type="button" data-sesion="Lectura Holística">Elegir horario</button></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=800&q=80" alt="Espacio preparado para una sesión de bienestar" loading="lazy"><h3>Facelift Energético</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Toque gentil en rostro y cuello como práctica de relajación y bienestar.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="facelift">Ver descripción</button><button class="button reservation-button" type="button" data-sesion="Sesiones de Facelift Energético">Elegir horario</button></div></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Sesión de bienestar y sonidoterapia" loading="lazy"><h3>Sonidoterapia</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Inmersión vibracional con cuencos de cuarzo y sonido para soltar la tensión mental.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="sonidoterapia">Ver descripción</button><button class="button reservation-button" type="button" data-sesion="Sonidoterapia">Elegir horario</button></div></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Meditación para una lectura holística" loading="lazy"><h3>Lectura Holística</h3><p class="card-meta">Duración: 1 hora · Presencial / Online</p><p>Sesión de guía espiritual para encontrar claridad en tus momentos de decisión.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="lectura">Ver descripción</button><button class="button reservation-button" type="button" data-sesion="Lectura Holística">Elegir horario</button></div></article>
       </div>
     </section>
     <section class="reservation-section" aria-labelledby="courses-title">
-      <div class="reservation-section-heading"><h2 id="courses-title">Cursos y Formaciones</h2><span>Fechas por anunciar</span></div>
-      <div class="reservation-grid">
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Materiales para el curso de Barras de Access" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Curso Oficial Barras de Access</h3><p>Conoce esta técnica y consulta por las próximas fechas y cupos disponibles.</p></div><button class="button reservation-button course-button" type="button" data-curso="Curso Oficial Barras de Access">Me interesa / Inscribirme</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Formación y aprendizaje de tarot" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Formación en Tarot Evolutivo</h3><p>Iniciación a la simbología de los arcanos como herramienta de autoconocimiento.</p></div><button class="button reservation-button course-button" type="button" data-curso="Formación en Tarot Evolutivo">Me interesa / Inscribirme</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=800&q=80" alt="Paisaje sereno para la reflexión personal" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Curso de Eliminación de Bloqueos</h3><p>Taller para explorar patrones repetitivos y votos energéticos inconscientes.</p></div><button class="button reservation-button course-button" type="button" data-curso="Curso de Eliminación de Bloqueos">Me interesa / Inscribirme</button></article>
+      <div class="reservation-section-heading"><h2 id="courses-title">Cursos y Formaciones</h2><span>Certificación Internacional</span></div>
+      <div class="reservation-grid course-grid">
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Materiales para el curso de Barras de Access" loading="lazy"><span class="course-status">Próxima fecha por confirmar</span><h3>Curso Oficial de Barras de Access</h3><p>Aprende sobre los 32 puntos de la cabeza y consulta por las próximas fechas y cupos.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="barras">Ver más / detalles</button><button class="button reservation-button" type="button" data-curso="Curso Oficial de Barras de Access">Inscribirme / interés</button></div></article>
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Proceso corporal de bienestar" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Proceso Corporal MTVSS®</h3><p>Proceso corporal de Access Consciousness. Consulta por la próxima fecha y detalles.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="mtvss">Ver más / detalles</button><button class="button reservation-button" type="button" data-curso="Proceso Corporal MTVSS®">Inscribirme / interés</button></div></article>
       </div>
     </section>
   </section>
 
+  <section class="detail-view view-hidden" id="section-detail" aria-labelledby="detail-title">
+    <button class="detail-back" type="button" data-volver-reservas><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver a servicios y cursos</button>
+    <article class="detail-panel" id="detail-content-container"></article>
+  </section>
+
   <footer class="site-footer"><div class="wrap footer-inner">
-    <a class="brand footer-brand" href="#inicio" aria-label="Amarte, volver al inicio"><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 15C45 30 30 45 30 60c0 15 15 25 20 25s20-10 20-25c0-15-15-30-20-45Z" opacity=".6"/><path d="M50 25C40 38 20 50 20 65c0 13 18 20 30 20s30-7 30-20c0-15-20-27-30-40Z" opacity=".4"/><circle cx="50" cy="50" r="4" fill="#c4a77e"/></svg></span><span class="brand-copy"><span class="brand-kicker">CENTRO HOLÍSTICO INTEGRAL</span><span class="brand-name">AMARTE</span></span></a>
+    <a class="brand footer-brand" href="#inicio" aria-label="Amarte, volver al inicio"><img class="brand-logo" src="logo.jpeg" alt="Centro Holístico Integral Amarte"><span class="brand-fallback" hidden><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 15C45 30 30 45 30 60c0 15 15 25 20 25s20-10 20-25c0-15-15-30-20-45Z" opacity=".6"/><path d="M50 25C40 38 20 50 20 65c0 13 18 20 30 20s30-7 30-20c0-15-20-27-30-40Z" opacity=".4"/><circle cx="50" cy="50" r="4" fill="#c4a77e"/></svg></span><span class="brand-copy"><span class="brand-kicker">CENTRO HOLÍSTICO INTEGRAL</span><span class="brand-name">AMARTE</span></span></span></a>
     <p class="mission">Sanación energética y bienestar espiritual. Nuestra misión es guiar a través de la conexión profunda para restaurar el equilibrio y la serenidad en cada ser.</p><p class="copyright">© 2026 Centro Holístico Integral Amarte.<br>Todos los derechos reservados.</p>
   </div></footer>
 
@@ -154,17 +173,72 @@
     const courseForm = document.getElementById("form-curso");
     const serviceInput = document.getElementById("reserva-servicio");
     const dateInput = document.getElementById("reserva-fecha");
+    const detailsData = {
+      facelift: `
+        <span class="course-status">Sesión individual · 1 hora</span>
+        <h1 id="detail-title">Sesiones de Facelift Energético</h1>
+        <p>Práctica de toque suave en rostro y cuello orientada a la relajación y el bienestar personal. No sustituye una evaluación ni un tratamiento médico.</p>
+        <section class="detail-group"><h2>Valores</h2><ul><li>Sesión individual: $30.000 CLP.</li><li>Promoción de 4 sesiones: $90.000 CLP.</li><li>Promoción de 6 sesiones: $120.000 CLP.</li><li>Terapeuta: Daniela Lillo Verdejo.</li></ul></section>
+        <button class="button detail-action" type="button" onclick="openBookingModal('Sesiones de Facelift Energético')">Elegir horario</button>
+      `,
+      sonidoterapia: `
+        <span class="course-status">Sesión individual · 1 hora</span>
+        <h1 id="detail-title">Sonidoterapia</h1>
+        <p>Sesión con cuencos de cuarzo, cuencos tibetanos e instrumentos sonoros en un espacio de pausa y relajación.</p>
+        <section class="detail-group"><h2>Modalidad</h2><p>Atención presencial. Escríbenos para consultar disponibilidad y preparar tu visita.</p></section>
+        <button class="button detail-action" type="button" onclick="openBookingModal('Sonidoterapia')">Elegir horario</button>
+      `,
+      lectura: `
+        <span class="course-status">Sesión individual · 1 hora</span>
+        <h1 id="detail-title">Lectura Holística</h1>
+        <p>Espacio de orientación personal para reflexionar sobre decisiones, transiciones y objetivos de vida.</p>
+        <section class="detail-group"><h2>Modalidad</h2><p>Disponible en modalidad presencial u online. Consulta por WhatsApp para coordinar.</p></section>
+        <button class="button detail-action" type="button" onclick="openBookingModal('Lectura Holística')">Elegir horario</button>
+      `,
+      barras: `
+        <span class="course-status">Certificación oficial Access Consciousness</span>
+        <h1 id="detail-title">Curso Oficial de Barras de Access</h1>
+        <p>Formación introductoria sobre los 32 puntos de la cabeza y la práctica de Barras de Access.</p>
+        <section class="detail-group"><h2>Contenidos</h2><ul><li>Introducción a los puntos y su aplicación en sesiones.</li><li>Práctica entre participantes y orientación para atender sesiones individuales.</li><li>Material de curso y certificado, según las condiciones de la formación.</li></ul></section>
+        <section class="detail-group"><h2>Información</h2><ul><li>Próxima fecha: por confirmar; las fechas de octubre de 2026 ya pasaron.</li><li>Horario de referencia: 10:00 a 19:00 hrs.</li><li>Lugar indicado: Providencia.</li><li>Facilitadora: Daniela Lillo V.</li><li>Valor indicado: USD $330; repetición USD $165. Confirma el precio vigente al inscribirte.</li></ul></section>
+        <button class="button detail-action" type="button" onclick="openCourseInterestModal('Curso Oficial de Barras de Access')">Consultar o inscribirme</button>
+      `,
+      mtvss: `
+        <span class="course-status">Proceso corporal de Access Consciousness</span>
+        <h1 id="detail-title">Proceso Corporal MTVSS®</h1>
+        <p>Formación sobre un proceso corporal de Access Consciousness que utiliza imposición de manos. Esta práctica no reemplaza atención ni tratamientos médicos.</p>
+        <section class="detail-group"><h2>Información de la formación</h2><ul><li>No se indican requisitos previos.</li><li>Facilitadora: Daniela Lillo Verdejo.</li><li>Duración de referencia: 4 horas.</li><li>Valor indicado: $130.000 CLP. Confirma el precio vigente al inscribirte.</li><li>Fecha: por anunciar.</li></ul></section>
+        <button class="button detail-action" type="button" onclick="openCourseInterestModal('Proceso Corporal MTVSS®')">Consultar o inscribirme</button>
+      `
+    };
+
+    document.querySelectorAll(".brand-logo").forEach((logo) => {
+      logo.addEventListener("error", () => {
+        logo.hidden = true;
+        logo.nextElementSibling.hidden = false;
+      });
+    });
 
     function showSection(sectionName) {
+      const mostrarInicio = sectionName === "home";
       const mostrarReservas = sectionName === "reservas";
-      document.getElementById("section-home").classList.toggle("view-hidden", mostrarReservas);
+      const mostrarDetalle = sectionName === "detail";
+      document.getElementById("section-home").classList.toggle("view-hidden", !mostrarInicio);
       document.getElementById("section-reservas").classList.toggle("view-hidden", !mostrarReservas);
+      document.getElementById("section-detail").classList.toggle("view-hidden", !mostrarDetalle);
       mobileMenu.hidden = true;
       mobileMenu.setAttribute("aria-hidden", "true");
       mobileButton.setAttribute("aria-expanded", "false");
       mobileButton.setAttribute("aria-label", "Abrir menú");
       mobileButton.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openDetailView(key) {
+      const contenido = detailsData[key];
+      if (!contenido) return;
+      document.getElementById("detail-content-container").innerHTML = contenido;
+      showSection("detail");
     }
 
     function fechaLocalISO() {
@@ -181,6 +255,12 @@
 
     document.querySelectorAll("[data-sesion]").forEach((boton) => {
       boton.addEventListener("click", () => abrirModalReserva(boton.dataset.sesion));
+    });
+    document.querySelectorAll("[data-detalle]").forEach((boton) => {
+      boton.addEventListener("click", () => openDetailView(boton.dataset.detalle));
+    });
+    document.querySelectorAll("[data-volver-reservas]").forEach((boton) => {
+      boton.addEventListener("click", () => showSection("reservas"));
     });
     document.querySelectorAll("[data-curso]").forEach((boton) => {
       boton.addEventListener("click", () => {
