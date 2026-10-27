@@ -73,12 +73,48 @@
         .reservation-card { display: flex; align-items: stretch; }
         .reservation-card img { height: 180px; margin-bottom: 15px; }
       }
+    .booking-app { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: start; gap: 24px; }
+    .booking-main, .booking-sidebar { min-width: 0; }
+    .booking-sidebar { position: sticky; top: 108px; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); }
+    .service-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .service-choice { min-width: 0; padding: 15px; border: 1px solid var(--line); border-radius: 7px; background: white; text-align: left; transition: border-color .2s, background .2s; }
+    .service-choice:hover, .service-choice[aria-pressed="true"] { border-color: var(--plum); background: #f4edf2; }
+    .service-choice strong { display: block; margin-bottom: 6px; font-family: var(--serif); font-size: 21px; line-height: 1.05; }
+    .service-choice span { color: var(--plum); font-size: 10px; font-weight: 600; }
+    .calendar-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+    .calendar-panel, .slots-panel, .booking-form-panel { padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: white; }
+    .calendar-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .calendar-heading button { width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; color: var(--plum); }
+    .calendar-heading button:hover:not(:disabled) { background: #f4edf2; }
+    .calendar-heading button:disabled { opacity: .35; cursor: not-allowed; }
+    .calendar-weekdays, .calendar-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; }
+    .calendar-weekdays { margin-bottom: 6px; color: var(--muted); font-size: 10px; font-weight: 600; }
+    .calendar-day { min-width: 0; aspect-ratio: 1; border: 0; border-radius: 50%; background: transparent; color: var(--ink); font-size: 11px; }
+    .calendar-day:hover:not(:disabled), .calendar-day[aria-pressed="true"] { background: var(--plum); color: white; }
+    .calendar-day:disabled { color: #c5beb6; cursor: not-allowed; }
+    .slot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; max-height: 300px; overflow-y: auto; }
+    .slot-button { min-height: 40px; border: 1px solid var(--line); border-radius: 5px; background: white; color: var(--ink); font-size: 11px; }
+    .slot-button:hover, .slot-button[aria-pressed="true"] { border-color: var(--plum); background: var(--plum); color: white; }
+    .booking-note { margin: 18px 0 0; padding: 12px; border: 1px solid #e6d9c3; border-radius: 6px; background: #fffaf1; color: #68593f; font-size: 11px; line-height: 1.6; }
+    .booking-sidebar h2 { margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 27px; font-weight: 500; }
+    .summary-label { margin: 0 0 4px; color: var(--muted); font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+    .summary-value { margin: 0 0 16px; font-size: 12px; line-height: 1.5; }
+    .booking-form-panel { margin-top: 24px; }
+    .payment-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .payment-choice { display: flex; align-items: center; gap: 9px; padding: 12px; border: 1px solid var(--line); border-radius: 6px; background: white; font-size: 11px; }
+    .payment-choice input { accent-color: var(--plum); }
+    .booking-confirmation { padding: 30px 20px; text-align: center; }
+    .booking-confirmation h2 { font-family: var(--serif); font-size: 34px; font-weight: 500; }
+    .booking-confirmation p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    @media (max-width: 900px) { .booking-app { grid-template-columns: 1fr; } .booking-sidebar { position: static; grid-row: 1; } }
+    @media (max-width: 680px) { .service-choices, .calendar-layout { grid-template-columns: 1fr; } .service-choice { display: flex; align-items: center; justify-content: space-between; gap: 12px; } .service-choice strong { margin: 0; } }
     .brand-logo { display: block; width: min(200px, 44vw); height: 68px; object-fit: contain; object-position: left center; }
     .header-inner .brand-logo { width: auto; height: 56px; }
     .footer-brand .brand-logo { width: min(230px, 80vw); height: 78px; object-position: center; }
     .brand-fallback { display: inline-flex; align-items: center; gap: 12px; }
     @media (max-width: 760px) { .brand-logo { width: min(180px, 52vw); height: 58px; } }
   </style>
+  <script src="./firebase-config.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -115,22 +151,65 @@
   </main>
 
   <section class="reservation-view view-hidden" id="section-reservas" aria-labelledby="reservation-title">
-    <header class="reservation-heading"><h1 id="reservation-title">Nuestros Servicios y Cursos</h1><p>Explora las terapias individuales o consulta los detalles de nuestras formaciones.</p></header>
-    <section class="reservation-section" aria-labelledby="sessions-title">
-      <div class="reservation-section-heading"><h2 id="sessions-title">Sesiones Individuales (1 hora)</h2><span>Horarios de 08:00 a 20:00 hrs</span></div>
-      <div class="reservation-grid">
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=800&q=80" alt="Espacio preparado para una sesión de bienestar" loading="lazy"><h3>Facelift Energético</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Toque gentil en rostro y cuello como práctica de relajación y bienestar.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="facelift">Ver descripción</button><button class="button reservation-button" type="button" data-sesion="Sesiones de Facelift Energético">Elegir horario</button></div></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Sesión de bienestar y sonidoterapia" loading="lazy"><h3>Sonidoterapia</h3><p class="card-meta">Duración: 1 hora · Presencial</p><p>Inmersión vibracional con cuencos de cuarzo y sonido para soltar la tensión mental.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="sonidoterapia">Ver descripción</button><button class="button reservation-button" type="button" data-sesion="Sonidoterapia">Elegir horario</button></div></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Meditación para una lectura holística" loading="lazy"><h3>Lectura Holística</h3><p class="card-meta">Duración: 1 hora · Presencial / Online</p><p>Sesión de guía espiritual para encontrar claridad en tus momentos de decisión.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="lectura">Ver descripción</button><button class="button reservation-button" type="button" data-sesion="Lectura Holística">Elegir horario</button></div></article>
+    <header class="reservation-heading"><h1 id="reservation-title">Reserva tu Sesión</h1><p>Selecciona un servicio, una fecha y un horario para enviar tu solicitud.</p></header>
+    <div class="booking-app">
+      <div class="booking-main">
+        <div class="service-choices" role="group" aria-label="Seleccionar terapia">
+          <button class="service-choice" type="button" data-service="facelift" aria-pressed="true"><strong>Facelift Energético®</strong><span>$30.000 CLP · 1 hora</span></button>
+          <button class="service-choice" type="button" data-service="sonidoterapia" aria-pressed="false"><strong>Sonidoterapia</strong><span>$30.000 CLP · 1 hora</span></button>
+          <button class="service-choice" type="button" data-service="lectura" aria-pressed="false"><strong>Lectura Holística</strong><span>$30.000 CLP · 1 hora</span></button>
+        </div>
+
+        <div id="step-datetime" class="calendar-layout">
+          <section class="calendar-panel" aria-label="Calendario de reservas">
+            <h2 class="group-title">Selecciona fecha</h2>
+            <div class="calendar-heading"><button id="calendar-prev" type="button" aria-label="Mes anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button><strong class="serif" id="calendar-month-year"></strong><button id="calendar-next" type="button" aria-label="Mes siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button></div>
+            <div class="calendar-weekdays" aria-hidden="true"><span>lun</span><span>mar</span><span>mié</span><span>jue</span><span>vie</span><span>sáb</span><span>dom</span></div>
+            <div class="calendar-days" id="calendar-days"></div>
+          </section>
+          <section class="slots-panel" aria-label="Horarios disponibles">
+            <h2 class="group-title" id="slots-heading">Selecciona un horario</h2>
+            <p class="summary-label" id="selected-day-label"></p>
+            <div class="slot-grid" id="time-slots-container"></div>
+          </section>
+        </div>
+        <p class="booking-note" id="availability-note" role="status">El horario queda solicitado, no bloqueado, hasta que el centro confirme la disponibilidad.</p>
+
+        <div id="step-customer" class="booking-form-panel" hidden>
+          <div class="reservation-section-heading"><h2>Datos de contacto</h2><button class="text-action" id="back-to-calendar" type="button">Cambiar fecha/hora</button></div>
+          <form class="booking-form" id="form-reserva">
+            <input id="reserva-servicio" name="servicio" type="hidden">
+            <input id="reserva-fecha" name="fecha" type="hidden">
+            <input id="reserva-hora" name="hora" type="hidden">
+            <div class="field"><label for="reserva-nombre">Nombre completo</label><input id="reserva-nombre" name="nombre" type="text" autocomplete="name" required></div>
+            <div class="field-row"><div class="field"><label for="reserva-email">Correo electrónico</label><input id="reserva-email" name="email" type="email" autocomplete="email" required></div><div class="field"><label for="reserva-telefono">Teléfono / WhatsApp</label><input id="reserva-telefono" name="telefono" type="tel" autocomplete="tel" required></div></div>
+            <div class="field"><label>Preferencia de pago</label><div class="payment-choices"><label class="payment-choice"><input type="radio" name="pago" value="Transferencia bancaria" checked> Transferencia</label><label class="payment-choice"><input type="radio" name="pago" value="Efectivo en sesión"> Efectivo en sesión</label></div><p class="summary-label">Este formulario no procesa pagos.</p></div>
+            <div class="field"><label for="reserva-notas">Notas (opcional)</label><textarea id="reserva-notas" name="notas" rows="2"></textarea></div>
+            <p class="form-status" id="booking-status" role="status" aria-live="polite"></p>
+            <button class="button submit-button" type="submit"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud</button>
+          </form>
+        </div>
+
+        <section class="booking-confirmation" id="step-confirmation" hidden>
+          <h2>Solicitud enviada</h2>
+          <p id="confirmation-message">La hora aún está pendiente de confirmación por el centro. Puedes añadirla a tu calendario mientras esperas respuesta.</p>
+          <a class="button" id="gcal-link" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google" aria-hidden="true"></i> Añadir a Google Calendar</a>
+          <p id="confirmation-summary"></p>
+          <button class="text-action" id="new-booking" type="button">Agendar otra cita</button>
+        </section>
       </div>
-    </section>
-    <section class="reservation-section" aria-labelledby="courses-title">
-      <div class="reservation-section-heading"><h2 id="courses-title">Cursos y Formaciones</h2><span>Certificación Internacional</span></div>
-      <div class="reservation-grid course-grid">
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" alt="Materiales para el curso de Barras de Access" loading="lazy"><span class="course-status">Próxima fecha por confirmar</span><h3>Curso Oficial de Barras de Access</h3><p>Aprende sobre los 32 puntos de la cabeza y consulta por las próximas fechas y cupos.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="barras">Ver más / detalles</button><button class="button reservation-button" type="button" data-curso="Curso Oficial de Barras de Access">Inscribirme / interés</button></div></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Proceso corporal de bienestar" loading="lazy"><span class="course-status">Fechas por anunciar</span><h3>Proceso Corporal MTVSS®</h3><p>Proceso corporal de Access Consciousness. Consulta por la próxima fecha y detalles.</p></div><div class="card-actions"><button class="button reservation-button course-button" type="button" data-detalle="mtvss">Ver más / detalles</button><button class="button reservation-button" type="button" data-curso="Proceso Corporal MTVSS®">Inscribirme / interés</button></div></article>
-      </div>
-    </section>
+
+      <aside class="booking-sidebar" aria-labelledby="booking-summary-title">
+        <h2 id="booking-summary-title">Detalles del servicio</h2>
+        <p class="summary-label">Nombre del servicio</p><p class="summary-value" id="summary-service-name">Facelift Energético®</p>
+        <p class="summary-label">Precio</p><p class="summary-value" id="summary-price">$30.000 CLP</p>
+        <p class="summary-label">Ubicación / modalidad</p><p class="summary-value" id="summary-location">Presencial · Providencia</p>
+        <p class="summary-label">Terapeuta</p><p class="summary-value">Daniela Lillo Verdejo</p>
+        <p class="summary-label">Duración</p><p class="summary-value">1 hora</p>
+        <div class="detail-group"><p class="summary-label">Fecha y hora elegidas</p><p class="summary-value" id="summary-datetime">Selecciona una fecha y un horario.</p></div>
+        <button class="button reservation-button" id="next-step-btn" type="button" disabled>Continuar</button>
+      </aside>
+    </div>
   </section>
 
   <section class="detail-view view-hidden" id="section-detail" aria-labelledby="detail-title">
@@ -142,21 +221,6 @@
     <a class="brand footer-brand" href="#inicio" aria-label="Amarte, volver al inicio"><img class="brand-logo" src="logo.jpeg" alt="Centro Holístico Integral Amarte"><span class="brand-fallback" hidden><span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 15C45 30 30 45 30 60c0 15 15 25 20 25s20-10 20-25c0-15-15-30-20-45Z" opacity=".6"/><path d="M50 25C40 38 20 50 20 65c0 13 18 20 30 20s30-7 30-20c0-15-20-27-30-40Z" opacity=".4"/><circle cx="50" cy="50" r="4" fill="#c4a77e"/></svg></span><span class="brand-copy"><span class="brand-kicker">CENTRO HOLÍSTICO INTEGRAL</span><span class="brand-name">AMARTE</span></span></span></a>
     <p class="mission">Sanación energética y bienestar espiritual. Nuestra misión es guiar a través de la conexión profunda para restaurar el equilibrio y la serenidad en cada ser.</p><p class="copyright">© 2026 Centro Holístico Integral Amarte.<br>Todos los derechos reservados.</p>
   </div></footer>
-
-  <dialog class="booking-dialog" id="modal-reserva" aria-labelledby="dialog-title">
-    <button class="dialog-close" type="button" data-cerrar="modal-reserva" aria-label="Cerrar reserva">&times;</button>
-    <div class="dialog-heading"><h2 id="dialog-title">Reservar sesión</h2></div><p class="modal-form-note">Duración: 1 hora</p>
-    <form class="booking-form" id="form-reserva">
-      <div class="field"><label for="reserva-servicio">Sesión</label><input id="reserva-servicio" name="servicio" type="text" readonly required></div>
-      <div class="field"><label for="reserva-nombre">Nombre completo</label><input id="reserva-nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: María González" required></div>
-      <div class="field"><label for="reserva-telefono">Teléfono / WhatsApp</label><input id="reserva-telefono" name="telefono" type="tel" autocomplete="tel" placeholder="+56 9 1234 5678" required></div>
-      <div class="field"><label for="reserva-fecha">Fecha de atención</label><input id="reserva-fecha" name="fecha" type="date" required></div>
-      <div class="field"><label for="reserva-hora">Bloque horario (1 hora)</label><select id="reserva-hora" name="hora" required><option value="">Selecciona una hora</option><option>08:00 - 09:00 hrs</option><option>09:00 - 10:00 hrs</option><option>10:00 - 11:00 hrs</option><option>11:00 - 12:00 hrs</option><option>12:00 - 13:00 hrs</option><option>13:00 - 14:00 hrs</option><option>14:00 - 15:00 hrs</option><option>15:00 - 16:00 hrs</option><option>16:00 - 17:00 hrs</option><option>17:00 - 18:00 hrs</option><option>18:00 - 19:00 hrs</option><option>19:00 - 20:00 hrs</option></select></div>
-      <p class="form-status" id="booking-status" role="status" aria-live="polite"></p>
-      <a class="calendar-fallback" id="calendar-fallback" target="_blank" rel="noopener noreferrer" hidden>Abrir Google Calendar</a>
-      <button class="button submit-button" type="submit"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud y abrir Calendar</button>
-    </form>
-  </dialog>
 
   <dialog class="booking-dialog" id="modal-curso" aria-labelledby="curso-titulo">
     <button class="dialog-close" type="button" data-cerrar="modal-curso" aria-label="Cerrar consulta">&times;</button>
@@ -174,16 +238,32 @@
   <script>
     const mobileButton = document.getElementById("mobile-btn");
     const mobileMenu = document.getElementById("mobile-menu");
-    const bookingDialog = document.getElementById("modal-reserva");
     const bookingForm = document.getElementById("form-reserva");
     const courseDialog = document.getElementById("modal-curso");
     const courseForm = document.getElementById("form-curso");
-    const serviceInput = document.getElementById("reserva-servicio");
-    const dateInput = document.getElementById("reserva-fecha");
     const ownerEmail = "integralamarte@gmail.com";
     const bookingStatus = document.getElementById("booking-status");
     const courseStatus = document.getElementById("course-status");
-    const calendarFallback = document.getElementById("calendar-fallback");
+    const todayDate = new Date();
+    const services = {
+      facelift: { id: "facelift", name: "Facelift Energético®", price: "$30.000 CLP", location: "Presencial · Providencia", duration: "1 hora" },
+      sonidoterapia: { id: "sonidoterapia", name: "Sonidoterapia", price: "$30.000 CLP", location: "Presencial · Providencia", duration: "1 hora" },
+      lectura: { id: "lectura", name: "Lectura Holística", price: "$30.000 CLP", location: "Presencial / Online", duration: "1 hora" }
+    };
+    const appState = {
+      currentMonth: new Date(todayDate.getFullYear(), todayDate.getMonth(), 1),
+      selectedDate: fechaISO(todayDate),
+      selectedTime: "",
+      service: services.facelift,
+      bookedSlots: new Map(),
+      firebase: null,
+      authUser: null,
+      realtime: false
+    };
+    const appointmentSlots = Array.from({ length: 12 }, (_, index) => {
+      const start = index + 8;
+      return { value: `${String(start).padStart(2, "0")}:00 - ${String(start + 1).padStart(2, "0")}:00 hrs`, label: `${String(start).padStart(2, "0")}:00 - ${String(start + 1).padStart(2, "0")}:00` };
+    });
     const detailsData = {
       facelift: `
         <span class="course-status">Sesión individual · 1 hora</span>
@@ -254,25 +334,305 @@
       showSection("detail");
     }
 
-    function fechaLocalISO() {
-      const hoy = new Date();
-      return new Date(hoy.getTime() - hoy.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    function fechaISO(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
     }
 
-    function abrirModalReserva(servicioNombre) {
-      serviceInput.value = servicioNombre;
-      dateInput.min = fechaLocalISO();
-      dateInput.value = dateInput.min;
+    function fechaDesdeISO(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function formatDate(value, options = { weekday: "long", day: "numeric", month: "long", year: "numeric" }) {
+      return new Intl.DateTimeFormat("es-CL", { ...options, timeZone: "UTC" })
+        .format(new Date(`${value}T12:00:00Z`));
+    }
+
+    function updateBookingSummary() {
+      document.getElementById("summary-service-name").textContent = appState.service.name;
+      document.getElementById("summary-price").textContent = appState.service.price;
+      document.getElementById("summary-location").textContent = appState.service.location;
+      document.getElementById("summary-datetime").textContent = appState.selectedTime
+        ? `${formatDate(appState.selectedDate)} · ${appState.selectedTime}`
+        : "Selecciona una fecha y un horario.";
+      document.getElementById("reserva-servicio").value = appState.service.name;
+      document.getElementById("reserva-fecha").value = appState.selectedDate;
+      document.getElementById("reserva-hora").value = appState.selectedTime;
+      document.getElementById("next-step-btn").disabled = !appState.selectedTime;
+    }
+
+    function selectDate(date) {
+      if (date < fechaISO(new Date())) return;
+      appState.selectedDate = date;
+      appState.selectedTime = "";
+      renderCalendar();
+      renderTimeSlots();
+      updateBookingSummary();
+    }
+
+    function renderCalendar() {
+      const year = appState.currentMonth.getFullYear();
+      const month = appState.currentMonth.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const startOffset = (firstDay.getDay() + 6) % 7;
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const grid = document.getElementById("calendar-days");
+      const monthTitle = new Intl.DateTimeFormat("es-CL", { month: "long", year: "numeric" }).format(firstDay);
+      document.getElementById("calendar-month-year").textContent = monthTitle;
+      document.getElementById("calendar-prev").disabled = year === new Date().getFullYear() && month === new Date().getMonth();
+      grid.replaceChildren();
+
+      for (let index = 0; index < startOffset; index += 1) {
+        const blank = document.createElement("span");
+        blank.setAttribute("aria-hidden", "true");
+        grid.append(blank);
+      }
+      for (let day = 1; day <= daysInMonth; day += 1) {
+        const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "calendar-day";
+        button.textContent = String(day);
+        button.disabled = date < fechaISO(new Date());
+        button.setAttribute("aria-pressed", String(date === appState.selectedDate));
+        button.setAttribute("aria-label", formatDate(date));
+        button.addEventListener("click", () => selectDate(date));
+        grid.append(button);
+      }
+    }
+
+    function renderTimeSlots() {
+      const container = document.getElementById("time-slots-container");
+      const dayLabel = document.getElementById("selected-day-label");
+      container.replaceChildren();
+      dayLabel.textContent = formatDate(appState.selectedDate);
+
+      appointmentSlots.forEach((slot) => {
+        const key = `${appState.selectedDate}_${slot.value}`;
+        const ocupado = appState.bookedSlots.has(key);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "slot-button";
+        button.textContent = ocupado ? `${slot.label} · Solicitado` : slot.label;
+        button.disabled = ocupado;
+        button.setAttribute("aria-pressed", String(appState.selectedTime === slot.value));
+        if (!ocupado) button.addEventListener("click", () => {
+          appState.selectedTime = slot.value;
+          renderTimeSlots();
+          updateBookingSummary();
+        });
+        container.append(button);
+      });
+      document.getElementById("availability-note").textContent = appState.realtime
+        ? "Horarios solicitados se actualizan en tiempo real. La cita requiere confirmación del centro."
+        : "Vista previa: no hay calendario compartido conectado. Las solicitudes quedan pendientes de confirmación.";
+    }
+
+    function selectService(serviceId) {
+      if (!services[serviceId]) return;
+      appState.service = services[serviceId];
+      appState.selectedTime = "";
+      document.querySelectorAll("[data-service]").forEach((button) => {
+        const active = button.dataset.service === serviceId;
+        button.setAttribute("aria-pressed", String(active));
+      });
+      renderTimeSlots();
+      updateBookingSummary();
+    }
+
+    function openBookingModal(serviceName) {
+      const lowerName = serviceName.toLowerCase();
+      const serviceId = lowerName.includes("sonido") ? "sonidoterapia" : lowerName.includes("lectura") ? "lectura" : "facelift";
+      selectService(serviceId);
+      document.getElementById("step-datetime").hidden = false;
+      document.getElementById("step-customer").hidden = true;
+      document.getElementById("step-confirmation").hidden = true;
+      showSection("reservas");
+    }
+
+    window.openBookingModal = openBookingModal;
+
+    function renderCalendar() {
+      const month = appState.currentMonth;
+      const year = month.getFullYear();
+      const monthIndex = month.getMonth();
+      const firstDay = new Date(year, monthIndex, 1);
+      const offset = (firstDay.getDay() + 6) % 7;
+      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+      const grid = document.getElementById("calendar-days");
+      document.getElementById("calendar-month-year").textContent = new Intl.DateTimeFormat("es-CL", { month: "long", year: "numeric" }).format(firstDay);
+      document.getElementById("calendar-prev").disabled = year === todayDate.getFullYear() && monthIndex === todayDate.getMonth();
+      grid.replaceChildren();
+
+      for (let blank = 0; blank < offset; blank += 1) grid.append(document.createElement("span"));
+      for (let day = 1; day <= daysInMonth; day += 1) {
+        const date = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "calendar-day";
+        button.textContent = String(day);
+        button.disabled = date < fechaISO(new Date());
+        button.setAttribute("aria-pressed", String(date === appState.selectedDate));
+        button.setAttribute("aria-label", formatDate(date));
+        button.addEventListener("click", () => {
+          appState.selectedDate = date;
+          appState.selectedTime = "";
+          renderCalendar();
+          renderTimeSlots();
+          updateBookingSummary();
+        });
+        grid.append(button);
+      }
+    }
+
+    function renderTimeSlots() {
+      const container = document.getElementById("time-slots-container");
+      container.replaceChildren();
+      document.getElementById("selected-day-label").textContent = formatDate(appState.selectedDate);
+      appointmentSlots.forEach((slot) => {
+        const key = `${appState.selectedDate}_${slot.value}`;
+        const busy = appState.bookedSlots.has(key);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "slot-button";
+        button.textContent = busy ? `${slot.label} · Solicitado` : slot.label;
+        button.disabled = busy;
+        button.setAttribute("aria-pressed", String(appState.selectedTime === slot.value));
+        if (!busy) button.addEventListener("click", () => {
+          appState.selectedTime = slot.value;
+          renderTimeSlots();
+          updateBookingSummary();
+        });
+        container.append(button);
+      });
+      document.getElementById("availability-note").textContent = appState.realtime
+        ? "Los horarios solicitados se actualizan en tiempo real. La cita requiere confirmación del centro."
+        : "Sin Firebase conectado, este horario es una solicitud y no bloquea el cupo.";
+    }
+
+    function updateBookingSummary() {
+      document.getElementById("summary-service-name").textContent = appState.service.name;
+      document.getElementById("summary-price").textContent = appState.service.price;
+      document.getElementById("summary-location").textContent = appState.service.location;
+      document.getElementById("summary-datetime").textContent = appState.selectedTime
+        ? `${formatDate(appState.selectedDate)} · ${appState.selectedTime}`
+        : "Selecciona una fecha y un horario.";
+      document.getElementById("reserva-servicio").value = appState.service.name;
+      document.getElementById("reserva-fecha").value = appState.selectedDate;
+      document.getElementById("reserva-hora").value = appState.selectedTime;
+      document.getElementById("next-step-btn").disabled = !appState.selectedTime;
+    }
+
+    async function initRealtimeAvailability() {
+      const config = window.AMARTE_FIREBASE_CONFIG;
+      if (!config || !config.apiKey || !config.projectId || config.projectId.includes("REEMPLAZAR")) {
+        document.getElementById("availability-note").textContent = "Añade la configuración Firebase para compartir horarios. Por ahora, las solicitudes requieren confirmación manual.";
+        renderTimeSlots();
+        return;
+      }
+
+      try {
+        const [{ initializeApp, getApps, getApp }, { getAuth, signInAnonymously }, { getFirestore, collection, onSnapshot, doc, runTransaction, serverTimestamp, deleteDoc }] = await Promise.all([
+          import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"),
+          import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"),
+          import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js")
+        ]);
+        const app = getApps().length ? getApp() : initializeApp(config);
+        const auth = getAuth(app);
+        const user = await signInAnonymously(auth);
+        const db = getFirestore(app);
+        appState.firebase = { db, doc, runTransaction, serverTimestamp, deleteDoc };
+        appState.authUser = user.user;
+
+        onSnapshot(collection(db, "bookingSlots"), (snapshot) => {
+          appState.bookedSlots = new Map();
+          snapshot.forEach((slotDoc) => {
+            const slot = slotDoc.data();
+            if (slot.date && slot.time && slot.status === "pending") appState.bookedSlots.set(`${slot.date}_${slot.time}`, slot);
+          });
+          appState.realtime = true;
+          renderTimeSlots();
+        }, (error) => {
+          appState.realtime = false;
+          document.getElementById("availability-note").textContent = "No se pudo leer la disponibilidad compartida. Las solicitudes deberán confirmarse manualmente.";
+          renderTimeSlots();
+          console.error(error);
+        });
+      } catch (error) {
+        document.getElementById("availability-note").textContent = "Firebase no está configurado. Las solicitudes enviadas no bloquean horarios y requieren confirmación manual.";
+        renderTimeSlots();
+        console.error(error);
+      }
+    }
+
+    async function claimSelectedSlot(booking) {
+      if (!appState.firebase || !appState.authUser) return null;
+      const { db, doc, runTransaction, serverTimestamp } = appState.firebase;
+      const slotId = `${booking.date}_${booking.time.replace(/[^0-9]/g, "")}`;
+      const slotRef = doc(db, "bookingSlots", slotId);
+      await runTransaction(db, async (transaction) => {
+        const existing = await transaction.get(slotRef);
+        if (existing.exists()) throw new Error("SLOT_TAKEN");
+        transaction.set(slotRef, {
+          uid: appState.authUser.uid,
+          serviceId: booking.serviceId,
+          date: booking.date,
+          time: booking.time,
+          status: "pending",
+          createdAt: serverTimestamp()
+        });
+      });
+      return slotRef;
+    }
+
+    document.querySelectorAll("[data-service]").forEach((button) => {
+      button.addEventListener("click", () => selectService(button.dataset.service));
+    });
+    document.getElementById("calendar-prev").addEventListener("click", () => {
+      appState.currentMonth = new Date(appState.currentMonth.getFullYear(), appState.currentMonth.getMonth() - 1, 1);
+      renderCalendar();
+    });
+    document.getElementById("calendar-next").addEventListener("click", () => {
+      appState.currentMonth = new Date(appState.currentMonth.getFullYear(), appState.currentMonth.getMonth() + 1, 1);
+      renderCalendar();
+    });
+    document.getElementById("next-step-btn").addEventListener("click", () => {
+      if (!appState.selectedTime) return;
+      document.getElementById("step-datetime").hidden = true;
+      document.getElementById("step-customer").hidden = false;
       bookingStatus.textContent = "";
-      calendarFallback.hidden = true;
-      const botonEnviar = bookingForm.querySelector("[type=submit]");
-      botonEnviar.disabled = false;
-      botonEnviar.innerHTML = '<i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud y abrir Calendar';
-      if (!bookingDialog.open) bookingDialog.showModal();
-    }
-
+    });
+    document.getElementById("back-to-calendar").addEventListener("click", () => {
+      document.getElementById("step-customer").hidden = true;
+      document.getElementById("step-datetime").hidden = false;
+    });
+    renderCalendar();
+    renderTimeSlots();
+    updateBookingSummary();
+    initRealtimeAvailability();
+    document.getElementById("calendar-prev").addEventListener("click", () => {
+      appState.currentMonth = new Date(appState.currentMonth.getFullYear(), appState.currentMonth.getMonth() - 1, 1);
+      renderCalendar();
+    });
+    document.getElementById("calendar-next").addEventListener("click", () => {
+      appState.currentMonth = new Date(appState.currentMonth.getFullYear(), appState.currentMonth.getMonth() + 1, 1);
+      renderCalendar();
+    });
+    document.getElementById("next-step-btn").addEventListener("click", () => {
+      if (!appState.selectedTime) return;
+      document.getElementById("step-datetime").hidden = true;
+      document.getElementById("step-customer").hidden = false;
+      bookingStatus.textContent = "";
+    });
+    document.getElementById("back-to-calendar").addEventListener("click", () => {
+      document.getElementById("step-customer").hidden = true;
+      document.getElementById("step-datetime").hidden = false;
+    });
     document.querySelectorAll("[data-sesion]").forEach((boton) => {
-      boton.addEventListener("click", () => abrirModalReserva(boton.dataset.sesion));
+      boton.addEventListener("click", () => openBookingModal(boton.dataset.sesion));
     });
     document.querySelectorAll("[data-detalle]").forEach((boton) => {
       boton.addEventListener("click", () => openDetailView(boton.dataset.detalle));
@@ -297,10 +657,7 @@
 
     document.querySelectorAll("[data-reservar]").forEach((boton) => {
       boton.addEventListener("click", () => {
-        mobileMenu.hidden = true;
-        mobileMenu.setAttribute("aria-hidden", "true");
-        mobileButton.setAttribute("aria-expanded", "false");
-        abrirModalReserva(boton.dataset.reservar);
+        openBookingModal(boton.dataset.reservar);
       });
     });
 
@@ -326,7 +683,7 @@
     document.querySelectorAll("[data-cerrar]").forEach((boton) => {
       boton.addEventListener("click", () => document.getElementById(boton.dataset.cerrar).close());
     });
-    [bookingDialog, courseDialog].forEach((dialogo) => {
+    [courseDialog].forEach((dialogo) => {
       dialogo.addEventListener("click", (evento) => {
         if (evento.target === dialogo) dialogo.close();
       });
@@ -348,50 +705,88 @@
 
     bookingForm.addEventListener("submit", async (evento) => {
       evento.preventDefault();
-      if (!bookingForm.reportValidity()) return;
+      if (!bookingForm.reportValidity() || !appState.selectedTime) return;
       const datos = new FormData(bookingForm);
-      const ventanaCalendar = window.open("about:blank", "_blank");
       const botonEnviar = bookingForm.querySelector("[type=submit]");
-      const formularioEmail = new FormData();
-      formularioEmail.append("Servicio", datos.get("servicio"));
-      formularioEmail.append("Nombre_Cliente", datos.get("nombre"));
-      formularioEmail.append("Telefono", datos.get("telefono"));
-      formularioEmail.append("Fecha", datos.get("fecha"));
-      formularioEmail.append("Horario", datos.get("hora"));
-      bookingStatus.textContent = "Enviando la solicitud...";
+      const fecha = appState.selectedDate;
+      const horario = appState.selectedTime;
+      const reserva = {
+        serviceId: appState.service.id,
+        service: appState.service.name,
+        price: appState.service.price,
+        location: appState.service.location,
+        date: fecha,
+        time: horario,
+        name: datos.get("nombre"),
+        email: datos.get("email"),
+        phone: datos.get("telefono"),
+        payment: datos.get("pago"),
+        notes: datos.get("notas")
+      };
+      const formData = new FormData();
+      formData.append("Servicio", reserva.service);
+      formData.append("Precio", reserva.price);
+      formData.append("Fecha", reserva.date);
+      formData.append("Horario", reserva.time);
+      formData.append("Nombre_Cliente", reserva.name);
+      formData.append("Cliente_Email", reserva.email);
+      formData.append("Telefono", reserva.phone);
+      formData.append("Preferencia_de_Pago", reserva.payment);
+      formData.append("Notas", reserva.notes);
+      bookingStatus.textContent = "Enviando solicitud...";
       botonEnviar.disabled = true;
+      let slotRef = null;
 
       try {
-        await enviarFormularioEmail(formularioEmail, `Nueva solicitud: ${datos.get("servicio")} (${datos.get("fecha")})`);
-        const fechaCalendar = datos.get("fecha").replace(/-/g, "");
-        const [horaInicio, horaFin] = datos.get("hora").split(" - ");
-        const horaCalendar = (hora) => `${hora.replace(" hrs", "").replace(":", "")}00`;
-        const detalles = `Solicitud de reserva en Centro Holístico Integral Amarte.\nNombre: ${datos.get("nombre")}\nTeléfono: ${datos.get("telefono")}\nServicio: ${datos.get("servicio")}`;
-        const parametros = new URLSearchParams({
+        if (appState.firebase && appState.authUser) slotRef = await claimSelectedSlot(reserva);
+        await enviarFormularioEmail(formData, `Solicitud de reserva: ${reserva.service} (${reserva.date} ${reserva.time})`);
+
+        const [startTime, endTime] = horario.split(" - ");
+        const toCalendarTime = (time) => `${time.replace(" hrs", "").replace(":", "")}00`;
+        const fechaCalendar = fecha.replace(/-/g, "");
+        const params = new URLSearchParams({
           action: "TEMPLATE",
-          text: `${datos.get("servicio")} - ${datos.get("nombre")}`,
-          dates: `${fechaCalendar}T${horaCalendar(horaInicio)}/${fechaCalendar}T${horaCalendar(horaFin)}`,
-          details: detalles,
+          text: `${reserva.service} - ${reserva.name}`,
+          dates: `${fechaCalendar}T${toCalendarTime(startTime)}/${fechaCalendar}T${toCalendarTime(endTime)}`,
+          details: `Solicitud pendiente en Centro Holístico Integral Amarte.\nCliente: ${reserva.name}\nTeléfono: ${reserva.phone}\nPreferencia de pago: ${reserva.payment}`,
+          location: reserva.location,
           ctz: "America/Santiago"
         });
-        const calendarUrl = `https://calendar.google.com/calendar/render?${parametros}`;
-
-        if (ventanaCalendar) {
-          ventanaCalendar.opener = null;
-          ventanaCalendar.location.href = calendarUrl;
-          bookingStatus.textContent = "Solicitud enviada por correo. Revisa Google Calendar y guarda el evento para confirmar la hora.";
-        } else {
-          calendarFallback.href = calendarUrl;
-          calendarFallback.hidden = false;
-          bookingStatus.textContent = "Solicitud enviada por correo. El navegador bloqueó la ventana; usa el enlace para abrir Calendar.";
-        }
-        botonEnviar.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Solicitud enviada';
+        document.getElementById("gcal-link").href = `https://calendar.google.com/calendar/render?${params}`;
+        document.getElementById("confirmation-summary").textContent = `${reserva.service} · ${formatDate(fecha)} · ${horario} · ${reserva.name}`;
+        document.getElementById("confirmation-message").textContent = slotRef
+          ? "La solicitud fue enviada y el horario quedó retenido mientras el centro confirma la cita. Puedes añadirla a tu calendario."
+          : "La solicitud fue enviada por correo, pero el horario no quedó bloqueado. Espera la confirmación del centro antes de considerarlo reservado.";
+        document.getElementById("step-customer").hidden = true;
+        document.getElementById("step-datetime").hidden = true;
+        document.querySelector(".service-choices").hidden = true;
+        document.getElementById("step-confirmation").hidden = false;
       } catch (error) {
-        ventanaCalendar?.close();
-        bookingStatus.textContent = "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
+        if (slotRef && appState.firebase) {
+          try {
+            await appState.firebase.deleteDoc(slotRef);
+          } catch (releaseError) {
+            console.error("No se pudo liberar el horario tras el error de correo:", releaseError);
+          }
+        }
+        bookingStatus.textContent = error.message === "SLOT_TAKEN"
+          ? "Ese horario acaba de ser solicitado. Elige otro, por favor."
+          : "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
         botonEnviar.disabled = false;
+        renderTimeSlots();
         console.error(error);
       }
+    });
+
+    document.getElementById("new-booking").addEventListener("click", () => {
+      bookingForm.reset();
+      appState.selectedTime = "";
+      document.getElementById("step-confirmation").hidden = true;
+      document.getElementById("step-datetime").hidden = false;
+      document.querySelector(".service-choices").hidden = false;
+      document.getElementById("step-customer").hidden = true;
+      renderTimeSlots();
+      updateBookingSummary();
     });
 
     courseForm.addEventListener("submit", async (evento) => {
