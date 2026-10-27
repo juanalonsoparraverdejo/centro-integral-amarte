@@ -39,7 +39,7 @@
       .detail-panel ul { margin: 0; padding-left: 20px; }
       .detail-group { margin-top: 25px; padding-top: 22px; border-top: 1px solid #e6dfd5; }
       .detail-action { margin-top: 26px; }
-      .reservation-view { width: min(1180px, calc(100% - 48px)); min-height: 70vh; margin-inline: auto; padding: 62px 0 90px; }
+      .reservation-view { width: min(1180px, calc(100% - 48px)); min-height: 70vh; margin-inline: auto; padding: 62px 0 90px; scroll-margin-top: 104px; }
       .reservation-heading { margin-bottom: 52px; text-align: center; }
       .reservation-heading h1 { margin: 0 0 8px; color: #332e2b; font-family: var(--serif); font-size: clamp(42px, 5vw, 58px); font-weight: 400; }
       .reservation-heading p { margin: 0; color: #7a716a; font-size: 12px; line-height: 1.7; }
@@ -135,8 +135,8 @@
     <section class="catalog-intro wrap" id="catalogo"><h1>Centro Holístico Integral Amarte</h1><p>Selecciona un curso para consultar por su inscripción o una sesión para elegir fecha y hora.</p></section>
     <section class="offerings wrap" aria-labelledby="offerings-title">
       <div class="offering-group"><div class="reservation-section-heading"><h2 id="offerings-title">Cursos Oficiales</h2><span>Certificaciones internacionales</span></div><div class="course-grid">
-        <article class="reservation-card"><div><span class="course-status">Access Consciousness</span><h3>Curso Oficial de Barras de Access®</h3><p class="card-meta">Próximas fechas por confirmar · 1 día</p><p>Formación sobre los 32 puntos de la cabeza, con prácticas y certificado según las condiciones del curso.</p></div><button class="button reservation-button" type="button" data-curso="Curso Oficial de Barras de Access®">Consultar / inscribirme</button></article>
-        <article class="reservation-card"><div><span class="course-status">Proceso corporal</span><h3>Proceso Corporal MTVSS®</h3><p class="card-meta">4 horas · Sin requisitos previos</p><p>Formación de Access Consciousness con la facilitadora Daniela Lillo Verdejo.</p></div><button class="button reservation-button" type="button" data-curso="Proceso Corporal MTVSS®">Consultar / inscribirme</button></article>
+        <article class="reservation-card"><div><span class="course-status">Access Consciousness</span><h3>Curso Oficial de Barras de Access®</h3><p class="card-meta">Próxima fecha por confirmar · 1 día · USD $330</p><p>Formación sobre los 32 puntos de la cabeza y su aplicación en sesiones individuales. Incluye manual impreso, prácticas entre participantes y certificado, según las condiciones oficiales del curso.</p><p class="card-meta">Horario de referencia: 10:00–19:00 · Providencia · Facilitadora: Daniela Lillo V.</p></div><button class="button reservation-button" type="button" data-curso="Curso Oficial de Barras de Access®">Consultar fechas e inscripción</button></article>
+        <article class="reservation-card"><div><span class="course-status">Proceso corporal</span><h3>Proceso Corporal MTVSS®</h3><p class="card-meta">4 horas · Sin requisitos previos · $130.000 CLP</p><p>Formación de Access Consciousness sobre el proceso corporal MTVSS®. Incluye manual, diploma y certificado, según las condiciones del curso.</p><p class="card-meta">Facilitadora: Daniela Lillo Verdejo · Próxima fecha por anunciar</p></div><button class="button reservation-button" type="button" data-curso="Proceso Corporal MTVSS®">Consultar fechas e inscripción</button></article>
       </div></div>
       <div class="offering-group"><div class="reservation-section-heading"><h2>Sesiones Individuales</h2><span>Duración: 1 hora</span></div><div class="reservation-grid">
         <article class="reservation-card"><div><h3>Facelift Energético®</h3><p class="card-meta">$30.000 CLP · Presencial</p><p>Sesión de relajación y bienestar con toque suave aplicado al rostro y cuello.</p></div><button class="button reservation-button" type="button" data-service="facelift">Elegir horario</button></article>
@@ -150,7 +150,7 @@
     <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="contact-inner"><h2 id="contact-title">Conecta con nosotros</h2><p class="contact-label">HÁBLANOS POR WHATSAPP</p><a class="phone-link" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20consultar%20por%20una%20reserva%20en%20el%20Centro%20Hol%C3%ADstico%20Amarte" target="_blank" rel="noopener noreferrer">+56 9 5613 9321</a><div><button class="button contact-button" type="button" data-reservar="Alineación de Chakras & Reiki"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar o reservar</button></div></div></section>
   </main>
 
-  <section class="reservation-view view-hidden" id="section-reservas" aria-labelledby="reservation-title">
+  <section class="reservation-view" id="section-reservas" aria-labelledby="reservation-title">
     <header class="reservation-heading"><h1 id="reservation-title">Reserva tu Sesión</h1><p>Selecciona un servicio, una fecha y un horario para enviar tu solicitud.</p></header>
     <div class="booking-app">
       <div class="booking-main">
@@ -316,15 +316,19 @@
       const mostrarInicio = sectionName === "home" || sectionName === "catalog";
       const mostrarReservas = sectionName === "reservas";
       const mostrarDetalle = sectionName === "detail";
-      document.getElementById("section-home").classList.toggle("view-hidden", !mostrarInicio);
-      document.getElementById("section-reservas").classList.toggle("view-hidden", !mostrarReservas);
+      document.getElementById("section-home").classList.toggle("view-hidden", mostrarDetalle);
+      document.getElementById("section-reservas").classList.toggle("view-hidden", mostrarDetalle);
       document.getElementById("section-detail").classList.toggle("view-hidden", !mostrarDetalle);
       mobileMenu.hidden = true;
       mobileMenu.setAttribute("aria-hidden", "true");
       mobileButton.setAttribute("aria-expanded", "false");
       mobileButton.setAttribute("aria-label", "Abrir menú");
       mobileButton.innerHTML = '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (mostrarReservas) {
+        document.getElementById("section-reservas").scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
 
     function openDetailView(key) {
@@ -519,7 +523,10 @@
     }
 
     document.querySelectorAll("[data-service]").forEach((button) => {
-      button.addEventListener("click", () => selectService(button.dataset.service));
+      button.addEventListener("click", () => {
+        selectService(button.dataset.service);
+        showSection("reservas");
+      });
     });
     document.getElementById("calendar-prev").addEventListener("click", () => {
       appState.currentMonth = new Date(appState.currentMonth.getFullYear(), appState.currentMonth.getMonth() - 1, 1);
