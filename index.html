@@ -148,10 +148,9 @@
 
     <section class="testimonial" aria-labelledby="testimonial-title"><div class="testimonial-inner"><h2 id="testimonial-title">Experiencias de Clientes</h2><div class="quote-mark" aria-hidden="true">“</div><blockquote class="quote">El sonido de las barras es algo que hay que vivir para entender. Sentí que mi mente por fin se quedó en silencio. Además el trato es muy cálido, te explican todo con paciencia antes de partir.</blockquote><div class="quote-rule" aria-hidden="true"></div><p class="quote-author">A.T.</p></div></section>
 
-    <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="contact-inner"><h2 id="contact-title">Conecta con nosotros</h2><p class="contact-label">HÁBLANOS POR WHATSAPP</p><a class="phone-link" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20consultar%20por%20una%20reserva%20en%20el%20Centro%20Hol%C3%ADstico%20Amarte" target="_blank" rel="noopener noreferrer">+56 9 5613 9321</a><div><button class="button contact-button" type="button" data-reservar="Alineación de Chakras & Reiki"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar o reservar</button></div></div></section>
   </main>
 
-  <section class="reservation-view" id="section-reservas" aria-labelledby="reservation-title">
+  <section class="reservation-view view-hidden" id="section-reservas" aria-labelledby="reservation-title">
     <header class="reservation-heading"><h1 id="reservation-title">Reserva tu Sesión</h1><p>Selecciona un servicio, una fecha y un horario para enviar tu solicitud.</p></header>
     <div class="booking-app">
       <div class="booking-main">
@@ -217,6 +216,8 @@
     <button class="detail-back" type="button" data-volver-reservas><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver a servicios y cursos</button>
     <article class="detail-panel" id="detail-content-container"></article>
   </section>
+
+  <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="contact-inner"><h2 id="contact-title">Conecta con nosotros</h2><p class="contact-label">HÁBLANOS POR WHATSAPP</p><a class="phone-link" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20consultar%20por%20una%20reserva%20en%20el%20Centro%20Hol%C3%ADstico%20Amarte" target="_blank" rel="noopener noreferrer">+56 9 5613 9321</a><div><button class="button contact-button" type="button" data-reservar="Alineación de Chakras & Reiki"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar o reservar</button></div></div></section>
 
   <footer class="site-footer"><div class="wrap footer-inner">
     <a class="brand footer-brand" href="#inicio" aria-label="Amarte, volver al inicio"><img class="brand-logo" src="logo.jpeg" alt="Centro Holístico Integral Amarte"></a>
@@ -310,8 +311,8 @@
       const mostrarInicio = sectionName === "home" || sectionName === "catalog";
       const mostrarReservas = sectionName === "reservas";
       const mostrarDetalle = sectionName === "detail";
-      document.getElementById("section-home").classList.toggle("view-hidden", mostrarDetalle);
-      document.getElementById("section-reservas").classList.toggle("view-hidden", mostrarDetalle);
+      document.getElementById("section-home").classList.toggle("view-hidden", !mostrarInicio);
+      document.getElementById("section-reservas").classList.toggle("view-hidden", !mostrarReservas);
       document.getElementById("section-detail").classList.toggle("view-hidden", !mostrarDetalle);
       mobileMenu.hidden = true;
       mobileMenu.setAttribute("aria-hidden", "true");
