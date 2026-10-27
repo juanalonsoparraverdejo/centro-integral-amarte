@@ -106,6 +106,9 @@
     .booking-confirmation { padding: 30px 20px; text-align: center; }
     .booking-confirmation h2 { font-family: var(--serif); font-size: 34px; font-weight: 500; }
     .booking-confirmation p { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .catalog-intro { padding: 44px 0 30px; text-align: center; }
+    .catalog-intro h1 { margin: 0 0 10px; font-family: var(--serif); font-size: clamp(42px, 5vw, 58px); font-weight: 500; line-height: 1; }
+    .catalog-intro p { width: min(660px, 100%); margin: 0 auto; color: var(--muted); font-size: 13px; line-height: 1.7; }
     @media (max-width: 900px) { .booking-app { grid-template-columns: 1fr; } .booking-sidebar { position: static; grid-row: 1; } }
     @media (max-width: 680px) { .service-choices, .calendar-layout { grid-template-columns: 1fr; } .service-choice { display: flex; align-items: center; justify-content: space-between; gap: 12px; } .service-choice strong { margin: 0; } }
     .brand-logo { display: block; width: min(200px, 44vw); height: 68px; object-fit: contain; object-position: left center; }
@@ -122,26 +125,23 @@
       <a class="brand" href="#inicio" onclick="showSection('home')" aria-label="Centro Holístico Integral Amarte, inicio">
         <img class="brand-logo" src="logo.jpeg" alt="Centro Holístico Integral Amarte">
       </a>
-      <nav class="nav" aria-label="Navegación principal"><a class="nav-active" href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Servicios y Cursos</a><a class="nav-cta" href="#reservas" onclick="showSection('reservas')">Reserva Online</a></nav>
+      <nav class="nav" aria-label="Navegación principal"><a class="nav-active" href="#catalogo" onclick="showSection('catalog')">Cursos y Sesiones</a><a class="nav-cta" href="https://wa.me/56956139321" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Contacto</a></nav>
       <button class="mobile-toggle" id="mobile-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
     </div>
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true" hidden><a href="#inicio" onclick="showSection('home')">Inicio</a><a href="#reservas" onclick="showSection('reservas')">Servicios y Cursos</a><button type="button" data-seccion="reservas">Reserva Online</button></nav>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true" hidden><a href="#catalogo" onclick="showSection('catalog')">Cursos y Sesiones</a><a href="https://wa.me/56956139321" target="_blank" rel="noopener noreferrer">Contacto por WhatsApp</a></nav>
   </header>
 
   <main id="section-home">
-    <section class="hero" id="inicio" aria-labelledby="hero-title"><div class="wrap"><div class="hero-copy"><p class="eyebrow">Un espacio para reconectar contigo</p><h1 id="hero-title"><span>Centro Holístico</span><span>Integral Amarte</span></h1><button class="button" type="button" onclick="showSection('reservas')">Reservar ahora <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div></div></section>
-
-    <section class="offerings wrap view-hidden" id="terapias" aria-labelledby="offerings-title">
-      <h2 class="section-title" id="offerings-title">Nuestras Terapias</h2>
-      <div class="offering-group"><h3 class="group-title">Sesiones</h3><div class="card-grid">
-        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=900&q=85" alt="Espacio preparado para una sesión de bienestar" loading="lazy"><div class="card-body"><h4>Alineación de Chakras &amp; Reiki</h4><p>Armonización profunda de tus centros de energía para liberar bloqueos y tensiones.</p><button class="text-action" type="button" data-reservar="Alineación de Chakras & Reiki">Reservar cita</button></div></article>
-        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=85" alt="Práctica de bienestar en un espacio tranquilo" loading="lazy"><div class="card-body"><h4>Sonidoterapia &amp; Cuencos</h4><p>Vibraciones de cuencos tibetanos y de cuarzo para calmar la mente y restaurar el sistema nervioso.</p><button class="text-action" type="button" data-reservar="Sonidoterapia & Cuencos">Reservar cita</button></div></article>
-        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=85" alt="Meditación y acompañamiento personal" loading="lazy"><div class="card-body"><h4>Acompañamiento Holístico</h4><p>Sesión individual personalizada para trabajar objetivos emocionales, espirituales y de vida.</p><button class="text-action" type="button" data-reservar="Acompañamiento Holístico">Reservar cita</button></div></article>
+    <section class="catalog-intro wrap" id="catalogo"><h1>Centro Holístico Integral Amarte</h1><p>Selecciona un curso para consultar por su inscripción o una sesión para elegir fecha y hora.</p></section>
+    <section class="offerings wrap" aria-labelledby="offerings-title">
+      <div class="offering-group"><div class="reservation-section-heading"><h2 id="offerings-title">Cursos Oficiales</h2><span>Certificaciones internacionales</span></div><div class="course-grid">
+        <article class="reservation-card"><div><span class="course-status">Access Consciousness</span><h3>Curso Oficial de Barras de Access®</h3><p class="card-meta">Próximas fechas por confirmar · 1 día</p><p>Formación sobre los 32 puntos de la cabeza, con prácticas y certificado según las condiciones del curso.</p></div><button class="button reservation-button" type="button" data-curso="Curso Oficial de Barras de Access®">Consultar / inscribirme</button></article>
+        <article class="reservation-card"><div><span class="course-status">Proceso corporal</span><h3>Proceso Corporal MTVSS®</h3><p class="card-meta">4 horas · Sin requisitos previos</p><p>Formación de Access Consciousness con la facilitadora Daniela Lillo Verdejo.</p></div><button class="button reservation-button" type="button" data-curso="Proceso Corporal MTVSS®">Consultar / inscribirme</button></article>
       </div></div>
-      <div class="offering-group"><h3 class="group-title">Cursos</h3><div class="card-grid">
-        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=85" alt="Materiales para una actividad de formación" loading="lazy"><div class="card-body"><h4>Curso Oficial de Barras de Access</h4><button class="text-action" type="button" data-reservar="Curso Oficial de Barras de Access">Consultar / Inscribirme</button></div></article>
-        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85" alt="Formación y aprendizaje en un entorno natural" loading="lazy"><div class="card-body"><h4>Formación en Tarot</h4><button class="text-action" type="button" data-reservar="Formación en Tarot">Consultar / Inscribirme</button></div></article>
-        <article class="offering-card"><img class="card-image" src="https://images.unsplash.com/photo-1507499739999-097706ad8914?auto=format&fit=crop&w=900&q=85" alt="Paisaje sereno para la reflexión personal" loading="lazy"><div class="card-body"><h4>Curso de Eliminación de Votos y Pactos</h4><button class="text-action" type="button" data-reservar="Curso de Eliminación de Votos">Consultar / Inscribirme</button></div></article>
+      <div class="offering-group"><div class="reservation-section-heading"><h2>Sesiones Individuales</h2><span>Duración: 1 hora</span></div><div class="reservation-grid">
+        <article class="reservation-card"><div><h3>Facelift Energético®</h3><p class="card-meta">$30.000 CLP · Presencial</p><p>Sesión de relajación y bienestar con toque suave aplicado al rostro y cuello.</p></div><button class="button reservation-button" type="button" data-service="facelift">Elegir horario</button></article>
+        <article class="reservation-card"><div><h3>Sonidoterapia</h3><p class="card-meta">$30.000 CLP · Presencial</p><p>Sesión con cuencos de cuarzo y sonido en un espacio de pausa y relajación.</p></div><button class="button reservation-button" type="button" data-service="sonidoterapia">Elegir horario</button></article>
+        <article class="reservation-card"><div><h3>Lectura Holística</h3><p class="card-meta">$30.000 CLP · Presencial / online</p><p>Espacio de orientación personal para reflexionar sobre decisiones y objetivos.</p></div><button class="button reservation-button" type="button" data-service="lectura">Elegir horario</button></article>
       </div></div>
     </section>
 
@@ -313,7 +313,7 @@
     });
 
     function showSection(sectionName) {
-      const mostrarInicio = sectionName === "home";
+      const mostrarInicio = sectionName === "home" || sectionName === "catalog";
       const mostrarReservas = sectionName === "reservas";
       const mostrarDetalle = sectionName === "detail";
       document.getElementById("section-home").classList.toggle("view-hidden", !mostrarInicio);
@@ -455,77 +455,6 @@
 
     window.openBookingModal = openBookingModal;
 
-    function renderCalendar() {
-      const month = appState.currentMonth;
-      const year = month.getFullYear();
-      const monthIndex = month.getMonth();
-      const firstDay = new Date(year, monthIndex, 1);
-      const offset = (firstDay.getDay() + 6) % 7;
-      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
-      const grid = document.getElementById("calendar-days");
-      document.getElementById("calendar-month-year").textContent = new Intl.DateTimeFormat("es-CL", { month: "long", year: "numeric" }).format(firstDay);
-      document.getElementById("calendar-prev").disabled = year === todayDate.getFullYear() && monthIndex === todayDate.getMonth();
-      grid.replaceChildren();
-
-      for (let blank = 0; blank < offset; blank += 1) grid.append(document.createElement("span"));
-      for (let day = 1; day <= daysInMonth; day += 1) {
-        const date = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "calendar-day";
-        button.textContent = String(day);
-        button.disabled = date < fechaISO(new Date());
-        button.setAttribute("aria-pressed", String(date === appState.selectedDate));
-        button.setAttribute("aria-label", formatDate(date));
-        button.addEventListener("click", () => {
-          appState.selectedDate = date;
-          appState.selectedTime = "";
-          renderCalendar();
-          renderTimeSlots();
-          updateBookingSummary();
-        });
-        grid.append(button);
-      }
-    }
-
-    function renderTimeSlots() {
-      const container = document.getElementById("time-slots-container");
-      container.replaceChildren();
-      document.getElementById("selected-day-label").textContent = formatDate(appState.selectedDate);
-      appointmentSlots.forEach((slot) => {
-        const key = `${appState.selectedDate}_${slot.value}`;
-        const busy = appState.bookedSlots.has(key);
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "slot-button";
-        button.textContent = busy ? `${slot.label} · Solicitado` : slot.label;
-        button.disabled = busy;
-        button.setAttribute("aria-pressed", String(appState.selectedTime === slot.value));
-        if (!busy) button.addEventListener("click", () => {
-          appState.selectedTime = slot.value;
-          renderTimeSlots();
-          updateBookingSummary();
-        });
-        container.append(button);
-      });
-      document.getElementById("availability-note").textContent = appState.realtime
-        ? "Los horarios solicitados se actualizan en tiempo real. La cita requiere confirmación del centro."
-        : "Sin Firebase conectado, este horario es una solicitud y no bloquea el cupo.";
-    }
-
-    function updateBookingSummary() {
-      document.getElementById("summary-service-name").textContent = appState.service.name;
-      document.getElementById("summary-price").textContent = appState.service.price;
-      document.getElementById("summary-location").textContent = appState.service.location;
-      document.getElementById("summary-datetime").textContent = appState.selectedTime
-        ? `${formatDate(appState.selectedDate)} · ${appState.selectedTime}`
-        : "Selecciona una fecha y un horario.";
-      document.getElementById("reserva-servicio").value = appState.service.name;
-      document.getElementById("reserva-fecha").value = appState.selectedDate;
-      document.getElementById("reserva-hora").value = appState.selectedTime;
-      document.getElementById("next-step-btn").disabled = !appState.selectedTime;
-    }
-
     async function initRealtimeAvailability() {
       const config = window.AMARTE_FIREBASE_CONFIG;
       if (!config || !config.apiKey || !config.projectId || config.projectId.includes("REEMPLAZAR")) {
@@ -570,6 +499,7 @@
 
     async function claimSelectedSlot(booking) {
       if (!appState.firebase || !appState.authUser) return null;
+      if (!appState.realtime) throw new Error("FIREBASE_NOT_READY");
       const { db, doc, runTransaction, serverTimestamp } = appState.firebase;
       const slotId = `${booking.date}_${booking.time.replace(/[^0-9]/g, "")}`;
       const slotRef = doc(db, "bookingSlots", slotId);
@@ -771,7 +701,9 @@
         }
         bookingStatus.textContent = error.message === "SLOT_TAKEN"
           ? "Ese horario acaba de ser solicitado. Elige otro, por favor."
-          : "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
+          : error.message === "FIREBASE_NOT_READY"
+            ? "La disponibilidad compartida aún está cargando. Espera un momento y vuelve a intentar."
+            : "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
         botonEnviar.disabled = false;
         renderTimeSlots();
         console.error(error);
