@@ -142,119 +142,7 @@
       </div></div>
       <div class="offering-group"><div class="reservation-section-heading"><h2>Sesión Individual</h2><span>Agendamiento online</span></div><div class="reservation-grid">
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=900&q=85" alt="Sesión de cuidado facial y bienestar" loading="eager" decoding="async"><h3>Facelift Energético®</h3><p class="card-meta">$30.000 CLP · 1 hora · Presencial</p><p>Sesión de relajación y bienestar con toque suave aplicado al rostro y cuello.</p></div><button class="button reservation-button" type="button" data-service="facelift">Elegir horario</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=85" alt="Ambiente de bienestar con flores para una terapia floral" loading="lazy" decoding="async"><h3>Terapia Flores de Bach</h3><p class="card-meta">$25.000 CLP (2 sesiones: $42.000) · 1 hora · Presencial u online</p><p>Terapia complementaria con esencias florales para acompañar momentos de estrés, ansiedad o dificultad para dormir. Incluye anamnesis y preparado floral a medida. No reemplaza la atención médica.</p></div><button class="button reservation-button" type="button" data-service="bach">Elegir horario</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=85" alt="Espacio de calma para un proceso corporal" loading="lazy" decoding="async"><h3>Riqueza Ilimitada</h3><p class="card-meta">$30.000 CLP (pack de 4: $100.000) · 50 minutos · Presencial</p><p>Proceso corporal de Access Consciousness para observar patrones de escasez y abrirse a recibir con mayor facilidad.</p></div><button class="button reservation-button" type="button" data-service="riqueza">Elegir horario</button></article>
-      </div></div>
-    </section>
-
-    <section class="testimonial" aria-labelledby="testimonial-title"><div class="testimonial-inner"><h2 id="testimonial-title">Experiencias de Clientes</h2><div class="quote-mark" aria-hidden="true">“</div><blockquote class="quote">El sonido de las barras es algo que hay que vivir para entender. Sentí que mi mente por fin se quedó en silencio. Además el trato es muy cálido, te explican todo con paciencia antes de partir.</blockquote><div class="quote-rule" aria-hidden="true"></div><p class="quote-author">A.T.</p></div></section>
-
-  </main>
-
-  <section class="reservation-view view-hidden" id="section-reservas" aria-labelledby="reservation-title">
-    <header class="reservation-heading"><h1 id="reservation-title">Reserva tu Sesión</h1><p>Selecciona un servicio, una fecha y un horario para enviar tu solicitud.</p></header>
-    <div class="booking-app">
-      <div class="booking-main">
-        <div id="step-datetime" class="calendar-layout">
-          <section class="calendar-panel" aria-label="Calendario de reservas">
-            <h2 class="group-title">Selecciona fecha</h2>
-            <div class="calendar-heading"><button id="calendar-prev" type="button" aria-label="Mes anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button><strong class="serif" id="calendar-month-year"></strong><button id="calendar-next" type="button" aria-label="Mes siguiente"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button></div>
-            <div class="calendar-weekdays" aria-hidden="true"><span>lun</span><span>mar</span><span>mié</span><span>jue</span><span>vie</span><span>sáb</span><span>dom</span></div>
-            <div class="calendar-days" id="calendar-days"></div>
-          </section>
-          <section class="slots-panel" aria-label="Horarios disponibles">
-            <h2 class="group-title" id="slots-heading">Selecciona un horario</h2>
-            <p class="summary-label" id="selected-day-label"></p>
-            <div class="slot-grid" id="time-slots-container"></div>
-          </section>
-        </div>
-        <p class="booking-note" id="availability-note" role="status">El horario queda solicitado, no bloqueado, hasta que el centro confirme la disponibilidad.</p>
-
-        <div id="step-customer" class="booking-form-panel" hidden>
-          <div class="reservation-section-heading"><h2>Datos de contacto</h2><button class="text-action" id="back-to-calendar" type="button">Cambiar fecha/hora</button></div>
-          <form class="booking-form" id="form-reserva">
-            <input id="reserva-servicio" name="servicio" type="hidden">
-            <input id="reserva-fecha" name="fecha" type="hidden">
-            <input id="reserva-hora" name="hora" type="hidden">
-            <div class="field"><label for="reserva-nombre">Nombre completo</label><input id="reserva-nombre" name="nombre" type="text" autocomplete="name" required></div>
-            <div class="field-row"><div class="field"><label for="reserva-email">Correo electrónico</label><input id="reserva-email" name="email" type="email" autocomplete="email" required></div><div class="field"><label for="reserva-telefono">Teléfono / WhatsApp</label><input id="reserva-telefono" name="telefono" type="tel" autocomplete="tel" required></div></div>
-            <div class="field"><label>Preferencia de pago</label><div class="payment-choices"><label class="payment-choice"><input type="radio" name="pago" value="Transferencia bancaria" checked> Transferencia</label><label class="payment-choice"><input type="radio" name="pago" value="Efectivo en sesión"> Efectivo en sesión</label></div><p class="summary-label">Este formulario no procesa pagos.</p></div>
-            <div class="field"><label for="reserva-notas">Notas (opcional)</label><textarea id="reserva-notas" name="notas" rows="2"></textarea></div>
-            <p class="form-status" id="booking-status" role="status" aria-live="polite"></p>
-            <button class="button submit-button" type="submit"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud</button>
-          </form>
-        </div>
-
-        <section class="booking-confirmation" id="step-confirmation" hidden>
-          <h2>Solicitud enviada</h2>
-          <p id="confirmation-message">La hora aún está pendiente de confirmación por el centro. Puedes añadirla a tu calendario mientras esperas respuesta.</p>
-          <a class="button" id="gcal-link" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google" aria-hidden="true"></i> Añadir a Google Calendar</a>
-          <p id="confirmation-summary"></p>
-          <button class="text-action" id="new-booking" type="button">Agendar otra cita</button>
-        </section>
-      </div>
-
-      <aside class="booking-sidebar" aria-labelledby="booking-summary-title">
-        <h2 id="booking-summary-title">Detalles del servicio</h2>
-        <p class="summary-label">Nombre del servicio</p><p class="summary-value" id="summary-service-name">Facelift Energético®</p>
-        <p class="summary-label">Precio</p><p class="summary-value" id="summary-price">$30.000 CLP</p>
-        <p class="summary-label">Ubicación / modalidad</p><p class="summary-value" id="summary-location">Presencial · Providencia</p>
-        <p class="summary-label">Terapeuta</p><div class="field summary-field"><select id="therapist-select" aria-label="Terapeuta"></select></div>
-        <p class="summary-label">Duración</p><p class="summary-value" id="summary-duration">1 hora</p>
-        <div class="detail-group"><p class="summary-label">Fecha y hora elegidas</p><p class="summary-value" id="summary-datetime">Selecciona una fecha y un horario.</p></div>
-        <button class="button reservation-button" id="next-step-btn" type="button" disabled>Continuar</button>
-      </aside>
-    </div>
-  </section>
-
-  <section class="detail-view view-hidden" id="section-detail" aria-labelledby="detail-title">
-    <button class="detail-back" type="button" data-volver-reservas><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver a servicios y cursos</button>
-    <article class="detail-panel" id="detail-content-container"></article>
-  </section>
-
-  <section class="contact" id="contacto" aria-labelledby="contact-title"><div class="contact-inner"><h2 id="contact-title">Conecta con nosotros</h2><p class="contact-label">HÁBLANOS POR WHATSAPP</p><a class="phone-link" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20consultar%20por%20una%20reserva%20en%20el%20Centro%20Hol%C3%ADstico%20Amarte" target="_blank" rel="noopener noreferrer">+56 9 5613 9321</a><div><button class="button contact-button" type="button" data-reservar="Alineación de Chakras & Reiki"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar o reservar</button></div></div></section>
-
-  <footer class="site-footer"><div class="wrap footer-inner">
-    <a class="brand footer-brand" href="#inicio" aria-label="Amarte, volver al inicio"><img class="brand-logo" src="logo.jpeg" alt="Centro Holístico Integral Amarte"></a>
-    <p class="mission">Sanación energética y bienestar espiritual. Nuestra misión es guiar a través de la conexión profunda para restaurar el equilibrio y la serenidad en cada ser.</p><p class="copyright">© 2026 Centro Holístico Integral Amarte.<br>Todos los derechos reservados.</p>
-  </div></footer>
-
-  <dialog class="booking-dialog" id="modal-curso" aria-labelledby="curso-titulo">
-    <button class="dialog-close" type="button" data-cerrar="modal-curso" aria-label="Cerrar consulta">&times;</button>
-    <div class="dialog-heading"><h2 id="curso-titulo">Lista de espera</h2></div><p class="modal-form-note" id="curso-nota">Fechas por anunciar · Te avisaremos cuando abramos cupos</p>
-    <form class="booking-form" id="form-curso">
-      <div class="field"><label for="curso-nombre">Curso</label><input id="curso-nombre" name="curso" type="text" readonly required></div>
-      <div class="field"><label for="curso-persona">Nombre completo</label><input id="curso-persona" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required></div>
-      <div class="field"><label for="curso-contacto">Correo electrónico o WhatsApp</label><input id="curso-contacto" name="contacto" type="text" placeholder="correo@ejemplo.com o +56 9..." required></div>
-      <div class="field"><label for="curso-mensaje">Mensaje o consulta (opcional)</label><textarea id="curso-mensaje" name="mensaje" rows="3" placeholder="Quiero recibir información de la próxima fecha..."></textarea></div>
-      <p class="form-status" id="course-status" role="status" aria-live="polite"></p>
-      <button class="button submit-button" type="submit"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud</button>
-    </form>
-  </dialog><body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#inicio" onclick="showSection('home')" aria-label="Centro Holístico Integral Amarte, inicio">
-        <img class="brand-logo" src="logo.jpeg" alt="Centro Holístico Integral Amarte">
-      </a>
-      <a class="mobile-home-link" href="#catalogo" onclick="showSection('catalog')">Inicio</a>
-      <nav class="nav" aria-label="Navegación principal"><a href="#catalogo" onclick="showSection('catalog')">Inicio</a><a class="nav-active" href="#catalogo" onclick="showSection('catalog')">Cursos y Sesiones</a><a class="nav-cta" href="https://wa.me/56956139321" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Contacto</a></nav>
-      <button class="mobile-toggle" id="mobile-btn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
-    </div>
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" aria-hidden="true" hidden><a href="#catalogo" onclick="showSection('catalog')">Inicio</a><a href="#catalogo" onclick="showSection('catalog')">Cursos y Sesiones</a><a href="https://wa.me/56956139321" target="_blank" rel="noopener noreferrer">Contacto por WhatsApp</a></nav>
-  </header>
-
-  <main id="section-home">
-    <section class="catalog-intro wrap" id="catalogo"><h1>Centro Holístico Integral Amarte</h1><p>Selecciona un curso para consultar por su inscripción o una sesión para elegir fecha y hora.</p></section>
-    <section class="offerings wrap" aria-labelledby="offerings-title">
-      <div class="offering-group"><div class="reservation-section-heading"><h2 id="offerings-title">Cursos Oficiales</h2><span>Certificaciones internacionales</span></div><div class="course-grid">
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=85" alt="Materiales de formación para el curso de Barras de Access" loading="eager" fetchpriority="high" decoding="async"><span class="course-status">Access Consciousness</span><h3>Curso Oficial de Barras de Access®</h3><p class="card-meta">Próxima fecha por confirmar · 1 día · USD $330</p><p>Formación sobre los 32 puntos de la cabeza y su aplicación en sesiones individuales. Incluye manual impreso, prácticas entre participantes y certificado, según las condiciones oficiales del curso.</p><p class="card-meta">Horario de referencia: 10:00–19:00 · Providencia · Facilitadora: Daniela Lillo V.</p></div><button class="button reservation-button" type="button" data-curso="Curso Oficial de Barras de Access®">Consultar fechas e inscripción</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85" alt="Espacio natural asociado a la formación MTVSS" loading="eager" decoding="async"><span class="course-status">Proceso corporal</span><h3>Proceso Corporal MTVSS®</h3><p class="card-meta">4 horas · Sin requisitos previos · $130.000 CLP</p><p>Formación de Access Consciousness sobre el proceso corporal MTVSS®. Incluye manual, diploma y certificado, según las condiciones del curso.</p><p class="card-meta">Facilitadora: Daniela Lillo Verdejo · Próxima fecha por anunciar</p></div><button class="button reservation-button" type="button" data-curso="Proceso Corporal MTVSS®">Consultar fechas e inscripción</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=85" alt="Ambiente de bienestar con velas y flores" loading="lazy" decoding="async"><span class="course-status">Curso presencial</span><h3>Curso de Biomagnetismo</h3><p class="card-meta">Sábado 21 y domingo 22 de noviembre de 2026 · $200.000 CLP (reserva $50.000)</p><p>Formación práctica sobre biomagnetismo y el uso de pares biomagnéticos. Incluye libros, lista de rastreo, certificado de participación y acompañamiento. Es una formación complementaria y no reemplaza la atención médica.</p><p class="card-meta">Imparte: Judith Alcaino · Providencia</p></div><button class="button reservation-button" type="button" data-curso="Curso de Biomagnetismo" data-modal="Reservar cupo" data-nota="21 y 22 de noviembre de 2026 · Reserva de cupo: $50.000 CLP">Consultar o reservar cupo</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=85" alt="Espacio de calma y relajación para un taller de masaje" loading="lazy" decoding="async"><span class="course-status">Taller práctico</span><h3>Taller de Masaje Craneal Hindú “Champi”</h3><p class="card-meta">Horario: 10:00 a 18:00 hrs · $50.000 CLP</p><p>Técnica tradicional de la India aplicada a hombros, cuello, cabeza y rostro, orientada a la relajación. Incluye apuntes, aceite preparado y certificado.</p><p class="card-meta">Facilitadora: Judith Alcaino Ibáñez · Próxima fecha por confirmar</p></div><button class="button reservation-button" type="button" data-curso="Taller Masaje Craneal Hindú Champi">Consultar fechas e inscripción</button></article>
-      </div></div>
-      <div class="offering-group"><div class="reservation-section-heading"><h2>Sesión Individual</h2><span>Agendamiento online</span></div><div class="reservation-grid">
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=900&q=85" alt="Sesión de cuidado facial y bienestar" loading="eager" decoding="async"><h3>Facelift Energético®</h3><p class="card-meta">$30.000 CLP · 1 hora · Presencial</p><p>Sesión de relajación y bienestar con toque suave aplicado al rostro y cuello.</p></div><button class="button reservation-button" type="button" data-service="facelift">Elegir horario</button></article>
-        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=85" alt="Ambiente de bienestar con flores para una terapia floral" loading="lazy" decoding="async"><h3>Terapia Flores de Bach</h3><p class="card-meta">$25.000 CLP (2 sesiones: $42.000) · 1 hora · Presencial u online</p><p>Terapia complementaria con esencias florales para acompañar momentos de estrés, ansiedad o dificultad para dormir. Incluye anamnesis y preparado floral a medida. No reemplaza la atención médica.</p></div><button class="button reservation-button" type="button" data-service="bach">Elegir horario</button></article>
+        <article class="reservation-card"><div><img src="flores-de-bach.jpg" alt="Frascos de esencias de Flores de Bach junto a flores, un libro y un estuche con botellitas" loading="lazy" decoding="async"><h3>Terapia Flores de Bach</h3><p class="card-meta">$25.000 CLP (2 sesiones: $42.000) · 1 hora · Presencial u online</p><p>Terapia complementaria con esencias florales para acompañar momentos de estrés, ansiedad o dificultad para dormir. Incluye anamnesis y preparado floral a medida. No reemplaza la atención médica.</p></div><button class="button reservation-button" type="button" data-service="bach">Elegir horario</button></article>
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=85" alt="Espacio de calma para un proceso corporal" loading="lazy" decoding="async"><h3>Riqueza Ilimitada</h3><p class="card-meta">$30.000 CLP (pack de 4: $100.000) · 50 minutos · Presencial</p><p>Proceso corporal de Access Consciousness para observar patrones de escasez y abrirse a recibir con mayor facilidad.</p></div><button class="button reservation-button" type="button" data-service="riqueza">Elegir horario</button></article>
       </div></div>
     </section>
@@ -343,7 +231,7 @@
       <button class="button submit-button" type="submit"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Enviar solicitud</button>
     </form>
   </dialog>
-  
+
   <script>
     const mobileButton = document.getElementById("mobile-btn");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -630,7 +518,7 @@
       });
       return slotRef;
     }
-    
+
     document.querySelectorAll("[data-service]").forEach((button) => {
       button.addEventListener("click", () => {
         document.getElementById("step-datetime").hidden = false;
