@@ -169,8 +169,8 @@
         </div>
         <p class="booking-note" id="availability-note" role="status">El horario queda solicitado, no bloqueado, hasta que el centro confirme la disponibilidad.</p>
 
-        <div id="step-customer" class="booking-form-panel" hidden>
-          <div class="reservation-section-heading"><h2>Datos de contacto</h2><button class="text-action" id="back-to-calendar" type="button">Cambiar fecha/hora</button></div>
+        <div id="step-customer" class="booking-form-panel">
+          <div class="reservation-section-heading"><h2>Datos de contacto</h2></div>
           <form class="booking-form" id="form-reserva">
             <input id="reserva-servicio" name="servicio" type="hidden">
             <input id="reserva-fecha" name="fecha" type="hidden">
@@ -201,7 +201,6 @@
         <p class="summary-label">Terapeuta</p><div class="field summary-field"><select id="therapist-select" aria-label="Terapeuta"></select></div>
         <p class="summary-label">Duración</p><p class="summary-value" id="summary-duration">1 hora</p>
         <div class="detail-group"><p class="summary-label">Fecha y hora elegidas</p><p class="summary-value" id="summary-datetime">Selecciona una fecha y un horario.</p></div>
-        <button class="button reservation-button" id="next-step-btn" type="button" disabled>Continuar</button>
       </aside>
     </div>
   </section>
@@ -358,7 +357,6 @@
       document.getElementById("reserva-servicio").value = appState.service.name;
       document.getElementById("reserva-fecha").value = appState.selectedDate;
       document.getElementById("reserva-hora").value = appState.selectedTime;
-      document.getElementById("next-step-btn").disabled = !appState.selectedTime;
     }
 
     function selectDate(date) {
@@ -458,7 +456,7 @@
     function openBookingModal() {
       selectService("facelift");
       document.getElementById("step-datetime").hidden = false;
-      document.getElementById("step-customer").hidden = true;
+      document.getElementById("step-customer").hidden = false;
       document.getElementById("step-confirmation").hidden = true;
       showSection("reservas");
     }
@@ -534,7 +532,7 @@
     document.querySelectorAll("[data-service]").forEach((button) => {
       button.addEventListener("click", () => {
         document.getElementById("step-datetime").hidden = false;
-        document.getElementById("step-customer").hidden = true;
+        document.getElementById("step-customer").hidden = false;
         document.getElementById("step-confirmation").hidden = true;
         selectService(button.dataset.service);
         showSection("reservas");
@@ -553,16 +551,6 @@
     document.getElementById("calendar-next").addEventListener("click", () => {
       appState.currentMonth = new Date(appState.currentMonth.getFullYear(), appState.currentMonth.getMonth() + 1, 1);
       renderCalendar();
-    });
-    document.getElementById("next-step-btn").addEventListener("click", () => {
-      if (!appState.selectedTime) return;
-      document.getElementById("step-datetime").hidden = true;
-      document.getElementById("step-customer").hidden = false;
-      bookingStatus.textContent = "";
-    });
-    document.getElementById("back-to-calendar").addEventListener("click", () => {
-      document.getElementById("step-customer").hidden = true;
-      document.getElementById("step-datetime").hidden = false;
     });
     renderCalendar();
     renderTherapistSelect();
@@ -678,7 +666,12 @@
 
     bookingForm.addEventListener("submit", async (evento) => {
       evento.preventDefault();
-      if (!bookingForm.reportValidity() || !appState.selectedTime) return;
+      if (!bookingForm.reportValidity()) return;
+      if (!appState.selectedTime) {
+        bookingStatus.textContent = "Selecciona una fecha y un horario antes de enviar la solicitud.";
+        document.getElementById("slots-heading").scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
       if (!isWeekday(appState.selectedDate)) {
         bookingStatus.textContent = "Las sesiones solo se pueden solicitar de lunes a viernes. Elige otro día.";
         return;
@@ -768,7 +761,7 @@
       appState.selectedTime = "";
       document.getElementById("step-confirmation").hidden = true;
       document.getElementById("step-datetime").hidden = false;
-      document.getElementById("step-customer").hidden = true;
+      document.getElementById("step-customer").hidden = false;
       renderTimeSlots();
       updateBookingSummary();
     });
