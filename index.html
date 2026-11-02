@@ -141,6 +141,7 @@
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=85" alt="Espacio de calma y relajación para un taller de masaje" loading="lazy" decoding="async"><span class="course-status">Taller práctico</span><h3>Taller de Masaje Craneal Hindú “Champi”</h3><p class="card-meta">Horario: 10:00 a 18:00 hrs · $50.000 CLP</p><p>Técnica tradicional de la India aplicada a hombros, cuello, cabeza y rostro, orientada a la relajación. Incluye apuntes, aceite preparado y certificado.</p><p class="card-meta">Facilitadora: Judith Alcaino Ibáñez · Próxima fecha por confirmar</p></div><button class="button reservation-button" type="button" data-curso="Taller Masaje Craneal Hindú Champi">Consultar fechas e inscripción</button></article>
       </div></div>
       <div class="offering-group"><div class="reservation-section-heading"><h2>Sesión Individual</h2><span>Agendamiento online</span></div><div class="reservation-grid">
+        <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=85" alt="Sesión individual de Barras de Access" loading="lazy" decoding="async"><h3>Sesión de Barras de Access®</h3><p class="card-meta">1 hora · Presencial · Valor por consultar</p><p>Sesión individual de Barras de Access. Selecciona un horario de lunes a viernes para enviar tu solicitud.</p></div><button class="button reservation-button" type="button" data-service="barras">Elegir horario</button></article>
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=900&q=85" alt="Sesión de cuidado facial y bienestar" loading="eager" decoding="async"><h3>Facelift Energético®</h3><p class="card-meta">$30.000 CLP · 1 hora · Presencial</p><p>Sesión de relajación y bienestar con toque suave aplicado al rostro y cuello.</p></div><button class="button reservation-button" type="button" data-service="facelift">Elegir horario</button></article>
         <article class="reservation-card"><div><img src="flores-de-bach.jpg" alt="Frascos de esencias de Flores de Bach junto a flores, un libro y un estuche con botellitas" loading="lazy" decoding="async"><h3>Terapia Flores de Bach</h3><p class="card-meta">$25.000 CLP (2 sesiones: $42.000) · 1 hora · Presencial u online</p><p>Terapia complementaria con esencias florales para acompañar momentos de estrés, ansiedad o dificultad para dormir. Incluye anamnesis y preparado floral a medida. No reemplaza la atención médica.</p></div><button class="button reservation-button" type="button" data-service="bach">Elegir horario</button></article>
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=85" alt="Espacio de calma para un proceso corporal" loading="lazy" decoding="async"><h3>Riqueza Ilimitada</h3><p class="card-meta">$30.000 CLP (pack de 4: $100.000) · 50 minutos · Presencial</p><p>Proceso corporal de Access Consciousness para observar patrones de escasez y abrirse a recibir con mayor facilidad.</p></div><button class="button reservation-button" type="button" data-service="riqueza">Elegir horario</button></article>
@@ -247,14 +248,25 @@
       judith: { id: "judith", name: "Judith Alcaino Ibáñez" }
     };
     const services = {
+      barras: { id: "barras", name: "Sesión de Barras de Access®", price: "Consultar", location: "Presencial · Providencia", duration: "1 hora", therapists: ["daniela"] },
       facelift: { id: "facelift", name: "Facelift Energético®", price: "$30.000 CLP", location: "Presencial · Providencia", duration: "1 hora", therapists: ["daniela"] },
       bach: { id: "bach", name: "Terapia Flores de Bach", price: "$25.000 CLP", location: "Presencial / Online", duration: "1 hora", therapists: ["daniela", "judith"] },
       riqueza: { id: "riqueza", name: "Proceso de Cuerpo: Riqueza Ilimitada", price: "$30.000 CLP", location: "Presencial · Providencia", duration: "50 minutos", therapists: ["daniela", "judith"] }
     };
-    const slotKey = (date, time, therapistId) => `${date}_${time}_${therapistId}`;
+    const slotKey = (date, time) => `${date}_${time}`;
+    function isWeekday(value) {
+      const day = fechaDesdeISO(value).getDay();
+      return day >= 1 && day <= 5;
+    }
+    function nextWeekday(date) {
+      const result = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      while (result.getDay() === 0 || result.getDay() === 6) result.setDate(result.getDate() + 1);
+      return result;
+    }
+    const initialBookingDate = nextWeekday(todayDate);
     const appState = {
-      currentMonth: new Date(todayDate.getFullYear(), todayDate.getMonth(), 1),
-      selectedDate: fechaISO(todayDate),
+      currentMonth: new Date(initialBookingDate.getFullYear(), initialBookingDate.getMonth(), 1),
+      selectedDate: fechaISO(initialBookingDate),
       selectedTime: "",
       service: services.facelift,
       therapist: therapists.daniela,
@@ -352,7 +364,7 @@
     }
 
     function selectDate(date) {
-      if (date < fechaISO(new Date())) return;
+      if (date < fechaISO(new Date()) || !isWeekday(date)) return;
       appState.selectedDate = date;
       appState.selectedTime = "";
       renderCalendar();
@@ -383,7 +395,7 @@
         button.type = "button";
         button.className = "calendar-day";
         button.textContent = String(day);
-        button.disabled = date < fechaISO(new Date());
+        button.disabled = date < fechaISO(new Date()) || !isWeekday(date);
         button.setAttribute("aria-pressed", String(date === appState.selectedDate));
         button.setAttribute("aria-label", formatDate(date));
         button.addEventListener("click", () => selectDate(date));
@@ -398,7 +410,7 @@
       dayLabel.textContent = formatDate(appState.selectedDate);
 
       appointmentSlots.forEach((slot) => {
-        const key = slotKey(appState.selectedDate, slot.value, appState.therapist.id);
+        const key = slotKey(appState.selectedDate, slot.value);
         const ocupado = appState.bookedSlots.has(key);
         const button = document.createElement("button");
         button.type = "button";
@@ -480,7 +492,7 @@
           appState.bookedSlots = new Map();
           snapshot.forEach((slotDoc) => {
             const slot = slotDoc.data();
-            if (slot.date && slot.time && slot.therapist && slot.status === "pending") appState.bookedSlots.set(slotKey(slot.date, slot.time, slot.therapist), slot);
+            if (slot.date && slot.time && slot.status === "pending") appState.bookedSlots.set(slotKey(slot.date, slot.time), slot);
           });
           appState.realtime = true;
           renderTimeSlots();
@@ -501,11 +513,13 @@
       if (!appState.firebase || !appState.authUser) return null;
       if (!appState.realtime) throw new Error("FIREBASE_NOT_READY");
       const { db, doc, runTransaction, serverTimestamp } = appState.firebase;
-      const slotId = `${booking.date}_${booking.time.replace(/[^0-9]/g, "")}_${booking.therapistId}`;
-      const slotRef = doc(db, "bookingSlots", slotId);
+      const slotTimeId = booking.time.replace(/[^0-9]/g, "");
+      const slotRef = doc(db, "bookingSlots", `${booking.date}_${slotTimeId}`);
+      const legacySlotRefs = Object.keys(therapists).map((id) => doc(db, "bookingSlots", `${booking.date}_${slotTimeId}_${id}`));
       await runTransaction(db, async (transaction) => {
         const existing = await transaction.get(slotRef);
-        if (existing.exists()) throw new Error("SLOT_TAKEN");
+        const legacySlots = await Promise.all(legacySlotRefs.map((ref) => transaction.get(ref)));
+        if (existing.exists() || legacySlots.some((legacy) => legacy.exists())) throw new Error("SLOT_TAKEN");
         transaction.set(slotRef, {
           uid: appState.authUser.uid,
           serviceId: booking.serviceId,
@@ -652,6 +666,10 @@
     bookingForm.addEventListener("submit", async (evento) => {
       evento.preventDefault();
       if (!bookingForm.reportValidity() || !appState.selectedTime) return;
+      if (!isWeekday(appState.selectedDate)) {
+        bookingStatus.textContent = "Las sesiones solo se pueden solicitar de lunes a viernes. Elige otro día.";
+        return;
+      }
       const datos = new FormData(bookingForm);
       const botonEnviar = bookingForm.querySelector("[type=submit]");
       const fecha = appState.selectedDate;
