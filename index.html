@@ -28,7 +28,6 @@
       .form-status:empty { display: none; }
       .calendar-fallback { color: var(--plum); font-size: 12px; font-weight: 600; }
       .booking-form button:disabled { cursor: wait; opacity: .7; }
-      .course-grid { max-width: 860px; margin-inline: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .card-actions { display: grid; gap: 8px; margin-top: 16px; }
       .detail-view { width: min(900px, calc(100% - 48px)); min-height: 65vh; margin-inline: auto; padding: 48px 0 80px; }
       .detail-back { margin-bottom: 20px; padding: 8px 0; border: 0; background: transparent; color: var(--plum); font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
@@ -48,7 +47,6 @@
       .reservation-section-heading h2 { margin: 0; color: #332e2b; font-family: var(--serif); font-size: 31px; font-weight: 400; }
       .reservation-section-heading span { color: var(--plum); font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
       .reservation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
-      .reservation-grid.course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .reservation-grid.session-grid { grid-template-columns: minmax(0, 420px); justify-content: center; }
       .reservation-card { display: flex; min-width: 0; flex-direction: column; justify-content: space-between; padding: 18px; border: 1px solid #e6dfd5; border-radius: 9px; background: #faf7f2; }
       .reservation-card img { width: 100%; height: 180px; margin-bottom: 17px; border-radius: 6px; object-fit: cover; }
@@ -64,7 +62,7 @@
         .reservation-view { width: min(100% - 36px, 560px); padding: 48px 0 68px; }
         .reservation-section-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
         .reservation-section-heading h2 { font-size: 27px; }
-        .reservation-grid, .reservation-grid.course-grid, .reservation-grid.session-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+        .reservation-grid, .reservation-grid.session-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
         .reservation-card { display: grid; grid-template-columns: minmax(120px, .8fr) 1.2fr; align-items: center; gap: 0 16px; }
         .reservation-card > div { grid-row: span 2; }
         .reservation-card img { height: 100%; min-height: 150px; margin: 0; }
@@ -134,7 +132,7 @@
   <main id="section-home">
     <section class="catalog-intro wrap" id="catalogo"><h1>Centro Holístico Integral Amarte</h1><p>Selecciona un curso para consultar por su inscripción o una sesión para elegir fecha y hora.</p></section>
     <section class="offerings wrap" aria-labelledby="offerings-title">
-      <div class="offering-group"><div class="reservation-section-heading"><h2 id="offerings-title">Cursos Oficiales</h2><span>Certificaciones internacionales</span></div><div class="course-grid">
+      <div class="offering-group"><div class="reservation-section-heading"><h2 id="offerings-title">Cursos Oficiales</h2><span>Certificaciones internacionales</span></div><div class="reservation-grid">
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=85" alt="Materiales de formación para el curso de Barras de Access" loading="eager" fetchpriority="high" decoding="async"><span class="course-status">Access Consciousness</span><h3>Curso Oficial de Barras de Access®</h3><p class="card-meta">Próxima fecha por confirmar · 1 día · USD $330</p><p>Formación sobre los 32 puntos de la cabeza y su aplicación en sesiones individuales. Incluye manual impreso, prácticas entre participantes y certificado, según las condiciones oficiales del curso.</p><p class="card-meta">Horario de referencia: 10:00–19:00 · Providencia · Facilitadora: Daniela Lillo V.</p></div><button class="button reservation-button" type="button" data-curso="Curso Oficial de Barras de Access®">Consultar fechas e inscripción</button></article>
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=85" alt="Espacio natural asociado a la formación MTVSS" loading="eager" decoding="async"><span class="course-status">Proceso corporal</span><h3>Proceso Corporal MTVSS®</h3><p class="card-meta">4 horas · Sin requisitos previos · $130.000 CLP</p><p>Formación de Access Consciousness sobre el proceso corporal MTVSS®. Incluye manual, diploma y certificado, según las condiciones del curso.</p><p class="card-meta">Facilitadora: Daniela Lillo Verdejo · Próxima fecha por anunciar</p></div><button class="button reservation-button" type="button" data-curso="Proceso Corporal MTVSS®">Consultar fechas e inscripción</button></article>
         <article class="reservation-card"><div><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=85" alt="Ambiente de bienestar con velas y flores" loading="lazy" decoding="async"><span class="course-status">Curso presencial</span><h3>Curso de Biomagnetismo</h3><p class="card-meta">Sábado 21 y domingo 22 de noviembre de 2026 · $200.000 CLP (reserva $50.000)</p><p>Formación práctica sobre biomagnetismo y el uso de pares biomagnéticos. Incluye libros, lista de rastreo, certificado de participación y acompañamiento. Es una formación complementaria y no reemplaza la atención médica.</p><p class="card-meta">Imparte: Judith Alcaino · Providencia</p></div><button class="button reservation-button" type="button" data-curso="Curso de Biomagnetismo" data-modal="Reservar cupo" data-nota="21 y 22 de noviembre de 2026 · Reserva de cupo: $50.000 CLP">Consultar o reservar cupo</button></article>
