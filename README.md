@@ -1,13 +1,11 @@
-# centro-integral-amarte
+# Centro Holístico Integral Amarte
 
-## Activar disponibilidad compartida
+Sitio estático para presentar cursos, talleres y terapias del centro.
 
-La página funciona como formulario de solicitud aunque Firebase no esté configurado. Para activar el bloqueo compartido de horarios:
+## Consultas y reservas
 
-1. Crea un proyecto Firebase y una base de datos Cloud Firestore.
-2. En Firebase Authentication, habilita el proveedor de acceso anónimo.
-3. Registra una aplicación web en Firebase y copia su configuración pública en `firebase-config.js`. No uses una clave de cuenta de servicio en el navegador.
-4. Publica las reglas de `firestore.rules` desde Firebase Console o con `firebase deploy --only firestore:rules`.
-5. Activa FormSubmit para `integralamarte@gmail.com` al recibir su primer correo de confirmación.
+Cada tarjeta incluye un enlace de WhatsApp con el nombre del servicio. El catálogo no solicita datos personales ni administra horarios; las fechas, disponibilidad y detalles se coordinan directamente con el centro. El curso de Biomagnetismo usa el WhatsApp indicado para ese curso; las demás consultas usan el número general.
 
-Los documentos de `bookingSlots` contienen solo metadatos del horario, nunca nombre, correo ni teléfono. Una solicitud retenida queda como `pending`; hasta que exista una pantalla administrativa, el centro debe eliminar su documento desde Firestore para liberar ese horario si no se confirma.
+## Publicación
+
+El sitio se publica en GitHub Pages al actualizar la rama `main`. Las imágenes del catálogo se guardan en `assets/` y se cargan desde el propio repositorio.
