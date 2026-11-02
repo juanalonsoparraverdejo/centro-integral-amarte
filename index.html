@@ -651,16 +651,34 @@
 
     async function enviarFormularioEmail(formData, asunto) {
       formData.append("_subject", asunto);
-      const respuesta = await fetch(`https://formsubmit.co/ajax/${ownerEmail}`, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: formData
-      });
-      const resultado = await respuesta.json();
-      if (!respuesta.ok || (resultado.success !== true && resultado.success !== "true")) {
-        throw new Error(resultado.message || "No se pudo enviar el formulario.");
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      try {
+        const respuesta = await fetch(`https://formsubmit.co/ajax/${ownerEmail}`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(Object.fromEntries(formData.entries())),
+          signal: controller.signal
+        });
+        let resultado;
+        try {
+          resultado = await respuesta.json();
+        } catch {
+          throw new Error("EMAIL_INVALID_RESPONSE");
+        }
+        if (!respuesta.ok || (resultado.success !== true && resultado.success !== "true")) {
+          throw new Error(resultado.message || "No se pudo enviar el formulario.");
+        }
+        return resultado;
+      } catch (error) {
+        if (error.name === "AbortError") throw new Error("EMAIL_TIMEOUT");
+        throw error;
+      } finally {
+        clearTimeout(timeoutId);
       }
-      return resultado;
     }
 
     bookingForm.addEventListener("submit", async (evento) => {
@@ -728,14 +746,18 @@
         document.getElementById("step-datetime").hidden = true;
         document.getElementById("step-confirmation").hidden = false;
       } catch (error) {
-        if (slotRef && appState.firebase) {
+        if (slotRef && appState.firebase && error.message !== "EMAIL_TIMEOUT") {
           try {
             await appState.firebase.deleteDoc(slotRef);
           } catch (releaseError) {
             console.error("No se pudo liberar el horario tras el error de correo:", releaseError);
           }
         }
-        bookingStatus.textContent = error.message === "SLOT_TAKEN"
+        bookingStatus.textContent = error.message === "EMAIL_TIMEOUT"
+          ? "El servidor de correo no respondió a tiempo. La solicitud podría haberse recibido; revisa tu correo o contáctanos antes de volver a enviarla."
+          : error.message === "EMAIL_INVALID_RESPONSE"
+            ? "El servidor de correo respondió de forma inesperada. Contáctanos para confirmar si recibimos la solicitud."
+            : error.message === "SLOT_TAKEN"
           ? "Ese horario acaba de ser solicitado. Elige otro, por favor."
           : error.message === "FIREBASE_NOT_READY"
             ? "La disponibilidad compartida aún está cargando. Espera un momento y vuelve a intentar."
@@ -774,7 +796,11 @@
         courseStatus.textContent = "Solicitud enviada por correo. Te contactaremos con más información.";
         botonEnviar.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> Solicitud enviada';
       } catch (error) {
-        courseStatus.textContent = "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
+        courseStatus.textContent = error.message === "EMAIL_TIMEOUT"
+          ? "El servidor de correo no respondió a tiempo. Revisa tu correo o WhatsApp antes de volver a enviarlo para evitar duplicados."
+          : error.message === "EMAIL_INVALID_RESPONSE"
+            ? "El servidor de correo respondió de forma inesperada. Revisa tu conexión o contáctanos por WhatsApp."
+            : "No se pudo enviar la solicitud. Revisa tu conexión e inténtalo nuevamente.";
         botonEnviar.disabled = false;
         console.error(error);
       }
