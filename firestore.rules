@@ -33,6 +33,34 @@ service cloud.firestore {
 
       allow update: if false;
     }
+
+    match /reviews/{reviewId} {
+      allow get, list: if resource.data.status == 'approved';
+
+      allow create: if request.resource.data.keys().hasOnly([
+          'author', 'service', 'rating', 'text', 'status', 'createdAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'author', 'service', 'rating', 'text', 'status', 'createdAt'
+        ])
+        && request.resource.data.author is string
+        && request.resource.data.author.size() >= 1
+        && request.resource.data.author.size() <= 45
+        && request.resource.data.service in [
+          'Barras de Access', 'Facelift Energético', 'Reiki', 'Toque de Midas',
+          'MTVSS', 'Flores de Bach', 'Otra experiencia'
+        ]
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 12
+        && request.resource.data.text.size() <= 600
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time;
+
+      allow update, delete: if false;
+    }
   }
 }
 

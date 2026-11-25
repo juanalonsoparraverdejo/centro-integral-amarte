@@ -12,11 +12,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root{color-scheme:light;--paper:#f7f3ed;--card:#fcfaf6;--footer:#ece7df;--ink:#33332f;--muted:#6f6b65;--line:#ded8ce;--plum:#806174;--plum-dark:#654b5c;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Montserrat",sans-serif}
-    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background-color:var(--paper);background-image:linear-gradient(rgba(247,243,237,.9),rgba(247,243,237,.9)),url("assets/limpieza-energetica.jpg");background-attachment:fixed;background-position:center;background-size:cover;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}:focus-visible{outline:3px solid #a87d9a;outline-offset:3px}.wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{position:relative;min-height:100vh;margin:0;background-image:linear-gradient(rgba(15,15,15,.52),rgba(15,15,15,.52)),url("assets/WhatsApp Image 2026-11-25 at 6.34.58 PM.jpeg");background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}:focus-visible{outline:3px solid #a87d9a;outline-offset:3px}.wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}
     .site-header{position:sticky;top:0;z-index:10;background:rgba(247,243,237,.97);border-bottom:1px solid rgba(75,65,57,.12);backdrop-filter:blur(12px)}.header-inner{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none}.brand-icon{display:grid;width:52px;aspect-ratio:1;place-items:center;padding:6px;border:1px solid #d5cabc;border-radius:12px;background:#eae2d5}.brand-icon svg{width:100%;height:100%;fill:var(--plum)}.brand-copy{display:flex;flex-direction:column}.brand-kicker{color:#71665e;font-family:var(--serif);font-size:11px;font-weight:600;letter-spacing:.14em}.brand-name{margin-top:-3px;font-family:var(--serif);font-size:26px;letter-spacing:.14em}.nav{display:flex;align-items:center;gap:34px}.nav a{display:inline-flex;align-items:center;min-height:44px;color:#514e49;font-size:14px;font-weight:500;line-height:1.2;text-decoration:none;transition:color .2s}.nav a:hover{color:var(--plum)}.nav-active{position:relative;border-bottom:0;padding-bottom:0}.nav-active::after{position:absolute;right:0;bottom:4px;left:0;height:1px;background:currentColor;content:""}.nav .nav-cta{gap:9px;padding:0 17px;border:1px solid var(--plum);color:var(--plum);white-space:nowrap}.nav .nav-cta i{font-size:15px}.nav .nav-cta:hover{background:var(--plum);color:white}.mobile-home-link{display:none;align-items:center;justify-content:center;min-height:42px;padding:0 8px;color:#514e49;font-size:14px;font-weight:600;text-decoration:none}.mobile-toggle{display:none;width:42px;height:42px;flex:0 0 42px;border:0;background:transparent;color:var(--ink);font-size:20px}.mobile-menu{display:none;padding:4px 24px 18px;border-top:1px solid var(--line)}.mobile-menu[aria-hidden="false"]{display:grid;gap:4px}.mobile-menu a,.mobile-menu button{padding:10px 0;border:0;background:transparent;color:var(--ink);text-align:left;text-decoration:none;font-size:14px}.mobile-menu button{color:var(--plum);font-weight:600}
     .hero{min-height:min(680px,82vh);display:flex;align-items:center;background:linear-gradient(90deg,rgba(247,243,237,.94),rgba(247,243,237,.83) 43%,rgba(247,243,237,.12)),url("https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1920&q=85") center/cover no-repeat}.hero-copy{width:min(680px,100%);padding-block:90px;animation:arrive .7s both}.eyebrow{margin:0 0 20px;color:var(--plum);font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}.hero h1{max-width:660px;margin:0 0 28px;color:#393631;font-family:var(--serif);font-size:clamp(52px,7vw,88px);font-weight:400;line-height:.96}.hero h1 span{display:block}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 24px;border:1px solid var(--plum);border-radius:999px;background:var(--plum);color:white;font-size:11px;font-weight:500;letter-spacing:.04em;text-decoration:none;transition:background .2s,transform .2s}.button:hover{transform:translateY(-2px);background:var(--plum-dark)}
     .offerings{padding-block:90px 100px}.section-title{margin:0 0 52px;text-align:center;font-family:var(--serif);font-size:clamp(43px,5vw,58px);font-weight:400;line-height:1}.offering-group+.offering-group{margin-top:76px}.group-title{margin:0 0 28px;text-align:center;color:#625e58;font-family:var(--serif);font-size:36px;font-weight:400}.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.offering-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid rgba(126,111,96,.18);border-radius:7px;background:var(--card);box-shadow:0 5px 20px rgba(48,39,31,.035);transition:box-shadow .25s,transform .25s}.offering-card:hover{transform:translateY(-3px);box-shadow:0 13px 28px rgba(48,39,31,.09)}.card-image{display:block;width:100%;aspect-ratio:1.35;object-fit:cover;background:#e5ded2}.card-body{display:flex;flex:1;flex-direction:column;align-items:center;padding:24px 22px 26px;text-align:center}.card-body h4{margin:0 0 10px;color:#393631;font-family:var(--serif);font-size:28px;font-weight:500;line-height:1.05}.card-body p{margin:0 0 20px;color:var(--muted);font-size:11px;font-weight:300;line-height:1.8}.text-action{margin-top:auto;padding:8px 0 3px;border:0;border-bottom:1px solid #aaa096;background:transparent;color:#514c46;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}.text-action:hover{border-color:var(--plum);color:var(--plum)}
     .testimonial{padding:92px 24px;border-block:1px solid rgba(126,111,96,.2);background:linear-gradient(rgba(247,243,237,.8),rgba(247,243,237,.86)),url("assets/toque-de-midas.jpg") center/cover no-repeat;text-align:center}.testimonial-inner{width:min(820px,100%);margin:auto}.testimonial h2,.contact h2{margin:0;font-family:var(--serif);font-size:clamp(40px,5vw,56px);font-weight:400;line-height:1}.quote-mark{height:54px;margin-top:20px;color:#aa9b8a;font-family:var(--serif);font-size:72px;font-weight:600;line-height:1}.quote{margin:0 auto 24px;color:#5d5851;font-family:var(--serif);font-size:clamp(22px,3vw,29px);font-style:italic;line-height:1.45}.quote-rule{width:40px;height:1px;margin:0 auto 15px;background:#a89d90}.quote-author{margin:0;color:#716b63;font-size:10px;font-weight:600;letter-spacing:.2em}
+    .testimonial{position:relative}.testimonial-inner{width:min(900px,100%)}.reviews-kicker{margin:0 0 14px;color:var(--plum);font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}.review-stars{display:flex;justify-content:center;gap:5px;margin:18px 0;color:#9a7850;font-size:18px}.review-stars .empty{color:#c9c0b4}.review-carousel{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center}.review-panel{width:100%;animation:arrive .35s both}.review-meta{margin:0 0 12px;color:#716b63;font-size:10px;font-weight:500;letter-spacing:.1em}.review-controls{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:14px}.review-arrow{width:42px;height:42px;border:1px solid rgba(101,75,92,.5);border-radius:50%;background:rgba(252,250,246,.72);color:var(--plum-dark);transition:background .2s,color .2s}.review-arrow:hover{background:var(--plum);color:#fff}.review-count{min-width:58px;color:#625b54;font-size:11px}.review-actions{display:flex;justify-content:center;gap:12px;margin-top:28px}.review-cta{min-height:44px}.review-note{max-width:560px;margin:14px auto 0;color:#625b54;font-size:10px;line-height:1.7}.review-form-dialog{width:min(520px,calc(100% - 28px));max-width:none;max-height:min(92vh,760px);padding:30px;border:1px solid #d9d0c4;border-radius:12px;background:var(--card);color:var(--ink);box-shadow:0 24px 80px rgba(31,25,30,.24)}.review-form-dialog::backdrop{background:rgba(25,22,24,.58);backdrop-filter:blur(3px)}.review-form-dialog h3{margin:0 30px 8px;text-align:center;font-family:var(--serif);font-size:36px;font-weight:500}.review-form-intro{margin:0 0 22px;text-align:center;color:var(--muted);font-size:11px;line-height:1.7}.review-form{display:grid;gap:14px;text-align:left}.review-field{display:grid;gap:6px}.review-field label,.review-field legend{color:#635e57;font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase}.review-field input,.review-field select,.review-field textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid #d9d3c9;border-radius:6px;background:white;color:#393631;font-size:12px}.review-field textarea{min-height:110px;resize:vertical}.review-field fieldset{padding:0;border:0}.rating-options{display:flex;gap:8px}.rating-option{position:relative}.rating-option input{position:absolute;width:1px;height:1px;opacity:0}.rating-option span{display:grid;width:42px;height:42px;place-items:center;border:1px solid var(--line);border-radius:50%;background:white;color:#8b7a64;cursor:pointer;font-size:21px}.rating-option input:checked+span,.rating-option input:focus-visible+span{border-color:var(--plum);background:#f2eaf0;color:#76546b;outline:2px solid #a87d9a;outline-offset:2px}.review-consent{display:flex;align-items:flex-start;gap:9px;color:#625b54;font-size:10px;line-height:1.6}.review-consent input{margin-top:2px;accent-color:var(--plum)}.review-status{min-height:18px;margin:0;color:var(--plum);font-size:11px;line-height:1.6}.review-status:empty{display:none}.review-status[data-kind="error"]{color:#a33e3e}.review-submit{width:100%;min-height:46px}.review-submit:disabled{cursor:wait;opacity:.65}.review-honeypot{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important}
+    @media(max-width:600px){.review-carousel{min-height:270px}.review-actions{flex-direction:column;align-items:center}.review-form-dialog{padding:26px 20px 22px}.review-form-dialog h3{font-size:32px}}
     .contact{padding:88px 24px;background:linear-gradient(rgba(247,243,237,.82),rgba(247,243,237,.88)),url("assets/reiki.jpg") center/cover no-repeat;text-align:center}.contact-inner{width:min(660px,100%);margin:auto}.contact h2{margin-bottom:36px}.contact-label{margin:0 0 8px;color:var(--muted);font-size:10px;font-weight:500;letter-spacing:.18em}.phone-link{display:inline-block;color:#393631;font-family:var(--serif);font-size:clamp(32px,5vw,44px);text-decoration:none}.phone-link:hover{color:var(--plum)}.contact-button{margin-top:24px}
     .site-footer{padding:32px 0;border-top:1px solid rgba(126,111,96,.2);background:var(--footer)}.footer-inner{display:grid;grid-template-columns:1fr 1.4fr 1fr;align-items:center;gap:28px}.footer-brand{display:flex;align-items:center;gap:10px}.footer-brand .brand-icon{width:42px;border-radius:9px}.footer-brand .brand-kicker{font-size:8px}.footer-brand .brand-name{font-size:20px}.mission{margin:0;color:#66615b;font-size:11px;font-weight:300;line-height:1.8}.copyright{margin:0;color:#716b63;font-size:10px;line-height:1.7;text-align:right}
     .booking-dialog{position:relative;width:min(500px,calc(100% - 28px));max-width:none;max-height:min(92vh,780px);padding:30px;overflow-y:auto;border:1px solid #d9d0c4;border-radius:12px;background:var(--card);color:var(--ink);box-shadow:0 24px 80px rgba(31,25,30,.24)}.booking-dialog::backdrop{background:rgba(25,22,24,.58);backdrop-filter:blur(3px)}.dialog-close{position:absolute;top:13px;right:15px;width:38px;height:38px;border:0;border-radius:50%;background:transparent;color:#77716a;font-size:26px}.dialog-close:hover{background:#eee8df;color:var(--ink)}.dialog-heading{margin:0 30px 24px;text-align:center}.dialog-heading .eyebrow{margin-bottom:6px}.dialog-heading h2{margin:0;color:#393631;font-family:var(--serif);font-size:38px;font-weight:500;line-height:1}.booking-form{display:grid;gap:15px}.field{display:grid;min-width:0;gap:6px}.field label{color:#635e57;font-size:9px;font-weight:600;letter-spacing:.11em;text-transform:uppercase}.field input,.field select,.field textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid #d9d3c9;border-radius:6px;background:white;color:#393631;font-size:12px}.field textarea{min-height:70px;resize:vertical}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.submit-button{width:100%;margin-top:3px}
@@ -151,7 +153,28 @@
         <article class="reservation-card"><div><img src="assets/limpieza-negocios.jpg" alt="Limpieza energética de negocios y proyectos" loading="lazy" decoding="async"><h3>Limpieza Energética de Negocios</h3><p class="card-meta">Presencial o a distancia · Desde $75.000 CLP</p><p>Armonización de espacios comerciales y proyectos. La limpieza de trabajadores se cotiza por separado.</p></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20cotizar%20una%20limpieza%20energetica%20de%20negocio" target="_blank" rel="noopener noreferrer">Consultar aquí</a></article>
       </div></div>
     </section>
-    <section class="testimonial" aria-labelledby="testimonial-title"><div class="testimonial-inner"><h2 id="testimonial-title">Experiencias de Clientes</h2><div class="quote-mark" aria-hidden="true">“</div><blockquote class="quote">El sonido de las barras es algo que hay que vivir para entender. Sentí que mi mente por fin se quedó en silencio. Además el trato es muy cálido, te explican todo con paciencia antes de partir.</blockquote><div class="quote-rule" aria-hidden="true"></div><p class="quote-author">A.T.</p></div></section>
+    <section class="testimonial" aria-labelledby="testimonial-title">
+      <div class="testimonial-inner">
+        <p class="reviews-kicker">Palabras que nos inspiran</p>
+        <h2 id="testimonial-title">Experiencias de Clientes</h2>
+        <div class="review-carousel" aria-live="polite" aria-atomic="true">
+          <article class="review-panel">
+            <div class="review-stars" aria-label="5 de 5 estrellas"><span aria-hidden="true">★★★★★</span></div>
+            <div class="quote-mark" aria-hidden="true">“</div>
+            <blockquote class="quote">El sonido de las barras es algo que hay que vivir para entender. Sentí que mi mente por fin se quedó en silencio. Además el trato es muy cálido, te explican todo con paciencia antes de partir.</blockquote>
+            <div class="quote-rule" aria-hidden="true"></div>
+            <p class="quote-author">A.T.</p>
+          </article>
+        </div>
+        <div class="review-controls" aria-label="Navegación de reseñas">
+          <button class="review-arrow" id="review-prev" type="button" aria-label="Ver reseña anterior">←</button>
+          <span class="review-count" id="review-count">1 de 1</span>
+          <button class="review-arrow" id="review-next" type="button" aria-label="Ver reseña siguiente">→</button>
+        </div>
+        <div class="review-actions"><button class="button review-cta" id="open-review-form" type="button"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Dejar mi reseña</button></div>
+        <p class="review-note" id="reviews-note">Cada reseña nueva se revisa antes de aparecer publicada. No compartas datos personales en tu comentario.</p>
+      </div>
+    </section>
 
   </main>
 
@@ -162,7 +185,30 @@
     <p class="mission">Sanación energética y bienestar espiritual. Nuestra misión es guiar a través de la conexión profunda para restaurar el equilibrio y la serenidad en cada ser.</p><p class="copyright">© 2026 Centro Holístico Integral Amarte.<br>Todos los derechos reservados.</p>
   </div></footer>
 
-  <script>
+  <dialog class="review-form-dialog" id="review-dialog" aria-labelledby="review-dialog-title">
+    <button class="dialog-close" id="close-review-form" type="button" aria-label="Cerrar formulario">×</button>
+    <h3 id="review-dialog-title">Comparte tu experiencia</h3>
+    <p class="review-form-intro">Tu opinión puede ayudar a otras personas a conocer este espacio.</p>
+    <form class="review-form" id="review-form">
+      <label class="review-field"><span>Tu nombre o iniciales</span><input name="author" type="text" maxlength="45" autocomplete="name" required placeholder="Ej.: Ana o A.P."></label>
+      <label class="review-field"><span>Servicio que recibiste</span><select name="service" required><option value="" selected disabled>Elige una opción</option><option>Barras de Access</option><option>Facelift Energético</option><option>Reiki</option><option>Toque de Midas</option><option>MTVSS</option><option>Flores de Bach</option><option>Otra experiencia</option></select></label>
+      <fieldset class="review-field"><legend>¿Cómo calificarías tu experiencia?</legend><div class="rating-options" role="radiogroup" aria-label="Calificación">
+        <label class="rating-option"><input type="radio" name="rating" value="1" required aria-label="1 estrella"><span aria-hidden="true">★</span></label>
+        <label class="rating-option"><input type="radio" name="rating" value="2" aria-label="2 estrellas"><span aria-hidden="true">★</span></label>
+        <label class="rating-option"><input type="radio" name="rating" value="3" aria-label="3 estrellas"><span aria-hidden="true">★</span></label>
+        <label class="rating-option"><input type="radio" name="rating" value="4" aria-label="4 estrellas"><span aria-hidden="true">★</span></label>
+        <label class="rating-option"><input type="radio" name="rating" value="5" aria-label="5 estrellas"><span aria-hidden="true">★</span></label>
+      </div></fieldset>
+      <label class="review-field"><span>Tu reseña</span><textarea name="text" maxlength="600" minlength="12" required placeholder="Cuéntanos qué te pareció…"></textarea></label>
+      <label class="review-consent"><input name="consent" type="checkbox" required><span>Autorizo que mi reseña y nombre o iniciales se publiquen en este sitio después de su revisión.</span></label>
+      <label class="review-honeypot" aria-hidden="true">Deja este campo vacío<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+      <p class="review-status" id="review-status" role="status" aria-live="polite"></p>
+      <button class="button review-submit" type="submit">Enviar reseña</button>
+    </form>
+  </dialog>
+
+  <script src="firebase-config.js"></script>
+  <script type="module">
     const mobileButton = document.getElementById("mobile-btn");
     const mobileMenu = document.getElementById("mobile-menu");
     function showSection() {
@@ -171,6 +217,7 @@
       mobileMenu.setAttribute("aria-hidden", "true");
       mobileButton.setAttribute("aria-expanded", "false");
     }
+    window.showSection = showSection;
     mobileButton.addEventListener("click", () => {
       const isOpen = mobileButton.getAttribute("aria-expanded") === "true";
       mobileButton.setAttribute("aria-expanded", String(!isOpen));
@@ -178,6 +225,122 @@
       mobileMenu.hidden = isOpen;
     });
     mobileMenu.querySelectorAll("a[href^='#']").forEach((link) => link.addEventListener("click", showSection));
+
+    const reviewDialog = document.getElementById("review-dialog");
+    const reviewForm = document.getElementById("review-form");
+    const reviewStatus = document.getElementById("review-status");
+    const reviewPanel = document.querySelector(".review-panel");
+    const reviewCount = document.getElementById("review-count");
+    const reviewPrev = document.getElementById("review-prev");
+    const reviewNext = document.getElementById("review-next");
+    const reviewSubmit = reviewForm.querySelector("[type='submit']");
+    const reviews = [{
+      author: "A.T.", service: "Barras de Access", rating: 5,
+      text: "El sonido de las barras es algo que hay que vivir para entender. Sentí que mi mente por fin se quedó en silencio. Además el trato es muy cálido, te explican todo con paciencia antes de partir."
+    }];
+    let activeReview = 0;
+
+    function renderReview(index) {
+      activeReview = (index + reviews.length) % reviews.length;
+      const review = reviews[activeReview];
+      const stars = document.createElement("div");
+      stars.className = "review-stars";
+      stars.setAttribute("aria-label", `${review.rating} de 5 estrellas`);
+      stars.textContent = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+      const mark = document.createElement("div");
+      mark.className = "quote-mark";
+      mark.setAttribute("aria-hidden", "true");
+      mark.textContent = "“";
+      const quote = document.createElement("blockquote");
+      quote.className = "quote";
+      quote.textContent = review.text;
+      const rule = document.createElement("div");
+      rule.className = "quote-rule";
+      rule.setAttribute("aria-hidden", "true");
+      const author = document.createElement("p");
+      author.className = "quote-author";
+      author.textContent = review.author;
+      const meta = document.createElement("p");
+      meta.className = "review-meta";
+      meta.textContent = review.service;
+      reviewPanel.replaceChildren(stars, mark, quote, rule, author, meta);
+      reviewCount.textContent = `${activeReview + 1} de ${reviews.length}`;
+      const controlsDisabled = reviews.length < 2;
+      reviewPrev.disabled = controlsDisabled;
+      reviewNext.disabled = controlsDisabled;
+      reviewPrev.setAttribute("aria-disabled", String(controlsDisabled));
+      reviewNext.setAttribute("aria-disabled", String(controlsDisabled));
+    }
+
+    reviewPrev.addEventListener("click", () => renderReview(activeReview - 1));
+    reviewNext.addEventListener("click", () => renderReview(activeReview + 1));
+    document.getElementById("open-review-form").addEventListener("click", () => {
+      reviewStatus.textContent = "";
+      reviewStatus.dataset.kind = "";
+      reviewDialog.showModal();
+    });
+    document.getElementById("close-review-form").addEventListener("click", () => reviewDialog.close());
+    reviewDialog.addEventListener("click", (event) => {
+      if (event.target === reviewDialog) reviewDialog.close();
+    });
+
+    const firebaseConfig = window.AMARTE_FIREBASE_CONFIG;
+    const firebaseConfigured = firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("REEMPLAZAR_") && firebaseConfig.projectId && !firebaseConfig.projectId.startsWith("REEMPLAZAR_");
+    let db = null;
+    let saveReview = null;
+    if (firebaseConfigured) {
+      try {
+        const [{ initializeApp }, { addDoc, collection, getFirestore, limit, onSnapshot, query, serverTimestamp, where }] = await Promise.all([
+          import("https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js"),
+          import("https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js")
+        ]);
+        db = getFirestore(initializeApp(firebaseConfig));
+        saveReview = (review) => addDoc(collection(db, "reviews"), { ...review, createdAt: serverTimestamp() });
+        const approvedReviews = query(collection(db, "reviews"), where("status", "==", "approved"), limit(50));
+        onSnapshot(approvedReviews, (snapshot) => {
+          const submitted = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+            .filter((item) => item.author && item.text && Number.isInteger(item.rating))
+            .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+          reviews.splice(1, reviews.length - 1, ...submitted);
+          renderReview(Math.min(activeReview, reviews.length - 1));
+        }, () => {
+          document.getElementById("reviews-note").textContent = "No pudimos cargar las reseñas ahora. Inténtalo de nuevo más tarde.";
+        });
+      } catch (error) {
+        console.error("No se pudo iniciar la conexión de reseñas.", error);
+      }
+    }
+    renderReview(0);
+
+    reviewForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(reviewForm);
+      if (formData.get("website")) return;
+      if (!saveReview) {
+        reviewStatus.dataset.kind = "error";
+        reviewStatus.textContent = "Las reseñas aún no están habilitadas. Vuelve a intentarlo más adelante.";
+        return;
+      }
+      reviewSubmit.disabled = true;
+      reviewStatus.dataset.kind = "";
+      reviewStatus.textContent = "Enviando tu reseña…";
+      try {
+        await saveReview({
+          author: String(formData.get("author")).trim().slice(0, 45),
+          service: String(formData.get("service")),
+          rating: Number(formData.get("rating")),
+          text: String(formData.get("text")).trim().slice(0, 600),
+          status: "pending"
+        });
+        reviewForm.reset();
+        reviewStatus.textContent = "¡Gracias! Recibimos tu reseña. Aparecerá aquí cuando la revisemos.";
+      } catch (error) {
+        reviewStatus.dataset.kind = "error";
+        reviewStatus.textContent = "No pudimos enviar tu reseña. Revisa tu conexión e inténtalo otra vez.";
+      } finally {
+        reviewSubmit.disabled = false;
+      }
+    });
   </script>
 </body>
 </html>
