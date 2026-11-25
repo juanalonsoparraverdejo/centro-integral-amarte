@@ -10,14 +10,9 @@ Cada tarjeta incluye un enlace de WhatsApp con el nombre del servicio. El catál
 
 La sección “Experiencias de Clientes” muestra una reseña por vez y permite recorrerlas con flechas. El formulario envía reseñas a la colección `reviews` de Cloud Firestore con estado `pending`; solo las reseñas aprobadas aparecen en el sitio. Para moderar, revisa cada documento en Firebase Console y cambia `status` a `approved` o `rejected`.
 
-Para activar la función:
+La conexión está configurada con el proyecto Firebase `centro-integral-amarte` y la base Enterprise `reviews`, alojada en Santiago (`southamerica-west1`). La configuración web está en `firebase-config.js`; las reglas e índices se mantienen en `firestore.rules` y `firestore.indexes.json`. Para volver a publicar reglas e índices, ejecuta `npx -y firebase-tools@latest deploy --only firestore --project centro-integral-amarte`.
 
-1. Registra una aplicación web en el proyecto Firebase del centro y copia sus datos en `firebase-config.js`.
-2. Activa Cloud Firestore en Firebase Console.
-3. Publica `firestore.rules` en las reglas de Firestore (o ejecuta `firebase deploy --only firestore:rules` desde Firebase CLI).
-4. Vuelve a desplegar el sitio en GitHub Pages.
-
-Mientras `firebase-config.js` mantenga valores `REEMPLAZAR_...`, el carrusel conserva la reseña de ejemplo, pero el formulario avisa que aún no está habilitado. Las reseñas enviadas no se publican automáticamente.
+Las reseñas nuevas se guardan como `pending` y no aparecen públicamente hasta que se aprueban. Para moderarlas, abre Firebase Console → Firestore Database → `reviews` → colección `reviews`, y cambia `status` a `approved` o `rejected`.
 
 ## Publicación
 

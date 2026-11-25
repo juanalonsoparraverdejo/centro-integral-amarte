@@ -1,8 +1,9 @@
 window.AMARTE_FIREBASE_CONFIG = {
-  apiKey: "REEMPLAZAR_CON_API_KEY_WEB",
-  authDomain: "REEMPLAZAR_CON_AUTH_DOMAIN",
-  projectId: "REEMPLAZAR_CON_PROJECT_ID",
-  storageBucket: "REEMPLAZAR_CON_STORAGE_BUCKET",
-  messagingSenderId: "REEMPLAZAR_CON_MESSAGING_SENDER_ID",
-  appId: "REEMPLAZAR_CON_APP_ID"
+  apiKey: "AIzaSyCea7K3oyxgohVSUnI1_wXWynGEslu3trU",
+  authDomain: "centro-integral-amarte.firebaseapp.com",
+  projectId: "centro-integral-amarte",
+  storageBucket: "centro-integral-amarte.firebasestorage.app",
+  messagingSenderId: "844320315007",
+  appId: "1:844320315007:web:8c5ba8c0fc69ad5597114a",
+  measurementId: "G-STT43ZYPLW"
 };

@@ -294,7 +294,7 @@
           import("https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js"),
           import("https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js")
         ]);
-        db = getFirestore(initializeApp(firebaseConfig));
+        db = getFirestore(initializeApp(firebaseConfig), "reviews");
         saveReview = (review) => addDoc(collection(db, "reviews"), { ...review, createdAt: serverTimestamp() });
         const approvedReviews = query(collection(db, "reviews"), where("status", "==", "approved"), limit(50));
         onSnapshot(approvedReviews, (snapshot) => {
