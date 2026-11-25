@@ -172,7 +172,7 @@
           <button class="review-arrow" id="review-next" type="button" aria-label="Ver reseña siguiente">→</button>
         </div>
         <div class="review-actions"><button class="button review-cta" id="open-review-form" type="button"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i> Dejar mi reseña</button></div>
-        <p class="review-note" id="reviews-note">Cada reseña nueva se revisa antes de aparecer publicada. No compartas datos personales en tu comentario.</p>
+        <p class="review-note" id="reviews-note">Las reseñas se publican automáticamente al enviarlas. Evita compartir datos personales en tu comentario.</p>
       </div>
     </section>
 
@@ -330,10 +330,10 @@
           service: String(formData.get("service")),
           rating: Number(formData.get("rating")),
           text: String(formData.get("text")).trim().slice(0, 600),
-          status: "pending"
+          status: "approved"
         });
         reviewForm.reset();
-        reviewStatus.textContent = "¡Gracias! Recibimos tu reseña. Aparecerá aquí cuando la revisemos.";
+        reviewStatus.textContent = "¡Gracias! Tu reseña ya está publicada.";
       } catch (error) {
         reviewStatus.dataset.kind = "error";
         reviewStatus.textContent = "No pudimos enviar tu reseña. Revisa tu conexión e inténtalo otra vez.";
