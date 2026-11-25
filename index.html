@@ -200,14 +200,14 @@
         <label class="rating-option"><input type="radio" name="rating" value="5" aria-label="5 estrellas"><span aria-hidden="true">★</span></label>
       </div></fieldset>
       <label class="review-field"><span>Tu reseña</span><textarea name="text" maxlength="600" minlength="12" required placeholder="Cuéntanos qué te pareció…"></textarea></label>
-      <label class="review-consent"><input name="consent" type="checkbox" required><span>Autorizo que mi reseña y nombre o iniciales se publiquen en este sitio después de su revisión.</span></label>
+      <label class="review-consent"><input name="consent" type="checkbox" required><span>Autorizo la publicación inmediata de mi reseña y nombre o iniciales en este sitio.</span></label>
       <label class="review-honeypot" aria-hidden="true">Deja este campo vacío<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
       <p class="review-status" id="review-status" role="status" aria-live="polite"></p>
       <button class="button review-submit" type="submit">Enviar reseña</button>
     </form>
   </dialog>
 
-  <script src="firebase-config.js"></script>
+  <script src="firebase-config.js?v=20261125-2"></script>
   <script type="module">
     const mobileButton = document.getElementById("mobile-btn");
     const mobileMenu = document.getElementById("mobile-menu");
