@@ -1,25 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
-  <title id="title">Ilustración referencial de pares de imanes</title>
-  <desc id="desc">Dos imanes circulares, uno rojo y otro oscuro, sobre un fondo cálido con líneas de campo sutiles.</desc>
+  <title id="title">Ilustración referencial de una sesión de biomagnetismo</title>
+  <desc id="desc">Persona recostada mientras una terapeuta coloca un par de imanes rojos y negros sobre el cuerpo.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5eee4"/><stop offset="1" stop-color="#e2d4c3"/></linearGradient>
-    <radialGradient id="red" cx="35%" cy="25%"><stop stop-color="#df9290"/><stop offset="1" stop-color="#9b5056"/></radialGradient>
-    <radialGradient id="dark" cx="35%" cy="25%"><stop stop-color="#77716e"/><stop offset="1" stop-color="#343338"/></radialGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#453c37" flood-opacity=".2"/></filter>
+    <linearGradient id="room" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6f0e8"/><stop offset="1" stop-color="#dfd3c4"/></linearGradient>
+    <linearGradient id="linen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffdf9"/><stop offset="1" stop-color="#e8e0d7"/></linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7bba0"/><stop offset="1" stop-color="#c98d70"/></linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9ded6"/><stop offset="1" stop-color="#b6c0b5"/></linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dc817a"/><stop offset="1" stop-color="#9c434a"/></linearGradient>
+    <linearGradient id="black" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#696365"/><stop offset="1" stop-color="#29272c"/></linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#44372f" flood-opacity=".18"/></filter>
+    <filter id="padShadow" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#362e2a" flood-opacity=".28"/></filter>
   </defs>
-  <rect width="1200" height="750" fill="url(#bg)"/>
-  <circle cx="600" cy="375" r="280" fill="#fff" opacity=".22"/>
-  <g fill="none" stroke="#9f8877" stroke-width="3" opacity=".34">
-    <path d="M327 375c73-218 473-218 546 0M360 375c62-170 418-170 480 0M393 375c52-125 362-125 414 0"/>
-    <path d="M327 375c73 218 473 218 546 0M360 375c62 170 418 170 480 0M393 375c52 125 362 125 414 0"/>
+  <rect width="1200" height="750" fill="url(#room)"/>
+  <circle cx="1010" cy="135" r="190" fill="#fff" opacity=".26"/>
+  <path d="M0 590c185-69 350-52 514-10 211 55 428 68 686-4v174H0Z" fill="#d4c3ae" opacity=".32"/>
+  <g filter="url(#softShadow)">
+    <rect x="104" y="193" width="992" height="404" rx="72" fill="#b49980" opacity=".48"/>
+    <rect x="84" y="160" width="1018" height="404" rx="74" fill="url(#linen)"/>
+    <path d="M142 206h268c61 0 104 46 104 108v121c0 52-42 91-96 91H149c-33 0-58-24-58-57V265c0-34 19-59 51-59Z" fill="#e9e2d9"/>
+    <ellipse cx="284" cy="359" rx="105" ry="105" fill="url(#skin)"/>
+    <path d="M186 322c7-84 172-126 226-48 19 27 19 65 5 91-22-35-43-48-73-53-43 23-98 33-158 26Z" fill="#54423d"/>
+    <path d="M334 426c78-73 199-108 370-102l195 8c49 2 86 39 86 88v83H337Z" fill="url(#shirt)"/>
+    <path d="M503 327c-7-27 10-52 31-62 18-9 42-6 58 7l35 30c17 15 13 43-8 52l-48 22c-31 14-59-12-68-49Z" fill="url(#skin)"/>
+    <path d="M624 326c23-26 56-32 79-12l48 41c18 16 10 42-12 51l-61 22c-27 10-54-2-66-28-11-24-8-52 12-74Z" fill="url(#skin)"/>
   </g>
-  <g filter="url(#shadow)">
-    <circle cx="470" cy="375" r="142" fill="url(#red)"/>
-    <circle cx="730" cy="375" r="142" fill="url(#dark)"/>
-    <circle cx="470" cy="375" r="105" fill="none" stroke="#f5d8d1" stroke-width="3" opacity=".6"/>
-    <circle cx="730" cy="375" r="105" fill="none" stroke="#d8d1cc" stroke-width="3" opacity=".4"/>
-    <text x="470" y="413" text-anchor="middle" fill="#fffaf3" font-family="Georgia,serif" font-size="100" font-weight="500">+</text>
-    <text x="730" y="411" text-anchor="middle" fill="#fffaf3" font-family="Georgia,serif" font-size="112" font-weight="400">−</text>
+  <g filter="url(#padShadow)">
+    <rect x="610" y="375" width="99" height="82" rx="28" fill="url(#red)" stroke="#f7ddd3" stroke-width="5"/>
+    <rect x="748" y="375" width="99" height="82" rx="28" fill="url(#black)" stroke="#dcd4cd" stroke-width="5"/>
+    <path d="M630 393h59" stroke="#f8c2b5" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+    <path d="M768 393h59" stroke="#c8c0bc" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+    <text x="659" y="438" text-anchor="middle" fill="#fffaf5" font-family="Georgia,serif" font-size="48">+</text>
+    <text x="797" y="437" text-anchor="middle" fill="#fffaf5" font-family="Georgia,serif" font-size="52">−</text>
   </g>
-  <text x="600" y="660" text-anchor="middle" fill="#74665a" font-family="Arial,sans-serif" font-size="21" letter-spacing="4">PAR BIOMAGNÉTICO · ILUSTRACIÓN</text>
+  <g fill="none" stroke="#a68975" stroke-width="3" opacity=".42">
+    <path d="M586 362c44-37 98-37 143 0M724 362c44-37 98-37 143 0"/>
+    <path d="M586 470c44 37 98 37 143 0M724 470c44 37 98 37 143 0"/>
+  </g>
+  <rect x="36" y="35" width="262" height="44" rx="22" fill="#fffaf3" opacity=".82"/>
+  <text x="167" y="64" text-anchor="middle" fill="#6f6258" font-family="Arial,sans-serif" font-size="15" letter-spacing="2">IMAGEN ILUSTRATIVA</text>
 </svg>
