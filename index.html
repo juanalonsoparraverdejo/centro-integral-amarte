@@ -188,6 +188,46 @@ button{cursor:pointer}
 .mission{font-size:13px}.copyright{font-size:12px;color:#5f5a54}.footer-disclaimer{font-size:12px}.contact-note{font-size:13px}
 .skip-link{position:absolute;left:12px;top:-64px;z-index:100;padding:10px 16px;border-radius:6px;background:#fff;color:var(--ink);font-size:14px;text-decoration:none}.skip-link:focus{top:12px}
 .wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:9;display:grid;width:56px;height:56px;place-items:center;border-radius:50%;background:#1fa855;color:#fff;font-size:30px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.28);transition:transform .2s,background .2s}.wa-float:hover{transform:translateY(-3px);background:#178a45}
+/* Tarjetas compactas y fichas ampliadas de cursos y sesiones */
+.reservation-card{height:100%;}
+.reservation-card>div{display:flex;min-width:0;flex-direction:column;align-items:stretch;}
+.reservation-card>div>p:not(.card-meta){display:none;}
+.reservation-card>div>p:not(.card-meta):nth-of-type(2){display:-webkit-box;overflow:hidden;margin:0 0 12px;color:#625b54;font-size:13px;line-height:1.7;-webkit-box-orient:vertical;-webkit-line-clamp:3;}
+.details-button{align-self:flex-start;display:inline-flex;align-items:center;gap:9px;min-height:42px;margin-top:2px;padding:0 17px;border:1px solid rgba(128,97,116,.48);border-radius:999px;background:#f5eff2;color:var(--plum-dark);font-size:12px;font-weight:600;letter-spacing:.01em;transition:background .2s,color .2s,transform .2s;}
+.details-button::after{content:"→";font-size:16px;transition:transform .2s;}
+.details-button:hover{transform:translateY(-1px);background:var(--plum);color:#fff;}
+.details-button:hover::after{transform:translateX(3px);}
+.reservation-button{margin-top:14px;}
+.service-detail-dialog{position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:min(960px,calc(100% - 36px));max-width:none;max-height:min(88dvh,820px);overflow:auto;padding:0;border:1px solid rgba(255,255,255,.65);border-radius:20px;background:var(--card);color:var(--ink);box-shadow:0 28px 100px rgba(20,17,19,.36);}
+.service-detail-dialog[open]{display:grid;grid-template-columns:minmax(280px,.86fr) minmax(0,1.14fr);grid-template-rows:auto auto auto minmax(0,1fr) auto;column-gap:0;}
+.service-detail-dialog::backdrop{background:rgba(24,21,23,.66);backdrop-filter:blur(5px);}
+.service-detail-image{grid-column:1;grid-row:1/6;width:100%;height:100%;min-height:560px;object-fit:cover;background:#e8e0d8;}
+.service-detail-kicker{grid-column:2;grid-row:1;margin:38px 52px 8px 34px;color:var(--plum);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;}
+.service-detail-dialog h2{grid-column:2;grid-row:2;margin:0 34px 8px;color:#332e2b;font-family:var(--serif);font-size:clamp(32px,4vw,46px);font-weight:500;line-height:.98;}
+.service-detail-meta{grid-column:2;grid-row:3;margin:0 34px 18px;color:#786f67;font-size:12px;line-height:1.7;}
+.service-detail-copy{grid-column:2;grid-row:4;overflow:auto;margin:0 22px 0 34px;padding:0 12px 8px 0;color:#5e5852;font-size:13px;line-height:1.8;}
+.service-detail-copy>p{margin:0 0 13px;}
+.service-detail-copy h3{margin:22px 0 8px;color:#3e3836;font-family:var(--serif);font-size:24px;font-weight:600;line-height:1.1;}
+.service-detail-copy ul{display:grid;gap:7px;margin:0;padding:0;list-style:none;}
+.service-detail-copy li{position:relative;padding-left:20px;}
+.service-detail-copy li::before{position:absolute;left:0;color:var(--plum);content:"✦";}
+.service-detail-contact{grid-column:2;grid-row:5;justify-self:start;margin:14px 34px 32px;}
+.service-detail-dialog .dialog-close{z-index:1;top:14px;right:14px;background:rgba(252,250,246,.92);box-shadow:0 2px 12px rgba(0,0,0,.12);}
+@media(max-width:760px){.reservation-card{display:flex;align-items:stretch;gap:0;}
+.reservation-card>div{width:100%;}
+.reservation-card img{height:190px;min-height:0;margin:0 0 16px;}
+.reservation-button{width:100%;}
+.service-detail-dialog{width:min(560px,calc(100% - 24px));max-height:90dvh;border-radius:16px;}
+.service-detail-dialog[open]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto auto minmax(0,1fr) auto;}
+.service-detail-image{grid-column:1;grid-row:1;width:100%;height:clamp(155px,32vh,230px);min-height:0;}
+.service-detail-kicker{grid-column:1;grid-row:2;margin:22px 22px 7px;}
+.service-detail-dialog h2{grid-column:1;grid-row:3;margin:0 22px 8px;font-size:36px;}
+.service-detail-meta{grid-column:1;grid-row:4;margin:0 22px 14px;font-size:12px;}
+.service-detail-copy{grid-column:1;grid-row:5;max-height:none;margin:0 22px;padding-right:2px;font-size:13px;}
+.service-detail-contact{grid-column:1;grid-row:6;justify-self:stretch;margin:14px 22px 22px;}
+.service-detail-contact.button{width:auto;}
+.service-detail-dialog .dialog-close{top:10px;right:10px;}}
+@media(prefers-reduced-motion:reduce){.details-button,.details-button::after{transition:none}}
 </style>
 </head>
 <body>
@@ -208,22 +248,22 @@ button{cursor:pointer}
     <section class="catalog-intro wrap" id="catalogo"><h1>Centro Holístico Integral Amarte</h1><p>Te damos la bienvenida a un espacio de bienestar, aprendizaje y conexión, creado para acompañarte en tu camino.</p></section>
     <section class="offerings wrap" aria-labelledby="offerings-title">
       <div class="offering-group" id="cursos"><div class="reservation-section-heading"><h2 id="offerings-title">Cursos y talleres</h2><span>Todos los cursos entregan certificado · Fechas e inscripciones por WhatsApp</span></div><div class="reservation-grid">
-        <article class="reservation-card"><div><img src="assets/curso-barras-access.webp" alt="Curso de Barras de Access: manual, lámina de puntos y certificado mientras se practica una sesión" loading="lazy" decoding="async"><span class="course-status">Access Consciousness</span><h3>Curso Oficial de Barras de Access</h3><p class="card-meta">1 día · 10:00 a 19:00 hrs · USD 330</p><p>Formación de un día en Barras de Access, técnica de Access Consciousness basada en el contacto suave sobre puntos de la cabeza. El programa abarca la estructura de una sesión y la práctica guiada de dar y recibir.</p><p><strong>Incluye:</strong> manual, láminas de puntos, diploma con certificación internacional, coffee break y prácticas guiadas.</p><p>Facilita Daniela Lillo Verdejo. Fechas y cupos disponibles por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Curso%20Oficial%20de%20Barras%20de%20Access." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/curso-mtvss-practica.webp" alt="Curso de MTVSS: manual, diploma y práctica del proceso corporal" loading="lazy" decoding="async"><span class="course-status">Proceso corporal</span><h3>Curso de MTVSS</h3><p class="card-meta">4 horas · $130.000 CLP · Sin requisitos previos</p><p>Curso de 4 horas en MTVSS, proceso corporal de Access Consciousness. No requiere experiencia ni estudios previos. La jornada es principalmente práctica: cada participante realiza dos sesiones y recibe dos.</p><p><strong>Incluye:</strong> manual, diploma con certificación internacional y coffee break.</p><p>Facilita Daniela Lillo Verdejo. Fechas disponibles por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Curso%20de%20MTVSS." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/curso-biomagnetismo.webp" alt="Curso presencial de biomagnetismo" loading="lazy" decoding="async"><span class="course-status">Curso presencial</span><h3>Curso de Biomagnetismo</h3><p class="card-meta">$200.000 CLP · Reserva $50.000</p><p>Curso de introducción al biomagnetismo, técnica complementaria que utiliza imanes sobre el cuerpo.</p><p><strong>Incluye:</strong> libros, lista de rastreo, certificado y acompañamiento durante el proceso. La reserva del cupo es de $50.000 CLP.</p><p>Imparte Judith Alcaino, en Quebec 556, Providencia. Fechas disponibles por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56991421385?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Curso%20de%20Biomagnetismo." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/masaje-champi.webp" alt="Taller de masaje craneal hindú Champi" loading="lazy" decoding="async"><span class="course-status">Taller práctico</span><h3>Taller de Masaje Craneal Hindú “Champi”</h3><p class="card-meta">10:00 a 18:00 hrs · $50.000 CLP</p><p>Taller de una jornada para aprender el masaje craneal hindú “Champi”, técnica tradicional de la India que trabaja cabeza, cuello y hombros con movimientos suaves y está orientada a la relajación. Los participantes aprenden y practican los movimientos básicos.</p><p><strong>Incluye:</strong> apuntes, aceite preparado y certificado de participación.</p><p>Facilita Judith Alcaino Ibáñez. Fechas disponibles por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Taller%20de%20Masaje%20Craneal%20Hind%C3%BA%20%E2%80%9CChampi%E2%80%9D." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/curso-barras-access.webp" alt="Curso de Barras de Access: manual, lámina de puntos y certificado mientras se practica una sesión" loading="lazy" decoding="async"><span class="course-status">Access Consciousness</span><h3>Curso Oficial de Barras de Access</h3><p class="card-meta">1 día · 10:00 a 19:00 hrs · USD 330</p><p>Formación de un día en Barras de Access, técnica de Access Consciousness basada en el contacto suave sobre puntos de la cabeza. El programa abarca la estructura de una sesión y la práctica guiada de dar y recibir.</p><p><strong>Incluye:</strong> manual, láminas de puntos, diploma con certificación internacional, coffee break y prácticas guiadas.</p><p>Facilita Daniela Lillo Verdejo. Fechas y cupos disponibles por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Curso%20Oficial%20de%20Barras%20de%20Access." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/curso-mtvss-practica.webp" alt="Curso de MTVSS: manual, diploma y práctica del proceso corporal" loading="lazy" decoding="async"><span class="course-status">Proceso corporal</span><h3>Curso de MTVSS</h3><p class="card-meta">4 horas · $130.000 CLP · Sin requisitos previos</p><p>Curso de 4 horas en MTVSS, proceso corporal de Access Consciousness. No requiere experiencia ni estudios previos. La jornada es principalmente práctica: cada participante realiza dos sesiones y recibe dos.</p><p><strong>Incluye:</strong> manual, diploma con certificación internacional y coffee break.</p><p>Facilita Daniela Lillo Verdejo. Fechas disponibles por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Curso%20de%20MTVSS." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/curso-biomagnetismo.webp" alt="Curso presencial de biomagnetismo" loading="lazy" decoding="async"><span class="course-status">Curso presencial</span><h3>Curso de Biomagnetismo</h3><p class="card-meta">$200.000 CLP · Reserva $50.000</p><p>Curso de introducción al biomagnetismo, técnica complementaria que utiliza imanes sobre el cuerpo.</p><p><strong>Incluye:</strong> libros, lista de rastreo, certificado y acompañamiento durante el proceso. La reserva del cupo es de $50.000 CLP.</p><p>Imparte Judith Alcaino, en Quebec 556, Providencia. Fechas disponibles por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56991421385?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Curso%20de%20Biomagnetismo." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/masaje-champi.webp" alt="Taller de masaje craneal hindú Champi" loading="lazy" decoding="async"><span class="course-status">Taller práctico</span><h3>Taller de Masaje Craneal Hindú “Champi”</h3><p class="card-meta">10:00 a 18:00 hrs · $50.000 CLP</p><p>Taller de una jornada para aprender el masaje craneal hindú “Champi”, técnica tradicional de la India que trabaja cabeza, cuello y hombros con movimientos suaves y está orientada a la relajación. Los participantes aprenden y practican los movimientos básicos.</p><p><strong>Incluye:</strong> apuntes, aceite preparado y certificado de participación.</p><p>Facilita Judith Alcaino Ibáñez. Fechas disponibles por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20Taller%20de%20Masaje%20Craneal%20Hind%C3%BA%20%E2%80%9CChampi%E2%80%9D." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
       </div></div>
       <div class="offering-group" id="sesiones"><div class="reservation-section-heading"><h2>Sesiones y terapias</h2><span>Consultas por WhatsApp</span></div><div class="reservation-grid">
-        <article class="reservation-card"><div><img src="assets/sesion-barras-access.webp" alt="Terapeuta apoyando las manos suavemente en la cabeza de una persona recostada durante una sesión de Barras de Access" loading="lazy" decoding="async"><h3>Sesión de Barras de Access</h3><p class="card-meta">1 hora · Lunes a viernes · Valor por consultar</p><p>Sesión individual en la que la persona permanece recostada mientras la terapeuta apoya suavemente las manos sobre puntos de la cabeza, conocidos como “las barras”. Es una instancia de relajación.</p><p>Atención de lunes a viernes. Valor y horarios por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Barras%20de%20Access." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/facelift-massage.webp" alt="Masaje suave en el rostro durante una sesión de Facelift Energético" loading="lazy" decoding="async"><h3>Facelift Energético</h3><p class="card-meta">$30.000 CLP · Pack 4 sesiones: $90.000 · Pack 6: $120.000</p><p>Sesión de Access Consciousness con toque suave sobre rostro y cuello, orientada a la relajación y al cuidado personal. No corresponde a un tratamiento médico ni estético.</p><p>Disponible en sesión individual o en packs de 4 y 6 sesiones, con los valores indicados. Duración y modalidad con Daniela Lillo Verdejo.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Facelift%20Energ%C3%A9tico." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/reiki.webp" alt="Sesión de Reiki" loading="lazy" decoding="async"><h3>Sesión de Reiki</h3><p class="card-meta">1 hora · Presencial o a distancia · $25.000 CLP</p><p>Técnica de origen japonés basada en la imposición de manos, orientada a la relajación y la armonización.</p><p>La sesión puede realizarse de forma presencial o a distancia. Terapeutas: Daniela Lillo Verdejo y Judith Alcaino Ibáñez.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Reiki." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/toque-de-midas.webp" alt="Terapia Toque de Midas de Access Consciousness" loading="lazy" decoding="async"><h3>Toque de Midas</h3><p class="card-meta">1 hora · Presencial · $30.000 CLP</p><p>El Toque de Midas es un proceso corporal de Access Consciousness. Sesión presencial de 1 hora, realizada con contacto suave y orientada a la relajación.</p><p>Atención con Daniela Lillo Verdejo y Judith Alcaino Ibáñez.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Toque%20de%20Midas." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/mtvss-sesion.webp" alt="Sesión del proceso corporal MTVSS" loading="lazy" decoding="async"><h3>Sesión MTVSS</h3><p class="card-meta">1 hora · Presencial · $30.000 CLP</p><p>MTVSS es un proceso corporal de Access Consciousness. Sesión presencial de 1 hora, realizada con contacto suave y orientada a la relajación.</p><p>Disponibilidad con nuestras terapeutas, por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20MTVSS." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/limpieza-energetica.webp" alt="Terapia de limpieza energética personal" loading="lazy" decoding="async"><h3>Limpieza Energética Personal</h3><p class="card-meta">1 hora · Presencial o a distancia · $25.000 CLP</p><p>Sesión de armonización energética personal que utiliza la Cruz de Ankh, símbolo egipcio asociado a la vida. Duración de 1 hora, en modalidad presencial o a distancia.</p><p>Incluye registro de seguimiento.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20limpieza%20energ%C3%A9tica%20personal." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/flores-de-bach.webp" alt="Esencias florales de Bach, flores y libros" loading="lazy" decoding="async"><h3>Terapia Flores de Bach</h3><p class="card-meta">1 hora · $25.000 CLP · 2 sesiones por $42.000</p><p>Consulta de 1 hora con elaboración de un preparado floral personalizado, a partir de los 38 remedios florales del sistema creado por el Dr. Edward Bach. Terapia complementaria orientada al bienestar emocional; no reemplaza la atención médica ni psicológica.</p><p>Valor: $25.000 CLP por sesión o 2 sesiones por $42.000 CLP.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20terapia%20de%20Flores%20de%20Bach." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/riqueza-ilimitada.webp" alt="Terapia de Proceso de Cuerpo Riqueza Ilimitada" loading="lazy" decoding="async"><h3>Proceso corporal “Riqueza Ilimitada”</h3><p class="card-meta">50 minutos · Presencial · $30.000 CLP · 4 sesiones por $100.000</p><p>Riqueza Ilimitada es el nombre de un proceso corporal de Access Consciousness. Sesión presencial de 50 minutos orientada a la relajación; no promete ni garantiza resultados económicos ni de otro tipo.</p><p>Valor: $30.000 CLP por sesión o pack de 4 sesiones por $100.000 CLP, pagadero completo en la primera sesión.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20proceso%20corporal%20%E2%80%9CRiqueza%20Ilimitada%E2%80%9D." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/limpieza-hogares.webp" alt="Limpieza energética de hogares y espacios" loading="lazy" decoding="async"><h3>Limpieza Energética de Hogares</h3><p class="card-meta">Presencial o a distancia · $75.000 CLP</p><p>Armonización energética de hogares y espacios, en modalidad presencial o a distancia. Incluye el terreno, la vivienda y las personas residentes.</p><p>Coordinación por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20limpieza%20energ%C3%A9tica%20de%20hogares." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
-        <article class="reservation-card"><div><img src="assets/limpieza-negocios.webp" alt="Limpieza energética de negocios y proyectos" loading="lazy" decoding="async"><h3>Limpieza Energética de Negocios</h3><p class="card-meta">Presencial o a distancia · $75.000 CLP</p><p>Armonización energética de locales, oficinas y proyectos, en modalidad presencial o a distancia. La limpieza de los trabajadores es un servicio aparte.</p><p>Coordinación por WhatsApp.</p><button class="details-button" type="button">Ver información completa</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20limpieza%20energ%C3%A9tica%20de%20negocios." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/sesion-barras-access.webp" alt="Terapeuta apoyando las manos suavemente en la cabeza de una persona recostada durante una sesión de Barras de Access" loading="lazy" decoding="async"><h3>Sesión de Barras de Access</h3><p class="card-meta">1 hora · Lunes a viernes · Valor por consultar</p><p>Sesión individual en la que la persona permanece recostada mientras la terapeuta apoya suavemente las manos sobre puntos de la cabeza, conocidos como “las barras”. Es una instancia de relajación.</p><p>Atención de lunes a viernes. Valor y horarios por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Barras%20de%20Access." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/facelift-massage.webp" alt="Masaje suave en el rostro durante una sesión de Facelift Energético" loading="lazy" decoding="async"><h3>Facelift Energético</h3><p class="card-meta">$30.000 CLP · Pack 4 sesiones: $90.000 · Pack 6: $120.000</p><p>Sesión de Access Consciousness con toque suave sobre rostro y cuello, orientada a la relajación y al cuidado personal. No corresponde a un tratamiento médico ni estético.</p><p>Disponible en sesión individual o en packs de 4 y 6 sesiones, con los valores indicados. Duración y modalidad con Daniela Lillo Verdejo.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Facelift%20Energ%C3%A9tico." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/reiki.webp" alt="Sesión de Reiki" loading="lazy" decoding="async"><h3>Sesión de Reiki</h3><p class="card-meta">1 hora · Presencial o a distancia · $25.000 CLP</p><p>Técnica de origen japonés basada en la imposición de manos, orientada a la relajación y la armonización.</p><p>La sesión puede realizarse de forma presencial o a distancia. Terapeutas: Daniela Lillo Verdejo y Judith Alcaino Ibáñez.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Reiki." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/toque-de-midas.webp" alt="Terapia Toque de Midas de Access Consciousness" loading="lazy" decoding="async"><h3>Toque de Midas</h3><p class="card-meta">1 hora · Presencial · $30.000 CLP</p><p>El Toque de Midas es un proceso corporal de Access Consciousness. Sesión presencial de 1 hora, realizada con contacto suave y orientada a la relajación.</p><p>Atención con Daniela Lillo Verdejo y Judith Alcaino Ibáñez.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20Toque%20de%20Midas." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/mtvss-sesion.webp" alt="Sesión del proceso corporal MTVSS" loading="lazy" decoding="async"><h3>Sesión MTVSS</h3><p class="card-meta">1 hora · Presencial · $30.000 CLP</p><p>MTVSS es un proceso corporal de Access Consciousness. Sesión presencial de 1 hora, realizada con contacto suave y orientada a la relajación.</p><p>Disponibilidad con nuestras terapeutas, por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20sesi%C3%B3n%20de%20MTVSS." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/limpieza-energetica.webp" alt="Terapia de limpieza energética personal" loading="lazy" decoding="async"><h3>Limpieza Energética Personal</h3><p class="card-meta">1 hora · Presencial o a distancia · $25.000 CLP</p><p>Sesión de armonización energética personal que utiliza la Cruz de Ankh, símbolo egipcio asociado a la vida. Duración de 1 hora, en modalidad presencial o a distancia.</p><p>Incluye registro de seguimiento.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20limpieza%20energ%C3%A9tica%20personal." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/flores-de-bach.webp" alt="Esencias florales de Bach, flores y libros" loading="lazy" decoding="async"><h3>Terapia Flores de Bach</h3><p class="card-meta">1 hora · $25.000 CLP · 2 sesiones por $42.000</p><p>Consulta de 1 hora con elaboración de un preparado floral personalizado, a partir de los 38 remedios florales del sistema creado por el Dr. Edward Bach. Terapia complementaria orientada al bienestar emocional; no reemplaza la atención médica ni psicológica.</p><p>Valor: $25.000 CLP por sesión o 2 sesiones por $42.000 CLP.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20terapia%20de%20Flores%20de%20Bach." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/riqueza-ilimitada.webp" alt="Terapia de Proceso de Cuerpo Riqueza Ilimitada" loading="lazy" decoding="async"><h3>Proceso corporal “Riqueza Ilimitada”</h3><p class="card-meta">50 minutos · Presencial · $30.000 CLP · 4 sesiones por $100.000</p><p>Riqueza Ilimitada es el nombre de un proceso corporal de Access Consciousness. Sesión presencial de 50 minutos orientada a la relajación; no promete ni garantiza resultados económicos ni de otro tipo.</p><p>Valor: $30.000 CLP por sesión o pack de 4 sesiones por $100.000 CLP, pagadero completo en la primera sesión.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20el%20proceso%20corporal%20%E2%80%9CRiqueza%20Ilimitada%E2%80%9D." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/limpieza-hogares.webp" alt="Limpieza energética de hogares y espacios" loading="lazy" decoding="async"><h3>Limpieza Energética de Hogares</h3><p class="card-meta">Presencial o a distancia · $75.000 CLP</p><p>Armonización energética de hogares y espacios, en modalidad presencial o a distancia. Incluye el terreno, la vivienda y las personas residentes.</p><p>Coordinación por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20limpieza%20energ%C3%A9tica%20de%20hogares." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
+        <article class="reservation-card"><div><img src="assets/limpieza-negocios.webp" alt="Limpieza energética de negocios y proyectos" loading="lazy" decoding="async"><h3>Limpieza Energética de Negocios</h3><p class="card-meta">Presencial o a distancia · $75.000 CLP</p><p>Armonización energética de locales, oficinas y proyectos, en modalidad presencial o a distancia. La limpieza de los trabajadores es un servicio aparte.</p><p>Coordinación por WhatsApp.</p><button class="details-button" type="button">Más información</button></div><a class="button reservation-button" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20la%20limpieza%20energ%C3%A9tica%20de%20negocios." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a></article>
       </div></div>
     </section>
     <section class="testimonial experiencias-clientes" aria-labelledby="testimonial-title">
@@ -314,147 +354,213 @@ button{cursor:pointer}
     mobileMenu.querySelectorAll("a[href^='#']").forEach((link) => link.addEventListener("click", closeMobileMenu));
 
     const serviceDetails = {
-      "Curso Oficial de Barras de Access": {
-        type: "Curso oficial · Access Consciousness",
-        paragraphs: [
-          "Formación introductoria a la técnica de Barras de Access, que trabaja con 32 puntos ubicados en la cabeza mediante un contacto suave. La jornada combina explicación y práctica guiada.",
-          "Durante el curso cada participante practica tanto dar como recibir sesiones, por lo que puede conocer la secuencia desde ambas perspectivas. No se requiere experiencia previa."
-        ],
-        heading: "¿Qué incluye?",
-        items: ["Manual oficial y láminas de apoyo", "Prácticas para dar y recibir sesiones", "Coffee break", "Diploma y certificación internacional"],
-        note: "Facilita Daniela Lillo Verdejo. Duración aproximada: una jornada de 10:00 a 19:00 hrs. Próxima fecha por coordinar."
-      },
-      "Curso de MTVSS": {
-        type: "Formación práctica · Access Consciousness",
-        paragraphs: [
-          "Curso dedicado al proceso corporal MTVSS® de Access Consciousness. Se introduce la práctica y las posiciones de las manos que se utilizan durante una sesión.",
-          "La formación contempla práctica supervisada en ambas experiencias: cada participante da dos sesiones y recibe dos. No requiere experiencia previa."
-        ],
-        heading: "¿Qué incluye?",
-        items: ["Manual y diploma", "Coffee break", "Dos prácticas para dar y dos para recibir", "Certificación internacional"],
-        note: "Duración aproximada: 4 horas. Facilita Daniela Lillo Verdejo. Consulta la próxima fecha y disponibilidad."
-      },
-      "Curso de Biomagnetismo": {
-        type: "Curso presencial",
-        paragraphs: [
-          "Formación introductoria al biomagnetismo según el método enseñado en el curso. Se presentan conceptos y se practican técnicas de rastreo y colocación de pares de imanes.",
-          "El contenido es formativo y complementario; no sustituye una evaluación, diagnóstico ni tratamiento indicado por profesionales de salud."
-        ],
-        heading: "¿Qué incluye?",
-        items: ["Libros y lista de rastreo", "Práctica presencial", "Certificado", "Acompañamiento durante la formación"],
-        note: "Imparte Judith Alcaino en Quebec 556, Providencia. Valor: $200.000 CLP; reserva: $50.000. Próxima fecha por confirmar."
-      },
-      "Taller de Masaje Craneal Hindú “Champi”": {
-        type: "Taller práctico",
-        paragraphs: [
-          "Taller para conocer y practicar maniobras del masaje tradicional Champi, aplicado principalmente en cabeza, cuello, hombros y rostro.",
-          "La jornada se centra en aprender la secuencia de movimientos y practicarla de forma guiada para familiarizarse con la técnica."
-        ],
-        heading: "¿Qué incluye?",
-        items: ["Práctica de las maniobras", "Apuntes de apoyo", "Aceite preparado", "Certificado de participación"],
-        note: "Facilita Judith Alcaino Ibáñez. Horario referencial: 10:00 a 18:00 hrs. Próxima fecha por confirmar."
-      },
-      "Sesión de Barras de Access": {
-        type: "Sesión individual · Access Consciousness",
-        paragraphs: [
-          "Experiencia de relajación en la que la persona permanece recostada mientras la terapeuta toca suavemente 32 puntos específicos de la cabeza.",
-          "La sesión ofrece un espacio tranquilo para hacer una pausa y descansar. No requiere preparación especial; puedes conversar tus dudas antes de comenzar."
-        ],
-        heading: "Antes de reservar",
-        items: ["Duración aproximada: 1 hora", "Atención de lunes a viernes", "Valor y disponibilidad: consultar por WhatsApp"],
-        note: "La experiencia es de bienestar complementario y no reemplaza atención médica o psicológica."
-      },
-      "Facelift Energético": {
-        type: "Sesión individual · Access Consciousness",
-        paragraphs: [
-          "Proceso corporal de Access Consciousness realizado con un toque suave en rostro y cuello. La sesión está pensada como una experiencia de cuidado y relajación.",
-          "La técnica se realiza sobre la persona recostada y con contacto suave. Consulta directamente cualquier preferencia o necesidad antes de agendar."
-        ],
-        heading: "Valores y atención",
-        items: ["Sesión individual: $30.000 CLP", "Pack de 4 sesiones: $90.000 CLP", "Pack de 6 sesiones: $120.000 CLP", "Consulta duración y modalidad con Daniela Lillo Verdejo"],
-        note: "Es una práctica de bienestar complementario; no se garantizan resultados estéticos o terapéuticos."
-      },
-      "Sesión de Reiki": {
-        type: "Sesión de bienestar",
-        paragraphs: [
-          "Práctica de relajación y armonización que se realiza mediante imposición de manos. Puede ser presencial o a distancia, según coordinación.",
-          "Antes de la sesión puedes comentar tus expectativas y consultar cómo será la atención para elegir la modalidad que te acomode."
-        ],
-        heading: "Detalles",
-        items: ["Duración aproximada: 1 hora", "Modalidad presencial o a distancia", "Valor: $25.000 CLP", "Atienden Daniela Lillo Verdejo y Judith Alcaino Ibáñez"],
-        note: "El Reiki se ofrece como práctica complementaria de bienestar y no sustituye cuidados médicos."
-      },
-      "Toque de Midas": {
-        type: "Proceso corporal · Access Consciousness",
-        paragraphs: [
-          "Proceso corporal que invita a explorar las ideas y puntos de vista personales sobre el dinero, el recibir y las posibilidades.",
-          "La sesión se desarrolla como una práctica de Access Consciousness con contacto suave. No promete resultados económicos ni reemplaza asesoría financiera."
-        ],
-        heading: "Detalles",
-        items: ["Duración aproximada: 1 hora", "Modalidad presencial", "Valor: $30.000 CLP", "Atención con Daniela Lillo Verdejo o Judith Alcaino Ibáñez"],
-        note: "Consulta disponibilidad y cualquier detalle de la sesión antes de reservar."
-      },
-      "Sesión MTVSS": {
-        type: "Proceso corporal · Access Consciousness",
-        paragraphs: [
-          "Sesión del proceso corporal MTVSS® de Access Consciousness. La práctica utiliza posiciones suaves de las manos y se ofrece como una experiencia de bienestar corporal.",
-          "Puedes consultar previamente cómo se desarrolla la sesión y compartir cualquier preferencia sobre el contacto para sentirte cómoda durante la atención."
-        ],
-        heading: "Detalles",
-        items: ["Duración aproximada: 1 hora", "Modalidad presencial", "Valor: $30.000 CLP", "Disponibilidad: consultar por WhatsApp"],
-        note: "Es una práctica complementaria de bienestar y no sustituye diagnóstico ni tratamiento médico."
-      },
-      "Limpieza Energética Personal": {
-        type: "Armonización energética",
-        paragraphs: [
-          "Práctica personal de armonización energética que utiliza una Cruz de Ankh como parte de la sesión. Se coordina de acuerdo con las necesidades y modalidad acordada.",
-          "Incluye un registro de seguimiento para acompañar la experiencia después de la sesión. Puedes consultar cómo se realiza y qué esperar antes de reservar."
-        ],
-        heading: "Detalles",
-        items: ["Duración aproximada: 1 hora", "Modalidad presencial o a distancia", "Valor: $25.000 CLP", "Incluye registro de seguimiento"],
-        note: "Se ofrece como práctica complementaria de bienestar."
-      },
-      "Terapia Flores de Bach": {
-        type: "Consulta personalizada",
-        paragraphs: [
-          "Espacio de conversación para conocer cómo te has sentido y qué aspectos emocionales te gustaría acompañar. A partir de esa conversación se prepara una combinación personalizada de esencias florales.",
-          "La selección se acuerda contigo y se explica durante la consulta. Las esencias florales se ofrecen como complemento de bienestar y no sustituyen tratamientos médicos o psicológicos."
-        ],
-        heading: "Valores y atención",
-        items: ["Duración aproximada: 1 hora", "Sesión individual: $25.000 CLP", "Pack de 2 sesiones: $42.000 CLP", "Preparado floral personalizado"],
-        note: "Consulta por WhatsApp para coordinar la atención."
-      },
-      "Proceso corporal “Riqueza Ilimitada”": {
-        type: "Proceso corporal · Access Consciousness",
-        paragraphs: [
-          "Proceso corporal de Access Consciousness que invita a revisar ideas y puntos de vista sobre el dinero, los negocios y la capacidad de recibir.",
-          "La conversación sobre lo que buscas trabajar se realiza desde tu propia experiencia. La práctica no garantiza resultados financieros ni reemplaza asesoría profesional."
-        ],
-        heading: "Valores y atención",
-        items: ["Duración aproximada: 50 minutos", "Modalidad presencial", "Sesión individual: $30.000 CLP", "Pack de 4 sesiones: $100.000 CLP; se cancela completo en la primera sesión"],
-        note: "Consulta disponibilidad con el centro antes de agendar."
-      },
-      "Limpieza Energética de Hogares": {
-        type: "Armonización de espacios",
-        paragraphs: [
-          "Servicio de armonización energética para casas y departamentos. La visita o coordinación considera el terreno, la vivienda y a las personas que habitan el espacio.",
-          "El alcance y el valor se conversan antes de agendar porque pueden variar según el tamaño y las características de la propiedad. También existe modalidad a distancia."
-        ],
-        heading: "Detalles",
-        items: ["Atención presencial o a distancia", "Desde $75.000 CLP", "Incluye terreno, vivienda y personas residentes", "El valor final se confirma al cotizar"],
-        note: "Escríbenos para indicar el tipo y tamaño del espacio y solicitar una cotización."
-      },
-      "Limpieza Energética de Negocios": {
-        type: "Armonización de espacios",
-        paragraphs: [
-          "Servicio de armonización energética para locales comerciales, oficinas y proyectos. El alcance se coordina considerando el tipo de actividad y las características del lugar.",
-          "La limpieza individual de trabajadores no está incluida y se cotiza por separado. Puedes solicitar una evaluación del espacio para recibir el valor final."
-        ],
-        heading: "Detalles",
-        items: ["Atención presencial o a distancia", "Desde $75.000 CLP", "Cotización según el espacio y el proyecto", "La atención individual de trabajadores se cotiza aparte"],
-        note: "Escríbenos para contar qué espacio quieres armonizar y coordinar una cotización."
-      }
-    };
+  "Curso Oficial de Barras de Access": {
+    "type": "Curso oficial · Access Consciousness",
+    "paragraphs": [
+      "Barras de Access es una práctica de Access Consciousness que consiste en tocar suavemente 32 puntos de la cabeza. En el curso se presenta la técnica y la secuencia básica para ofrecer una sesión.",
+      "La jornada combina explicación y práctica guiada: cada participante aprende dando y recibiendo sesiones. No se requiere experiencia previa y el curso se realiza en un día."
+    ],
+    "heading": "Qué incluye la jornada",
+    "items": [
+      "Manual oficial y láminas de apoyo",
+      "Prácticas guiadas para dar y recibir",
+      "Coffee break",
+      "Diploma y certificación internacional, según la formación anunciada por el centro"
+    ],
+    "note": "Facilita Daniela Lillo Verdejo. Horario publicado: 10:00 a 19:00 hrs. Valor: USD 330. Consulta fechas y cupos antes de inscribirte."
+  },
+  "Curso de MTVSS": {
+    "type": "Formación práctica · Access Consciousness",
+    "paragraphs": [
+      "MTVSS es uno de los procesos corporales de Access Consciousness. La formación enseña la práctica y el uso de las posiciones de manos propias de este proceso.",
+      "La jornada se aprende practicando en parejas, para experimentar la secuencia desde ambos roles. El centro indica que no hay requisitos previos y que la actividad dura aproximadamente cuatro horas."
+    ],
+    "heading": "Qué incluye la jornada",
+    "items": [
+      "Manual y coffee break",
+      "Cada participante da dos sesiones y recibe dos",
+      "Diploma y certificación internacional, según la formación anunciada por el centro"
+    ],
+    "note": "Facilita Daniela Lillo Verdejo. Valor publicado: $130.000 CLP. Consulta la fecha, los cupos y cualquier requisito logístico por WhatsApp."
+  },
+  "Curso de Biomagnetismo": {
+    "type": "Curso presencial · introducción al biomagnetismo",
+    "paragraphs": [
+      "El curso presenta el método de biomagnetismo que se enseña en esta formación: uso de imanes estáticos colocados en pares y ejercicios de rastreo según el material del curso.",
+      "La práctica es educativa y complementaria. La evidencia disponible no permite afirmar que los imanes estáticos diagnostiquen o traten enfermedades; esta formación no reemplaza estudios ni atención de profesionales de salud."
+    ],
+    "heading": "Qué incluye la formación",
+    "items": [
+      "Libros y lista de rastreo",
+      "Práctica presencial y acompañamiento durante el proceso",
+      "Certificado de participación",
+      "Reserva de cupo: $50.000 CLP; valor total: $200.000 CLP"
+    ],
+    "note": "Imparte Judith Alcaino en Quebec 556, Providencia. Confirma por WhatsApp fechas, duración y materiales incluidos."
+  },
+  "Taller de Masaje Craneal Hindú “Champi”": {
+    "type": "Taller práctico · masaje Champi",
+    "paragraphs": [
+      "Champi es una práctica de masaje de tradición india. Los talleres de masaje craneal indio suelen trabajar el cuero cabelludo y pueden incluir cuello, hombros, brazos o rostro; el programa de este taller se concentra en cabeza, cuello y hombros.",
+      "Durante la jornada aprenderás y practicarás maniobras básicas con guía. La descripción del centro anuncia una actividad práctica de día completo; consulta si se trabaja sentado o recostado y qué vestimenta se recomienda."
+    ],
+    "heading": "Qué incluye el taller",
+    "items": [
+      "Apuntes de apoyo",
+      "Aceite preparado",
+      "Certificado de participación",
+      "Horario publicado: 10:00 a 18:00 hrs · Valor: $50.000 CLP"
+    ],
+    "note": "Facilita Judith Alcaino Ibáñez. Confirma fecha, materiales y condiciones de participación antes de reservar."
+  },
+  "Sesión de Barras de Access": {
+    "type": "Sesión individual · Access Consciousness",
+    "paragraphs": [
+      "En esta práctica de Access Consciousness, permaneces recostada mientras la terapeuta toca suavemente distintos puntos de la cabeza, conocidos como las 32 Barras. Puedes preguntar por el procedimiento y comentar tus preferencias de contacto antes de empezar.",
+      "La sesión se ofrece como un espacio de pausa y relajación. No necesitas preparación especial; puedes venir con ropa cómoda y conversar cualquier duda al llegar."
+    ],
+    "heading": "La atención",
+    "items": [
+      "Duración publicada: 1 hora",
+      "Atención de lunes a viernes",
+      "Valor y horarios: consultar por WhatsApp"
+    ],
+    "note": "Es una práctica complementaria de bienestar; no diagnostica ni reemplaza atención médica o psicológica."
+  },
+  "Facelift Energético": {
+    "type": "Sesión individual · Access Consciousness",
+    "paragraphs": [
+      "El Facelift Energético de Access Consciousness se realiza con las manos apoyadas suavemente sobre rostro, cuello y parte superior del pecho. La sesión se plantea como una experiencia de cuidado personal y relajación.",
+      "La descripción explica el tipo de contacto, pero no promete cambios en la piel ni resultados estéticos. Antes de agendar puedes consultar cómo se desarrolla, conversar tus preferencias y preguntar por la modalidad disponible."
+    ],
+    "heading": "Valores publicados",
+    "items": [
+      "Sesión individual: $30.000 CLP",
+      "Pack de 4 sesiones: $90.000 CLP",
+      "Pack de 6 sesiones: $120.000 CLP",
+      "Atención con Daniela Lillo Verdejo"
+    ],
+    "note": "Duración y modalidad: confirmar por WhatsApp. Práctica complementaria, no tratamiento médico ni procedimiento estético."
+  },
+  "Sesión de Reiki": {
+    "type": "Sesión de bienestar · Reiki",
+    "paragraphs": [
+      "Reiki es una práctica complementaria en la que la terapeuta coloca las manos suavemente sobre la persona o justo por encima de ella. La sesión puede ser presencial o a distancia, según coordinación.",
+      "La atención ofrece un momento tranquilo para descansar. Antes de empezar puedes conversar cómo será la sesión y pedir que el contacto se adapte a tus preferencias."
+    ],
+    "heading": "Detalles",
+    "items": [
+      "Duración publicada: 1 hora",
+      "Modalidad presencial o a distancia",
+      "Valor: $25.000 CLP",
+      "Atienden Daniela Lillo Verdejo y Judith Alcaino Ibáñez"
+    ],
+    "note": "El Reiki no ha demostrado claramente eficacia para fines de salud; se ofrece como práctica complementaria y no reemplaza atención médica."
+  },
+  "Toque de Midas": {
+    "type": "Proceso corporal · Access Consciousness",
+    "paragraphs": [
+      "Toque de Midas se ofrece aquí como un proceso corporal de Access Consciousness. El nombre se relaciona con una práctica del catálogo de procesos corporales de Access; en sesión puedes consultar qué contacto y secuencia se utilizarán.",
+      "La descripción se limita a explicar el servicio ofrecido por el centro: no supone resultados económicos, cambios financieros ni efectos de salud. Puedes plantear tus dudas y preferencias antes de reservar."
+    ],
+    "heading": "Detalles",
+    "items": [
+      "Duración publicada: 1 hora",
+      "Modalidad presencial",
+      "Valor: $30.000 CLP",
+      "Atención con Daniela Lillo Verdejo o Judith Alcaino Ibáñez"
+    ],
+    "note": "Práctica complementaria de bienestar; no sustituye asesoría financiera ni atención de salud."
+  },
+  "Sesión MTVSS": {
+    "type": "Proceso corporal · Access Consciousness",
+    "paragraphs": [
+      "MTVSS es un proceso corporal de Access Consciousness. La sesión consiste en una práctica manual suave con posiciones de manos asociadas a este método.",
+      "Antes de comenzar, puedes conversar con la terapeuta sobre cómo se realizará el contacto y compartir cualquier preferencia. La información sobre el proceso se explica en el marco de bienestar complementario, sin prometer resultados médicos."
+    ],
+    "heading": "Detalles",
+    "items": [
+      "Duración publicada: 1 hora",
+      "Modalidad presencial",
+      "Valor: $30.000 CLP",
+      "Disponibilidad: consultar por WhatsApp"
+    ],
+    "note": "No reemplaza evaluación, diagnóstico o tratamiento indicado por profesionales de salud."
+  },
+  "Limpieza Energética Personal": {
+    "type": "Sesión personal · armonización energética",
+    "paragraphs": [
+      "La sesión de limpieza energética personal utiliza la Cruz de Ankh como parte de la práctica, según informa el centro. Se ofrece como un espacio individual de armonización y puede coordinarse presencialmente o a distancia.",
+      "La atención incluye un registro de seguimiento. Si es tu primera vez, puedes preguntar cómo se realiza la sesión, qué información se necesita y cómo se entrega ese registro."
+    ],
+    "heading": "Detalles",
+    "items": [
+      "Duración publicada: 1 hora",
+      "Modalidad presencial o a distancia",
+      "Valor: $25.000 CLP",
+      "Incluye registro de seguimiento"
+    ],
+    "note": "Práctica complementaria de bienestar. No sustituye atención de salud."
+  },
+  "Terapia Flores de Bach": {
+    "type": "Consulta personalizada · sistema floral de Bach",
+    "paragraphs": [
+      "La consulta comienza conversando sobre cómo te sientes y qué emociones te gustaría explorar. En el sistema Bach, la selección de esencias se vincula con el estado emocional actual y se prepara una combinación personalizada para la persona.",
+      "El centro indica que la consulta dura una hora e incluye un preparado floral. La sesión puede servir para conocer el sistema y conversar sobre la selección; no es una evaluación ni tratamiento médico o psicológico."
+    ],
+    "heading": "Valores y atención",
+    "items": [
+      "Duración publicada: 1 hora",
+      "Sesión individual: $25.000 CLP",
+      "Pack de 2 sesiones: $42.000 CLP",
+      "Incluye preparado floral personalizado"
+    ],
+    "note": "La selección se conversa contigo. Consulta por WhatsApp cómo se entrega el preparado y coordina tu hora."
+  },
+  "Proceso corporal “Riqueza Ilimitada”": {
+    "type": "Proceso corporal · Access Consciousness",
+    "paragraphs": [
+      "Riqueza Ilimitada se ofrece como un proceso corporal de Access Consciousness. El centro lo presenta como una práctica para explorar los puntos de vista personales que una persona asocia al dinero, los negocios y el recibir.",
+      "La sesión se describe como una experiencia de bienestar complementario. No promete ingresos, prosperidad ni resultados económicos; puedes consultar cómo se desarrolla y resolver tus dudas antes de agendar."
+    ],
+    "heading": "Valores y atención",
+    "items": [
+      "Duración publicada: 50 minutos",
+      "Modalidad presencial",
+      "Sesión individual: $30.000 CLP",
+      "Pack de 4 sesiones: $100.000 CLP, pagadero completo en la primera sesión"
+    ],
+    "note": "Confirma disponibilidad y condiciones del pack por WhatsApp. No sustituye asesoría financiera."
+  },
+  "Limpieza Energética de Hogares": {
+    "type": "Servicio para hogares · armonización energética",
+    "paragraphs": [
+      "Servicio dirigido a casas y departamentos. Según la descripción del centro, la armonización considera el terreno, los espacios interiores y a las personas que viven allí.",
+      "Puede coordinarse de forma presencial o a distancia. Antes de reservar, puedes contar qué tipo de propiedad tienes y consultar qué información o coordinación se requiere para realizar el servicio."
+    ],
+    "heading": "Detalles",
+    "items": [
+      "Modalidad presencial o a distancia",
+      "Valor publicado: $75.000 CLP",
+      "Considera terreno, vivienda y personas residentes"
+    ],
+    "note": "Coordina fecha y condiciones del servicio por WhatsApp. Se ofrece como armonización complementaria del espacio."
+  },
+  "Limpieza Energética de Negocios": {
+    "type": "Servicio para espacios de trabajo · armonización energética",
+    "paragraphs": [
+      "Servicio dirigido a locales comerciales, oficinas y proyectos. El centro describe la armonización como una atención del espacio de trabajo, en modalidad presencial o a distancia.",
+      "La atención individual de quienes trabajan en el lugar no está incluida y se cotiza aparte. Puedes explicar el tipo de espacio y consultar cómo se coordina la sesión antes de reservar."
+    ],
+    "heading": "Detalles",
+    "items": [
+      "Modalidad presencial o a distancia",
+      "Valor publicado: $75.000 CLP",
+      "Limpieza individual de trabajadores: servicio aparte, se cotiza por separado"
+    ],
+    "note": "Confirma el alcance, fecha y condiciones con el centro por WhatsApp. Servicio complementario para el espacio."
+  }
+};
     const serviceDetailDialog = document.getElementById("service-detail-dialog");
     const serviceDetailImage = document.getElementById("service-detail-image");
     const serviceDetailKicker = document.getElementById("service-detail-kicker");
@@ -483,7 +589,7 @@ button{cursor:pointer}
     document.querySelectorAll(".reservation-card").forEach((card) => {
       const button = card.querySelector(".details-button");
       const title = card.querySelector("h3");
-      button.setAttribute("aria-label", `Ver información completa de ${title.textContent.trim()}`);
+      button.setAttribute("aria-label", `Más información sobre ${title.textContent.trim()}`);
       button.addEventListener("click", () => {
         const detail = serviceDetails[title.textContent.trim()];
         if (!detail) return;
@@ -511,14 +617,6 @@ button{cursor:pointer}
     serviceDetailDialog.addEventListener("click", (event) => {
       if (event.target === serviceDetailDialog) serviceDetailDialog.close();
     });
-    mobileButton.addEventListener("click", () => {
-      const isOpen = mobileButton.getAttribute("aria-expanded") === "true";
-      mobileButton.setAttribute("aria-expanded", String(!isOpen));
-      mobileMenu.setAttribute("aria-hidden", String(isOpen));
-      mobileMenu.hidden = isOpen;
-    });
-    mobileMenu.querySelectorAll("a[href^='#']").forEach((link) => link.addEventListener("click", closeMobileMenu));
-
     const reviewDialog = document.getElementById("review-dialog");
     const reviewForm = document.getElementById("review-form");
     const reviewStatus = document.getElementById("review-status");
