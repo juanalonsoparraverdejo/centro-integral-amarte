@@ -37,23 +37,28 @@ service cloud.firestore {
       allow get, list: if resource.data.status == 'approved';
 
       allow create: if request.resource.data.keys().hasOnly([
-          'author', 'service', 'rating', 'text', 'status', 'createdAt'
+          'author', 'service', 'rating', 'text', 'consent', 'status', 'createdAt'
         ])
         && request.resource.data.keys().hasAll([
-          'author', 'service', 'rating', 'text', 'status', 'createdAt'
+          'author', 'service', 'rating', 'text', 'consent', 'status', 'createdAt'
         ])
         && request.resource.data.author is string
         && request.resource.data.author.size() >= 1
         && request.resource.data.author.size() <= 45
         && [
-          'Barras de Access', 'Facelift Energético', 'Reiki', 'Toque de Midas',
-          'MTVSS', 'Flores de Bach', 'Otra experiencia'].hasAny([request.resource.data['service']])
+          'Curso Oficial de Barras de Access', 'Curso de MTVSS', 'Curso de Biomagnetismo',
+          'Taller de Masaje Craneal Hindú “Champi”', 'Sesión de Barras de Access',
+          'Facelift Energético', 'Sesión de Reiki', 'Toque de Midas', 'Sesión MTVSS',
+          'Limpieza Energética Personal', 'Terapia Flores de Bach',
+          'Proceso corporal “Riqueza Ilimitada”', 'Limpieza Energética de Hogares',
+          'Limpieza Energética de Negocios', 'Otra experiencia'].hasAny([request.resource.data['service']])
         && request.resource.data.rating is int
         && request.resource.data.rating >= 1
         && request.resource.data.rating <= 5
         && request.resource.data.text is string
         && request.resource.data.text.size() >= 12
         && request.resource.data.text.size() <= 600
+        && request.resource.data.consent == true
         && request.resource.data.status == 'approved'
         && request.resource.data.createdAt == request.time;
 
