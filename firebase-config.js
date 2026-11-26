@@ -5,5 +5,6 @@ window.AMARTE_FIREBASE_CONFIG = {
   storageBucket: "centro-integral-amarte.firebasestorage.app",
   messagingSenderId: "844320315007",
   appId: "1:844320315007:web:8c5ba8c0fc69ad5597114a",
-  measurementId: "G-STT43ZYPLW"
+  measurementId: "G-STT43ZYPLW",
+  appCheckSiteKey: ""
 };

@@ -18,7 +18,7 @@ La conexión usa el proyecto Firebase `centro-integral-amarte` y la base Enterpr
 
 ### Protección contra spam
 
-Las reseñas se publican automáticamente, por lo que App Check no está aplicado todavía. Para activarlo, registra la aplicación web en Firebase App Check con reCAPTCHA Enterprise, añade la clave pública del sitio a la inicialización del cliente y activa la aplicación gradual de App Check para Cloud Firestore. App Check ayuda a filtrar tráfico no autorizado; no reemplaza una limitación de frecuencia del lado del servidor.
+Las reseñas se publican automáticamente, por lo que App Check no está aplicado todavía. El sitio ya permite configurarlo: registra la app web en Firebase App Check con reCAPTCHA Enterprise, agrega la clave pública del sitio en `appCheckSiteKey` dentro de `firebase-config.js`, publica el cambio y activa App Check para Cloud Firestore en modo de monitoreo antes de aplicar enforcement. App Check ayuda a filtrar tráfico no autorizado; no reemplaza una limitación de frecuencia del lado del servidor. La clave reCAPTCHA es pública y va en el sitio; no publiques ninguna clave secreta de Enterprise.
 
 ## Publicación
 

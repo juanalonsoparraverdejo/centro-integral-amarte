@@ -336,7 +336,7 @@ button{cursor:pointer}
 
   <a class="wa-float" href="https://wa.me/56956139321?text=Hola%2C%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20reservas%20en%20el%20Centro%20Hol%C3%ADstico%20Integral%20Amarte." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
 
-  <script src="firebase-config.js?v=20261125-2"></script>
+  <script src="firebase-config.js?v=20261125-3"></script>
   <script type="module">
     const mobileButton = document.getElementById("mobile-btn");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -722,7 +722,15 @@ button{cursor:pointer}
           import("https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js"),
           import("https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js")
         ]);
-        db = getFirestore(initializeApp(firebaseConfig), "reviews");
+        const app = initializeApp(firebaseConfig);
+        if (firebaseConfig.appCheckSiteKey) {
+          const { initializeAppCheck, ReCaptchaEnterpriseProvider } = await import("https://www.gstatic.com/firebasejs/13.4.0/firebase-app-check.js");
+          initializeAppCheck(app, {
+            provider: new ReCaptchaEnterpriseProvider(firebaseConfig.appCheckSiteKey),
+            isTokenAutoRefreshEnabled: true
+          });
+        }
+        db = getFirestore(app, "reviews");
         saveReview = (review) => addDoc(collection(db, "reviews"), { ...review, createdAt: serverTimestamp() });
         const approvedReviews = query(collection(db, "reviews"), where("status", "==", "approved"), orderBy("createdAt", "desc"), limit(50));
         onSnapshot(approvedReviews, (snapshot) => {
