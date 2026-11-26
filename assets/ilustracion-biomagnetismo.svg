@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">Ilustración referencial de pares de imanes</title>
+  <desc id="desc">Dos imanes circulares, uno rojo y otro oscuro, sobre un fondo cálido con líneas de campo sutiles.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5eee4"/><stop offset="1" stop-color="#e2d4c3"/></linearGradient>
+    <radialGradient id="red" cx="35%" cy="25%"><stop stop-color="#df9290"/><stop offset="1" stop-color="#9b5056"/></radialGradient>
+    <radialGradient id="dark" cx="35%" cy="25%"><stop stop-color="#77716e"/><stop offset="1" stop-color="#343338"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#453c37" flood-opacity=".2"/></filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <circle cx="600" cy="375" r="280" fill="#fff" opacity=".22"/>
+  <g fill="none" stroke="#9f8877" stroke-width="3" opacity=".34">
+    <path d="M327 375c73-218 473-218 546 0M360 375c62-170 418-170 480 0M393 375c52-125 362-125 414 0"/>
+    <path d="M327 375c73 218 473 218 546 0M360 375c62 170 418 170 480 0M393 375c52 125 362 125 414 0"/>
+  </g>
+  <g filter="url(#shadow)">
+    <circle cx="470" cy="375" r="142" fill="url(#red)"/>
+    <circle cx="730" cy="375" r="142" fill="url(#dark)"/>
+    <circle cx="470" cy="375" r="105" fill="none" stroke="#f5d8d1" stroke-width="3" opacity=".6"/>
+    <circle cx="730" cy="375" r="105" fill="none" stroke="#d8d1cc" stroke-width="3" opacity=".4"/>
+    <text x="470" y="413" text-anchor="middle" fill="#fffaf3" font-family="Georgia,serif" font-size="100" font-weight="500">+</text>
+    <text x="730" y="411" text-anchor="middle" fill="#fffaf3" font-family="Georgia,serif" font-size="112" font-weight="400">−</text>
+  </g>
+  <text x="600" y="660" text-anchor="middle" fill="#74665a" font-family="Arial,sans-serif" font-size="21" letter-spacing="4">PAR BIOMAGNÉTICO · ILUSTRACIÓN</text>
+</svg>
